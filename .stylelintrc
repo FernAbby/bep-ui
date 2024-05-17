@@ -1,0 +1,3 @@
+{
+  "extends": ["@lints-config/stylelint-config-scss"]
+}

@@ -7,4 +7,7 @@ module.exports = {
     '@lints-config/eslint-config-vue-ts',
     '@vue/eslint-config-prettier/skip-formatting'
   ],
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off'
+  }
 }

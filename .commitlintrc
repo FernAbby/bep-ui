@@ -1,0 +1,3 @@
+{
+  "extends": ["@lints-config/commitlint-config-common"]
+}

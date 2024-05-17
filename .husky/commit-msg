@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# https://typicode.github.io/husky/#/?id=command-not-found
+# sets the correct PATH before running hook for use nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm for general case
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm for brew case
+
+npx commitlint --edit $1
+echo "\033[32m commitlint 校验通过！\033[0m"

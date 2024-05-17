@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "husky",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
@@ -14,11 +15,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@lints-config/stylelint-config-scss": "^0.0.5",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@lints-config/commitlint-config-common": "^1.0.3",
     "@lints-config/eslint-config-vue-ts": "^1.0.2",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
@@ -42,6 +45,18 @@
     "vite-plugin-vue-devtools": "^7.0.25",
     "vitest": "^1.4.0",
     "vue-tsc": "^2.0.11"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{scss,less,css}": [
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ]
   },
   "packageManager": "pnpm@7.15.0",
   "engines": {
