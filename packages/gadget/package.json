@@ -1,0 +1,8 @@
+{
+  "name": "gadget",
+  "version": "1.0.0",
+  "description": "日常开发常用小型工具",
+  "main": "index.js",
+  "author": "wenzhen",
+  "license": "MIT"
+}

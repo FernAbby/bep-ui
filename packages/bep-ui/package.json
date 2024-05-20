@@ -1,0 +1,8 @@
+{
+  "name": "bep-ui",
+  "version": "1.0.0",
+  "description": "基于element-plus二开的schema-form、schema-render",
+  "main": "index.js",
+  "author": "wenzhen",
+  "license": "MIT"
+}

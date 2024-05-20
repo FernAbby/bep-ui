@@ -69,6 +69,13 @@ export function isObject(value: any): boolean {
 }
 
 /**
+ * @description 判断数据是否为一个"纯粹"对象
+ */
+export function isPlainObject(value: any): boolean {
+  return toTypeString(value) === '[object Object]'
+}
+
+/**
  * @description 判断数据是否为Promise对象
  */
 export function isPromise(value: any): boolean {

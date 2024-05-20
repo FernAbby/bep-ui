@@ -15,7 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@lints-config/stylelint-config-scss": "^0.0.5",
+    "element-plus": "^2.7.3",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@lints-config/commitlint-config-common": "^1.0.3",
     "@lints-config/eslint-config-vue-ts": "^1.0.2",
+    "@lints-config/stylelint-config-scss": "^0.0.5",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/jsdom": "^21.1.6",
@@ -40,6 +41,7 @@
     "lint-staged": "^15.2.2",
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.2.5",
+    "sass": "^1.77.2",
     "typescript": "~5.4.0",
     "vite": "^5.2.8",
     "vite-plugin-vue-devtools": "^7.0.25",
