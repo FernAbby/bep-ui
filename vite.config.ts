@@ -11,16 +11,21 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 const BEP_LIB_NAME = 'bep-ui'
 const GADGETS_LIB_NAME = 'gadgets'
 
+// 获取构建路径
+function resolveBuildPath(lib: string, suffix?: string) {
+  return `packages/${lib}/dist${suffix ? `/${suffix}` : ''}`
+}
+
 const bepUIConfig: UserConfig = {
   plugins: [
     vue(),
     dts({
-      outDir: 'libs/gadgets/bep-ui'
+      outDir: resolveBuildPath(BEP_LIB_NAME, 'types')
     }),
     vueJsx(),
   ],
   build: {
-    outDir: 'dist',
+    outDir: resolveBuildPath(BEP_LIB_NAME),
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, './packages/bep-ui/index.ts'), // 指定组件编译入口文件
@@ -31,10 +36,9 @@ const bepUIConfig: UserConfig = {
       external: ['vue', 'element-plus', 'gadgets'],
       output: [
         {
-          dir: `libs/${BEP_LIB_NAME}/es`,
+          dir: resolveBuildPath(BEP_LIB_NAME, 'es'),
           entryFileNames: '[name].es.mjs',
           format: 'es',
-          // sourcemap: true,
           preserveModules: true,
           globals: {
             vue: 'Vue',
@@ -42,7 +46,7 @@ const bepUIConfig: UserConfig = {
           },
         },
         {
-          dir: `libs/${BEP_LIB_NAME}/umd`,
+          dir: resolveBuildPath(BEP_LIB_NAME, 'umd'),
           name: '[name].umd.cjs',
           format: 'umd',
           globals: {
@@ -59,11 +63,11 @@ const gadgetsConfig: UserConfig = {
   plugins: [
     vue(),
     dts({
-      outDir: 'libs/gadgets/types'
+      outDir: resolveBuildPath(GADGETS_LIB_NAME, 'types')
     }),
   ],
   build: {
-    outDir: 'dist',
+    outDir: resolveBuildPath(GADGETS_LIB_NAME),
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, './packages/gadgets/index.ts'), // 指定组件编译入口文件
@@ -74,7 +78,7 @@ const gadgetsConfig: UserConfig = {
       external: ['vue', 'element-plus', 'gadgets'],
       output: [
         {
-          dir: `libs/${GADGETS_LIB_NAME}/es`,
+          dir: resolveBuildPath(GADGETS_LIB_NAME, 'es'),
           entryFileNames: '[name].es.mjs',
           format: 'es',
           preserveModules: true,
@@ -84,7 +88,7 @@ const gadgetsConfig: UserConfig = {
           },
         },
         {
-          dir: `libs/${GADGETS_LIB_NAME}/umd`,
+          dir: resolveBuildPath(GADGETS_LIB_NAME, 'umd'),
           name: '[name].umd.cjs',
           format: 'umd',
           globals: {

@@ -37,7 +37,7 @@
   import { ElForm, ElFormItem } from 'element-plus'
   import { ref, computed } from 'vue'
   import type { Component } from 'vue'
-  import { execStatement, isEmpty, isBoolean } from 'gadgets'
+  import { execStatement, isEmpty, isBoolean } from 'biz-gadgets'
   import type { IComponentSize } from '@bep-ui/constants/size'
   import { GLOBAL_CONFIG } from '../../constants'
   import type { ISchema, ISchemaFormItem } from './interface'

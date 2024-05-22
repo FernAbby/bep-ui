@@ -12,6 +12,8 @@
       "@packages/*": ["./packages/*"],
       "@bep-ui/*": ["./packages/bep-ui/*"],
       "@gadgets/*": ["./packages/gadgets/*"]
-    }
+    },
+    "skipLibCheck": true,
+    "moduleResolution": "node"
   }
 }

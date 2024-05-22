@@ -17,7 +17,7 @@
   "author": "wenzhen",
   "license": "MIT",
   "dependencies": {
-    "gadgets": "workspace:^"
+    "biz-gadgets": "workspace:^"
   },
   "peerDependencies": {
     "vue": ">=3.4.0",

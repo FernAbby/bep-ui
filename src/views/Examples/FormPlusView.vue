@@ -1,10 +1,16 @@
 <template>
-  <FormPlus :schema="schema" :model="form" label-width="70px" />
+  <FormPlus :schema="schema" :model="form" :rules="rules" label-width="70px" />
 </template>
 <script lang="ts" setup>
   import FormPlus from '@packages/bep-ui/components/FormPlus/index.vue'
   import { ref } from 'vue'
   import type { ISchema } from '@bep-ui/components'
+
+  const rules = {
+    age: [
+      { min: 1, max: 100, message: 'Length should be 1 to 100', trigger: 'blur' },
+    ]
+  }
 
   const schema: ISchema = {
     renderType: 'Object',
@@ -22,6 +28,9 @@
         title: '年龄',
         renderType: 'InputNumber',
         required: true,
+        renderOptions: {
+          max: 10,
+        }
       },
       sex: {
         title: '性别',
@@ -42,6 +51,7 @@
       grade: {
         title: '年级',
         renderType: 'Select',
+        required: true,
         renderOptions: {
           multiple: true,
           options: [

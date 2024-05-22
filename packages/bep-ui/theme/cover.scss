@@ -5,6 +5,12 @@
 
 // start of size = 'small'
 .el-form-item--small {
+  margin-bottom: 16px;
+
+  .el-form-item__error {
+    padding-top: 0;
+  }
+
   .el-form-item__label {
     height: 30px;
     line-height: 30px;
