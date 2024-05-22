@@ -2,9 +2,10 @@ import type { App } from 'vue'
 import { freezeGlobalConfig, renderResolver } from '@bep-ui/helper'
 import { INSTALLED_KEY } from './constants'
 import type { IConfigProviderContext } from './constants'
+import './theme/base.css'
 
 const BepUI = {
-  install(app: App, options: IConfigProviderContext = {}) {
+  install(app: App, options: Partial<IConfigProviderContext> = {}) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     if (app[INSTALLED_KEY]) return

@@ -1,8 +1,8 @@
 <template>
   <div class="standard-page-layout">
     <div class="standard-page-layout__nav">
-      <RouterLink to="/examples">概览</RouterLink>
-      <RouterLink to="/examples/form-plus">表单</RouterLink>
+      <RouterLink to="/examples/guide">概览</RouterLink>
+      <RouterLink to="/examples/form">表单</RouterLink>
     </div>
     <div class="standard-page-layout__content">
       <RouterView />
@@ -10,15 +10,17 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { RouterView } from 'vue-router'
+  import { RouterView } from 'vue-router'
 </script>
 <style lang="scss">
   .standard-page-layout {
     display: flex;
+    box-sizing: border-box;
 
     .standard-page-layout__nav {
-      width: 180px;
-      height: 100vh;
+      width: 200px;
+      height: calc(100vh - 46px);
+      padding: 12px;
       border-right: 1px solid var(--color-border);
 
       > a {
@@ -27,6 +29,18 @@ import { RouterView } from 'vue-router'
         line-height: 34px;
         padding: 0 14px;
         font-size: 13px;
+        border-radius: 4px;
+        color: hsla(210, 4%, 40%, 1);
+      }
+
+      > a.router-link-active {
+        color: hsla(160, 100%, 37%, 1);
+        background-color: hsla(160, 100%, 37%, 0.18) !important;
+      }
+
+      > a:hover {
+        color: hsla(160, 100%, 37%, 0.8);
+        background-color: transparent;
       }
     }
 

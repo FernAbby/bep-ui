@@ -30,10 +30,16 @@ const router = createRouter({
       path: '/examples',
       name: 'examples',
       component: StandardLayout,
+      redirect: '/examples/guide',
       children: [
         {
-          path: '/examples/form-plus',
-          name: 'form-plus',
+          path: 'guide',
+          name: 'guide',
+          component: () => import('../views/Examples/GuideView.vue')
+        },
+        {
+          path: 'form',
+          name: 'form',
           component: () => import('../views/Examples/FormPlusView.vue')
         }
       ]

@@ -10,7 +10,7 @@ export function execStatement({
   rootData,
   context,
 }: {
-  statement: string | boolean
+  statement: string | boolean | undefined
   rootData: IObjectAny
   context: IObjectAny
 }): boolean {

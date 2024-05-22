@@ -1,0 +1,50 @@
+{
+  "root": true,
+//  "extends": [
+//    "@lints-config/eslint-config-vue-ts"
+//  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "import", "simple-import-sort"
+  ],
+  "parser": "vue-eslint-parser", // 解析.vue文件
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser", // 解析<script>标签中的代码
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true
+    }
+  },
+  "ignorePatterns": ["dist", "build", "node_modules", ".husky", ".vscode","**/*.min.js", "**/*.md", "**/*.css"],
+  "rules": {
+    "prettier/prettier": "off",
+    // eslint-plugin-import 导入顺序
+    "import/order": ["error", { "groups": ["builtin", "external", "internal"] }],
+    "@typescript-eslint/no-explicit-any": "off", // @ts-ignore
+    "vue/multi-word-component-names": "off", // .vue文件明明必须是多个单词命名
+    "vue/script-indent": ["error", 2, {
+      "baseIndent": 1
+    }] // 对script标签内的JavaScript缩进2个tab
+  },
+  "overrides":[
+    {
+      "files": [
+        "*.vue"
+      ],
+      "rules": {
+        "indent": "off"
+      }
+    }
+  ]
+}

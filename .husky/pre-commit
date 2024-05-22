@@ -7,5 +7,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm for general case
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm for brew case
 
+echo "============>"
+
 npx lint-staged
 echo "\033[32m eslint stylelint 校验通过！ \033[0m"

@@ -22,9 +22,9 @@
     height: 100vh;
 
     .page-layout_header {
-      height: 40px;
+      height: 46px;
       padding: 0 30px 0 20px;
-      line-height: 34px;
+      line-height: 40px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -53,6 +53,11 @@
       color: hsla(160, 100%, 37%, 1);
       transition: 0.4s;
       padding: 3px 8px;
+
+      &.router-link-active {
+        color: hsla(160, 100%, 37%, 1);
+        background-color: hsla(160, 100%, 37%, 0.18);
+      }
     }
   }
 </style>

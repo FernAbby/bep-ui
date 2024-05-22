@@ -1,5 +1,5 @@
 import type { Component } from 'vue'
-import { renderers } from './components'
+import renderers from './components/FormPlus/renderers'
 
 export const INSTALLED_KEY = Symbol("BEP_INSTALLED_KEY")
 
@@ -8,10 +8,10 @@ export interface ISchemaRenderer {
 }
 
 export interface IConfigProviderContext {
-  prefix?: string
-  size?: string
+  prefix: string
+  size: string
   // TODO 补充 ISchemaRenderer 类型
-  renderers?: ISchemaRenderer
+  renderers: ISchemaRenderer
   [key: string]: any
 }
 

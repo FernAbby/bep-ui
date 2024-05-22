@@ -4,7 +4,7 @@ import type { IConfigProviderContext } from './constants'
 import { GLOBAL_CONFIG } from './constants'
 
 // 冻结初始对象
-export function freezeGlobalConfig(config: IConfigProviderContext) {
+export function freezeGlobalConfig(config: Partial<IConfigProviderContext>) {
   if (!isEmpty(config.renderers)) {
     GLOBAL_CONFIG.renderers = Object.assign(GLOBAL_CONFIG.renderers, config.renderers)
   }
@@ -19,7 +19,7 @@ export function freezeGlobalConfig(config: IConfigProviderContext) {
 export function renderResolver(app: App) {
   Object.keys(GLOBAL_CONFIG.renderers).forEach((key) => {
     app.component(
-      `${GLOBAL_CONFIG.prefix}${key || GLOBAL_CONFIG.renderers[key].name}`,
+      `${GLOBAL_CONFIG.prefix}${GLOBAL_CONFIG.renderers[key].name || key}`,
       GLOBAL_CONFIG.renderers[key]
     )
   })
