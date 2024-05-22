@@ -1,0 +1,13 @@
+{
+  "include": ["."],
+  "exclude": [],
+  "compilerOptions": {
+    "composite": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "#gadget/*": ["./*"]
+    },
+    "outDir": "build/gadget"
+  }
+}

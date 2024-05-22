@@ -37,7 +37,7 @@
   import { ElForm, ElFormItem } from 'element-plus'
   import { ref, computed } from 'vue'
   import type { Component } from 'vue'
-  import { execStatement, isEmpty, isBoolean } from '@gadget/index'
+  import { execStatement, isEmpty, isBoolean } from 'gadget'
   import type { IComponentSize } from '@bep-ui/constants/size'
   import { GLOBAL_CONFIG } from '../../constants'
   import type { ISchema, ISchemaFormItem } from './interface'
@@ -86,14 +86,14 @@
   // 是否显示当前项
   const getFormFieldShow = (prop: string) => {
     if (isEmpty((getFormField(prop) as ISchemaFormItem).hidden)) return true
-    console.log(
-      'execStatement====>',
-      execStatement({
-        statement: (getFormField(prop) as ISchemaFormItem).hidden,
-        rootData: formData.value,
-        context: props.customContext
-      })
-    )
+    // console.log(
+    //   'execStatement====>',
+    //   execStatement({
+    //     statement: (getFormField(prop) as ISchemaFormItem).hidden,
+    //     rootData: formData.value,
+    //     context: props.customContext
+    //   })
+    // )
     return execStatement({
       statement: (getFormField(prop) as ISchemaFormItem).hidden,
       rootData: formData.value,
@@ -101,6 +101,7 @@
     })
   }
 
+  // 是否为formItem
   const isFormField = (prop: string): boolean => {
     if (isBoolean(getFormField(prop)?.isFormField) && getFormField(prop)?.isFormField) return true
     return ['SectionTitle'].includes(getFormField(prop).renderType)

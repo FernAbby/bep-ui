@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import { freezeGlobalConfig, renderResolver } from '@bep-ui/helper'
 import { INSTALLED_KEY } from './constants'
 import type { IConfigProviderContext } from './constants'
-import './theme/base.css'
+import './theme/base.scss'
 
 const BepUI = {
   install(app: App, options: Partial<IConfigProviderContext> = {}) {

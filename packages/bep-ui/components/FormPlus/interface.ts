@@ -1,6 +1,6 @@
 import type { Component } from 'vue'
 import type { FormItemProps } from 'element-plus'
-import type { IObjectAny } from '../../types/common'
+import type { IObjectAny } from '@bep-ui/types/common'
 
 export interface ISchemaFormItem {
   title: string

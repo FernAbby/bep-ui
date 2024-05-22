@@ -1,11 +1,12 @@
 <template>
-  <FormPlus :schema="schema" :model="form" />
+  <FormPlus :schema="schema" :model="form" label-width="70px" />
 </template>
 <script lang="ts" setup>
   import FormPlus from '@packages/bep-ui/components/FormPlus/index.vue'
   import { ref } from 'vue'
+  import type { ISchema } from '@bep-ui/components'
 
-  const schema = {
+  const schema: ISchema = {
     renderType: 'Object',
     properties: {
       baseInfo: {
@@ -21,6 +22,22 @@
         title: '年龄',
         renderType: 'InputNumber',
         required: true,
+      },
+      sex: {
+        title: '性别',
+        renderType: 'RadioGroup',
+        renderOptions: {
+          options: [
+            {
+              label: '男',
+              value: 'male',
+            },
+            {
+              label: '女',
+              value: 'female',
+            },
+          ]
+        }
       },
       grade: {
         title: '年级',

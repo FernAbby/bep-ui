@@ -1,8 +1,20 @@
 {
   "name": "gadget",
   "version": "1.0.0",
-  "description": "日常开发常用小型工具",
-  "main": "index.js",
+  "description": "业务开发常用小型工具",
+  "files": [
+    "libs/gadget",
+    "package.json"
+  ],
+  "main": "./libs/gadget/umd/gadget.umd.cjs",
+  "module": "./libs/gadget/es/index.es.js",
+  "types": "./libs/gadget/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./libs/gadget/es/index.es.js",
+      "require": "./libs/gadget/umd/gadget.umd.cjs"
+    }
+  },
   "author": "wenzhen",
   "license": "MIT"
 }
