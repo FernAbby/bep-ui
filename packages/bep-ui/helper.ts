@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { isEmpty } from 'gadget'
+import { isEmpty } from 'gadgets'
 import type { IConfigProviderContext } from './constants'
 import { GLOBAL_CONFIG } from './constants'
 

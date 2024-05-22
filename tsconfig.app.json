@@ -11,7 +11,7 @@
       "@/*": ["./src/*"],
       "@packages/*": ["./packages/*"],
       "@bep-ui/*": ["./packages/bep-ui/*"],
-      "@gadget/*": ["./packages/gadget/*"]
+      "@gadgets/*": ["./packages/gadgets/*"]
     }
   }
 }

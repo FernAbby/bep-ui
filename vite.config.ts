@@ -6,17 +6,16 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import dts from 'vite-plugin-dts'
 import VueDevTools from 'vite-plugin-vue-devtools'
+// console.log('import.meta.url=====>', import.meta.url)
 
 const BEP_LIB_NAME = 'bep-ui'
-const GADGET_LIB_NAME = 'gadget'
-
-// console.log('import.meta.url=====>', import.meta.url)
+const GADGETS_LIB_NAME = 'gadgets'
 
 const bepUIConfig: UserConfig = {
   plugins: [
     vue(),
     dts({
-      outDir: 'libs/gadget/bep-ui'
+      outDir: 'libs/gadgets/bep-ui'
     }),
     vueJsx(),
   ],
@@ -29,11 +28,11 @@ const bepUIConfig: UserConfig = {
       fileName: BEP_LIB_NAME,
     },
     rollupOptions: {
-      external: ['vue', 'element-plus', 'gadget'],
+      external: ['vue', 'element-plus', 'gadgets'],
       output: [
         {
           dir: `libs/${BEP_LIB_NAME}/es`,
-          entryFileNames: '[name].es.js',
+          entryFileNames: '[name].es.mjs',
           format: 'es',
           // sourcemap: true,
           preserveModules: true,
@@ -56,27 +55,27 @@ const bepUIConfig: UserConfig = {
   },
 }
 
-const gadgetConfig: UserConfig = {
+const gadgetsConfig: UserConfig = {
   plugins: [
     vue(),
     dts({
-      outDir: 'libs/gadget/types'
+      outDir: 'libs/gadgets/types'
     }),
   ],
   build: {
     outDir: 'dist',
     sourcemap: true,
     lib: {
-      entry: path.resolve(__dirname, './packages/gadget/index.ts'), // 指定组件编译入口文件
-      name: GADGET_LIB_NAME,
-      fileName: GADGET_LIB_NAME,
+      entry: path.resolve(__dirname, './packages/gadgets/index.ts'), // 指定组件编译入口文件
+      name: GADGETS_LIB_NAME,
+      fileName: GADGETS_LIB_NAME,
     },
     rollupOptions: {
-      external: ['vue', 'element-plus', 'gadget'],
+      external: ['vue', 'element-plus', 'gadgets'],
       output: [
         {
-          dir: `libs/${GADGET_LIB_NAME}/es`,
-          entryFileNames: '[name].es.js',
+          dir: `libs/${GADGETS_LIB_NAME}/es`,
+          entryFileNames: '[name].es.mjs',
           format: 'es',
           preserveModules: true,
           globals: {
@@ -85,7 +84,7 @@ const gadgetConfig: UserConfig = {
           },
         },
         {
-          dir: `libs/${GADGET_LIB_NAME}/umd`,
+          dir: `libs/${GADGETS_LIB_NAME}/umd`,
           name: '[name].umd.cjs',
           format: 'umd',
           globals: {
@@ -108,8 +107,8 @@ export default defineConfig(() => {
   if (process.env.LIB_NAME === 'bep-ui') {
     innerConfig = { ...defaultConfig, ...bepUIConfig }
   }
-  if (process.env.LIB_NAME === 'gadget') {
-    innerConfig = { ...defaultConfig, ...gadgetConfig }
+  if (process.env.LIB_NAME === 'gadgets') {
+    innerConfig = { ...defaultConfig, ...gadgetsConfig }
   }
   return {
     resolve: {
@@ -117,7 +116,7 @@ export default defineConfig(() => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         '@packages': fileURLToPath(new URL('./packages', import.meta.url)),
         '@bep-ui': fileURLToPath(new URL('./packages/bep-ui', import.meta.url)),
-        '@gadget': fileURLToPath(new URL('./packages/gadget', import.meta.url))
+        '@gadgets': fileURLToPath(new URL('./packages/gadgets', import.meta.url))
       }
     },
     ...innerConfig,

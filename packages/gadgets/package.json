@@ -1,0 +1,21 @@
+{
+  "name": "gadgets",
+  "version": "1.0.0",
+  "description": "业务开发常用小型工具库",
+  "files": [
+    "libs/gadgets",
+    "package.json"
+  ],
+  "main": "./libs/gadgets/umd/gadgets.umd.cjs",
+  "module": "./libs/gadgets/es/index.es.mjs",
+  "types": "./libs/gadgets/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./libs/gadgets/types/index.d.ts",
+      "import": "./libs/gadgets/es/index.es.mjs",
+      "require": "./libs/gadgets/umd/gadgets.umd.cjs"
+    }
+  },
+  "author": "wenzhen",
+  "license": "MIT"
+}

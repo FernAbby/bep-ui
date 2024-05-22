@@ -6,17 +6,18 @@
     "dist"
   ],
   "main": "./libs/bep-ui/umd/bep-ui.umd.cjs",
-  "module": "./libs/bep-ui/es/bep-ui/index.es.js",
+  "module": "./libs/bep-ui/es/bep-ui/index.es.mjs",
+  "types": "./libs/bep-ui/es/bep-ui/tyeps/",
   "exports": {
     ".": {
-      "import": "./libs/bep-ui/es/bep-ui/index.es.js",
-      "require": "./libs/bep-ui/umd/bep-ui.umd.cjss"
+      "import": "./libs/bep-ui/es/bep-ui/index.es.mjs",
+      "require": "./libs/bep-ui/umd/bep-ui.umd.cjs"
     }
   },
   "author": "wenzhen",
   "license": "MIT",
   "dependencies": {
-    "gadget": "workspace:^"
+    "gadgets": "workspace:^"
   },
   "peerDependencies": {
     "vue": ">=3.4.0",
