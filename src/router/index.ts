@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/Dashboard/HomeView.vue'
 import DefaultLayout from '@/layout/DefaultLayout.vue'
 import StandardLayout from '@/layout/StandardLayout.vue'
 
@@ -22,7 +22,7 @@ const router = createRouter({
           // route level code-splitting
           // this generates a separate chunk (About.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import('../views/AboutView.vue')
+          component: () => import('../views/Dashboard/AboutView.vue')
         }
       ]
     },
@@ -43,7 +43,7 @@ const router = createRouter({
           component: () => import('../views/Examples/FormPlusView.vue')
         }
       ]
-    },
+    }
   ]
 })
 

@@ -1,11 +1,11 @@
 {
   "name": "biz-gadgets",
   "version": "1.0.1",
-  "description": "业务开发常用小型工具库",
+  "description": "业务开发日常小工具库",
   "keywords": [
     "gadgets",
-    "工具",
-    "函数",
+    "utility functions",
+    "helper functions",
     "mini lodash"
   ],
   "files": [
@@ -13,13 +13,21 @@
     "package.json"
   ],
   "main": "/dist/umd/gadgets.umd.cjs",
-  "module": "/dist/es/index.es.mjs",
+  "module": "/dist/es/index.mjs",
   "types": "/dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/es/index.es.mjs",
+      "import": "./dist/es/index.mjs",
       "require": "./dist/umd/gadgets.umd.cjs"
+    },
+    "./hooks": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/es/hooks/index.mjs"
+    },
+    "./es/*.mjs": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/es/*.mjs"
     }
   },
   "author": "wenzhen",

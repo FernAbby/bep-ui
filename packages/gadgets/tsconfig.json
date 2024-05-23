@@ -3,6 +3,9 @@
   "exclude": [],
   "compilerOptions": {
     "composite": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "moduleResolution": "node",
 
     "baseUrl": ".",
     "paths": {

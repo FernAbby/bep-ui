@@ -28,7 +28,7 @@
   },
   "ignorePatterns": ["dist", "build", "node_modules", ".husky", ".vscode","**/*.min.js", "**/*.md", "**/*.css"],
   "rules": {
-    "prettier/prettier": "off",
+    // "prettier/prettier": "off",
     // eslint-plugin-import 导入顺序
     "import/order": ["error", { "groups": ["builtin", "external", "internal"] }],
     "@typescript-eslint/no-explicit-any": "off", // @ts-ignore

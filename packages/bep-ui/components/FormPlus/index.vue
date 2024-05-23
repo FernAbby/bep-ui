@@ -38,13 +38,13 @@
   import { ref, computed } from 'vue'
   import type { Component } from 'vue'
   import { execStatement, isEmpty, isBoolean } from 'biz-gadgets'
+  import { useNamespace } from 'biz-gadgets/hooks'
   import type { IComponentSize } from '@bep-ui/constants/size'
   import { GLOBAL_CONFIG } from '../../constants'
   import type { ISchema, ISchemaFormItem } from './interface'
   import type { IObjectAny } from '../../types/common'
 
   defineOptions({ name: 'FormPlus' })
-
   const props = defineProps({
     disabled: {
       type: Boolean,
@@ -75,6 +75,8 @@
       default: 'small'
     }
   })
+  const ns = useNamespace('form')
+  console.log('ns====>', ns.set('es'))
 
   const formData = ref<IObjectAny>({})
   const fieldKeys = computed(() => Object.keys(props.schema.properties))
