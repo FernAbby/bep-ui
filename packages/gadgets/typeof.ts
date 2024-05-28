@@ -27,6 +27,13 @@ export function isDate(value: any): boolean {
 }
 
 /**
+ * @description 判断数据是否为数值，或者是否能转换为数值
+ */
+export function isNumber(value: any): boolean {
+  return !isNaN(parseFloat(value)) && isFinite(value)
+}
+
+/**
  * @description 判断数据是否为布尔值类型
  */
 export function isBoolean(value: any): boolean {
@@ -86,9 +93,9 @@ export function isPromise(value: any): boolean {
  * @description 判断数据是否空
  */
 export function isEmpty(value: any): boolean {
-  return (!value && value !== 0) ||
+  return (
+    (!value && value !== 0) ||
     (isArray(value) && value.length === 0) ||
     (isObject(value) && !Object.keys(value).length)
+  )
 }
-
-

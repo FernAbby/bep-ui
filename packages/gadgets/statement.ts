@@ -1,5 +1,5 @@
 import { isBoolean, isString } from './typeof'
-import type{ IObjectAny } from './typings'
+import type { IObjectAny } from './typings'
 
 /**
  * @description 字符串判断语句执行结果，如：hidden, disabled, required 等
@@ -8,7 +8,7 @@ import type{ IObjectAny } from './typings'
 export function execStatement({
   statement,
   rootData,
-  context,
+  context
 }: {
   statement: string | boolean | undefined
   rootData: IObjectAny

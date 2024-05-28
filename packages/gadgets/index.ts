@@ -1,4 +1,5 @@
 export * from './typeof'
 export * from './statement'
 export * from './typings'
+export * from './uid'
 export * from './hooks/index'
