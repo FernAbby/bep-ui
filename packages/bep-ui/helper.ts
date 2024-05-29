@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { isEmpty } from 'gadgets'
+import { isEmpty } from 'biz-gadgets'
 import type { IConfigProviderContext } from './constants'
 import { GLOBAL_CONFIG } from './constants'
 
@@ -9,9 +9,9 @@ export function freezeGlobalConfig(config: Partial<IConfigProviderContext>) {
     GLOBAL_CONFIG.renderers = Object.assign(GLOBAL_CONFIG.renderers, config.renderers)
   }
   Object.keys(config).forEach((key) => {
-     if (!['renderers'].includes(key)) {
-       GLOBAL_CONFIG[key] = config[key]
-     }
+    if (!['renderers'].includes(key)) {
+      GLOBAL_CONFIG[key] = config[key]
+    }
   })
   Object.freeze(GLOBAL_CONFIG)
 }

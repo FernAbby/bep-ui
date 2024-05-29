@@ -169,7 +169,7 @@ class FragmentLoader {
   }
 }
 
-interface IFragmentLoadListParams extends IFragmentLoader {
+export interface IFragmentLoadParams extends IFragmentLoader {
   request: IRequestFn
   onProgress: IOnProgressFn
   onDone?: IOnDone
@@ -184,14 +184,14 @@ export interface IFragmentLoadListResult {
 /**
  * 分片/分段数据加载简易调用函数
  */
-export const fragmentLoadList = ({
+const useFragmentLoad = ({
   dataList,
   fragmentSize,
   request,
   onProgress,
   onDone,
   onFail
-}: IFragmentLoadListParams): IFragmentLoadListResult => {
+}: IFragmentLoadParams): IFragmentLoadListResult => {
   const loader = new FragmentLoader({ dataList, fragmentSize })
 
   loader.request(request)
@@ -217,3 +217,5 @@ export const fragmentLoadList = ({
       })
   }
 }
+
+export default useFragmentLoad

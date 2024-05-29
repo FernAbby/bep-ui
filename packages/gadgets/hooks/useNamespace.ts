@@ -1,8 +1,8 @@
 import { isFunction } from '../typeof'
 
 // useGetDerivedNamespace
-export let defaultNamespace = ''
-export let defaultCssNamespace = 'root'
+let defaultNamespace = ''
+let defaultCssNamespace = 'root'
 const statePrefix = 'is-'
 
 const _bem = (
@@ -28,9 +28,9 @@ const _bem = (
  * @description 格式化命名class
  * @param {String} block - 模块
  * @param {String} namespaceOverrides - 命名空间
- * @returns {Object} - 包含 b: 模块， e: 元素， m: 修饰 等 的对象
+ * @returns {Object} - 包含 b: 模块， e: 元素， m: 修饰 等的对象
  */
-export function useNamespace(block: string, namespaceOverrides?: string) {
+function useNamespace(block: string, namespaceOverrides?: string) {
   const namespace = namespaceOverrides || defaultNamespace
   const cssNamespace = namespaceOverrides || defaultCssNamespace
   // const namespace = useGetDerivedNamespace(namespaceOverrides)
@@ -38,6 +38,13 @@ export function useNamespace(block: string, namespaceOverrides?: string) {
   const set = (namespaceOverrides: string) => {
     defaultNamespace = namespaceOverrides
     defaultCssNamespace = namespaceOverrides
+  }
+
+  const get = () => {
+    return {
+      defaultNamespace,
+      defaultCssNamespace
+    }
   }
   const b = (blockSuffix = '') => _bem(namespace, block, blockSuffix, '', '')
   const e = (element?: string) => (element ? _bem(namespace, block, '', element, '') : '')
@@ -89,6 +96,7 @@ export function useNamespace(block: string, namespaceOverrides?: string) {
 
   return {
     set,
+    get,
     b,
     e,
     m,
@@ -103,3 +111,5 @@ export function useNamespace(block: string, namespaceOverrides?: string) {
     cssVarBlockName
   }
 }
+
+export default useNamespace

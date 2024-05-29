@@ -9,7 +9,7 @@
     "mini lodash"
   ],
   "files": [
-    "dist",
+    "dist/**/*",
     "package.json"
   ],
   "main": "/dist/umd/gadgets.umd.cjs",
