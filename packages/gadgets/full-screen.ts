@@ -8,7 +8,7 @@ export type IFullScreenElement = HTMLElement & {
 
 /**
  * @description 开启全屏功能
- * @param el ｜element {String | HTMLElement} 节点ID
+ * @param {String | HTMLElement} id 或 element
  */
 export function requestFullScreen(el: string | HTMLElement) {
   const element = (isString(el) ? document.getElementById(el as string) : el) as IFullScreenElement

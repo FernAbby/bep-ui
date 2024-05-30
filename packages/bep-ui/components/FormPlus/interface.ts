@@ -1,6 +1,19 @@
 import type { Component } from 'vue'
-import type { FormItemProps } from 'element-plus'
+import type { FormItemProps, FormValidateCallback, FormValidationResult } from 'element-plus'
 import type { IObjectAny } from '@bep-ui/types/common'
+
+export interface IOption {
+  label: string
+  value: string
+  disabled?: boolean
+  key?: string
+}
+
+export interface IFormPlusRef {
+  validate: (callback: FormValidateCallback | undefined) => FormValidationResult | undefined
+  reset: () => IObjectAny
+  scrollToField: (prop: string) => void
+}
 
 export interface ISchemaFormItem {
   title: string
@@ -19,7 +32,7 @@ export interface ISchemaFormItem {
 
 export interface ISchema {
   // TODO  ====> 支持Array
-  renderType: 'Object',
+  renderType: 'Object'
   properties: {
     [key: string]: ISchemaFormItem
   }

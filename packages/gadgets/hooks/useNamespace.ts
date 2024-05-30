@@ -30,7 +30,7 @@ const _bem = (
  * @param {String} namespaceOverrides - 命名空间
  * @returns {Object} - 包含 b: 模块， e: 元素， m: 修饰 等的对象
  */
-function useNamespace(block: string, namespaceOverrides?: string) {
+export function useNamespace(block: string, namespaceOverrides?: string) {
   const namespace = namespaceOverrides || defaultNamespace
   const cssNamespace = namespaceOverrides || defaultCssNamespace
   // const namespace = useGetDerivedNamespace(namespaceOverrides)

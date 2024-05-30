@@ -1,24 +1,9 @@
 <template>
-  <el-form :model="formData" :size="size">
-    <template v-for="prop in fieldKeys" :key="prop">
-      <template v-if="getFormFieldShow(prop)">
-        <template v-if="isFormField(prop)">
-          <component
-            :is="getFormFieldComponent(prop)"
-            v-model="formData[prop]"
-            :disabled="getFormFieldDisabled(prop)"
-            :field="getFormField(prop)"
-            :placeholder="getPlaceholder(prop)"
-            :custom-context="customContext[prop]"
-          />
-        </template>
-        <template v-else>
-          <el-form-item
-            v-bind="getFormFieldAttrs(prop)"
-            :label="getFormField(prop).title"
-            :prop="prop"
-            :required="getFormField(prop).required"
-          >
+  <div :class="formClasses">
+    <el-form ref="formRef" :model="formData" :size="size" v-bind="attrs">
+      <template v-for="prop in fieldKeys" :key="prop">
+        <template v-if="getFormFieldShow(prop)">
+          <template v-if="isFormField(prop)">
             <component
               :is="getFormFieldComponent(prop)"
               v-model="formData[prop]"
@@ -27,21 +12,39 @@
               :placeholder="getPlaceholder(prop)"
               :custom-context="customContext[prop]"
             />
-          </el-form-item>
+          </template>
+          <template v-else>
+            <el-form-item
+              v-bind="getFormFieldAttrs(prop)"
+              :label="getFormField(prop).title"
+              :prop="prop"
+              :required="getFormField(prop).required"
+            >
+              <component
+                :is="getFormFieldComponent(prop)"
+                v-model="formData[prop]"
+                :disabled="getFormFieldDisabled(prop)"
+                :field="getFormField(prop)"
+                :placeholder="getPlaceholder(prop)"
+                :custom-context="customContext[prop]"
+              />
+            </el-form-item>
+          </template>
         </template>
       </template>
-    </template>
-  </el-form>
+    </el-form>
+  </div>
 </template>
 <script lang="ts" setup>
+  import type { FormInstance } from 'element-plus'
   import { ElForm, ElFormItem } from 'element-plus'
-  import { ref, computed } from 'vue'
+  import { ref, computed, watch, useAttrs } from 'vue'
   import type { Component } from 'vue'
-  import { execStatement, isEmpty, isBoolean } from 'biz-gadgets'
+  import { execStatement, isEmpty, isBoolean, classnames } from 'biz-gadgets'
   import { useNamespace } from 'biz-gadgets/hooks'
   import type { IComponentSize } from '@bep-ui/constants/size'
   import { GLOBAL_CONFIG } from '../../constants'
-  import type { ISchema, ISchemaFormItem } from './interface'
+  import type { IFormPlusRef, ISchema, ISchemaFormItem } from './interface'
   import type { IObjectAny } from '../../types/common'
 
   defineOptions({ name: 'FormPlus' })
@@ -73,13 +76,50 @@
     size: {
       type: String as () => IComponentSize,
       default: 'small'
+    },
+    class: {
+      type: String,
+      default: ''
+    },
+    layout: {
+      type: String as () => 'grid' | 'flex' | 'block',
+      default: 'block'
     }
   })
-  const ns = useNamespace('form')
-  console.log('ns====>', ns.set('es'))
+  const attrs = useAttrs()
+  const ns = useNamespace('form-plus', GLOBAL_CONFIG.prefix)
 
+  const formRef = ref<FormInstance>()
   const formData = ref<IObjectAny>({})
   const fieldKeys = computed(() => Object.keys(props.schema.properties))
+  const formClasses = computed(() => {
+    return classnames([
+      ns.b(),
+      ns.m(props.layout),
+      {
+        [ns.m('readonly')]: props.readOnly
+      },
+      props.class
+    ])
+  })
+
+  watch(
+    () => props.model,
+    (value) => {
+      console.log('model====>', value)
+      formData.value = value
+    },
+    {
+      deep: true,
+      immediate: true,
+      // onTrack(e) {
+      //   console.log('onTrack e===>', e)
+      // },
+      onTrigger(e) {
+        console.log('onTrigger e===>', e)
+      }
+    }
+  )
 
   const getFormField = (prop: string): ISchemaFormItem => {
     return props.schema.properties[prop] || {}
@@ -147,5 +187,17 @@
     }
     return formField.title || ''
   }
+
+  defineExpose<IFormPlusRef>({
+    validate: (callback) => {
+      return formRef.value?.validate(callback)
+    },
+    reset: () => {
+      formRef.value?.resetFields(fieldKeys.value)
+      return formData
+    },
+    scrollToField: (prop: string) => {
+      formRef.value?.scrollToField(prop)
+    }
+  })
 </script>
-<style lang="scss"></style>

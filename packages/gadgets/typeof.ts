@@ -55,6 +55,13 @@ export function isFunction(value: any): boolean {
 }
 
 /**
+ * @description 判断数据是否为异步函数
+ */
+export function isAsyncFunction(value: any): boolean {
+  return toTypeString(value) === '[object AsyncFunction]'
+}
+
+/**
  * @description 判断数据是否为Symbol类型
  */
 export function isSymbol(value: any): boolean {

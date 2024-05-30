@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      bep-ui:
+        specifier: workspace:^
+        version: link:packages/bep-ui
       element-plus:
         specifier: ^2.7.3
         version: 2.7.3(vue@3.4.27)

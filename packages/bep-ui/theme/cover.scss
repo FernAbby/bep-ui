@@ -3,53 +3,69 @@
   --el-component-size-small: 30px;
 }
 
-// start of size = 'small'
-.el-form-item--small {
-  margin-bottom: 16px;
+.bep-form-plus {
+  // start of size = 'small'
+  .el-form-item--small {
+    margin-bottom: 16px;
 
-  .el-form-item__error {
-    padding-top: 0;
-  }
+    .el-form-item__error {
+      padding-top: 0;
+    }
 
-  .el-form-item__label {
-    height: 30px;
-    line-height: 30px;
-  }
-
-  .el-form-item__content {
-    line-height: 30px;
-
-    .el-select__wrapper {
+    .el-form-item__label {
+      height: 30px;
       line-height: 30px;
-      min-height: 30px;
     }
-  }
-}
 
-// checkbox
-.el-checkbox.el-checkbox--small {
-  .el-checkbox__inner {
-    width: 14px;
-    height: 14px;
+    .el-form-item__content {
+      line-height: 30px;
 
-    &::after {
-      height: 7px;
-      width: 3px;
-
-      // transform: rotate(45deg) scaleY(0);
+      .el-select__wrapper {
+        line-height: 30px;
+        min-height: 30px;
+      }
     }
   }
 
-  .el-checkbox__label {
-    line-height: 14px;
+  // 复选框
+  .el-checkbox.el-checkbox--small {
+    .el-checkbox__inner {
+      width: 14px;
+      height: 14px;
+
+      &::after {
+        height: 7px;
+        width: 3px;
+
+        // transform: rotate(45deg) scaleY(0);
+      }
+    }
+
+    .el-checkbox__label {
+      line-height: 14px;
+    }
+  }
+
+  // 单选框
+  .el-radio.el-radio--small {
+    .el-radio__inner {
+      height: var(--el-radio-input-height);
+      width: var(--el-radio-input-width);
+    }
+  }
+
+  // end of size = 'small'
+
+  .el-checkbox {
+    margin-right: 16px;
+  }
+
+  .el-radio {
+    margin-right: 20px;
+  }
+
+  // button
+  .el-button {
+    font-size: 12px;
   }
 }
-
-.el-radio.el-radio--small {
-  .el-radio__inner {
-    height: var(--el-radio-input-height);
-    width: var(--el-radio-input-width);
-  }
-}
-
-// end of size = 'small'

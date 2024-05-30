@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { freezeGlobalConfig, renderResolver } from '@bep-ui/helper'
+import { freezeGlobalConfig, renderResolver } from './helper'
 import { INSTALLED_KEY } from './constants'
 import type { IConfigProviderContext } from './constants'
 import './theme/base.scss'
