@@ -1,13 +1,15 @@
 <template>
-  <el-input
+  <el-date-picker
     v-model="model"
-    v-bind="renderOptions"
-    :disabled="disabled"
+    style="width: 240px"
     :placeholder="placeholder"
+    v-bind="renderOptions"
+    type="date"
+    :disabled="disabled"
   />
 </template>
 <script lang="ts" setup>
-  import { ElInput } from 'element-plus'
+  import { ElDatePicker } from 'element-plus'
   import { computed } from 'vue'
   import { rendererProps } from '../../constants/rendererProps'
   const emits = defineEmits(['update:modelValue'])
@@ -22,4 +24,3 @@
     return props.field.renderOptions || {}
   })
 </script>
-<style lang="scss"></style>

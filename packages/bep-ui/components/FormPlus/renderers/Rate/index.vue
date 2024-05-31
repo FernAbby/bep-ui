@@ -1,13 +1,8 @@
 <template>
-  <el-input
-    v-model="model"
-    v-bind="renderOptions"
-    :disabled="disabled"
-    :placeholder="placeholder"
-  />
+  <el-rate v-model="model" size="default" v-bind="renderOptions" :disabled="disabled" />
 </template>
 <script lang="ts" setup>
-  import { ElInput } from 'element-plus'
+  import { ElRate } from 'element-plus'
   import { computed } from 'vue'
   import { rendererProps } from '../../constants/rendererProps'
   const emits = defineEmits(['update:modelValue'])
@@ -22,4 +17,3 @@
     return props.field.renderOptions || {}
   })
 </script>
-<style lang="scss"></style>

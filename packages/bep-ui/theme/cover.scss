@@ -1,4 +1,6 @@
 :root {
+  --bep-font-size-small: 12px;
+  --bep-button-height-small: 30px;
   --el-input-height: 30px;
   --el-component-size-small: 30px;
 }
@@ -63,9 +65,13 @@
   .el-radio {
     margin-right: 20px;
   }
+}
 
+.bep-form-plus--small {
   // button
   .el-button {
-    font-size: 12px;
+    height: var(--bep-button-height-small);
+    padding: 4px 12px;
+    font-size: var(--bep-font-size-small);
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div :class="formClasses">
+  <div :class="formClasses" :style="rootStyle">
     <el-form ref="formRef" :model="formData" :size="size" v-bind="attrs">
       <template v-for="prop in fieldKeys" :key="prop">
         <template v-if="getFormFieldShow(prop)">
@@ -33,6 +33,7 @@
         </template>
       </template>
     </el-form>
+    <slot name="append"></slot>
   </div>
 </template>
 <script lang="ts" setup>
@@ -47,7 +48,10 @@
   import type { IFormPlusRef, ISchema, ISchemaFormItem } from './interface'
   import type { IObjectAny } from '../../types/common'
 
-  defineOptions({ name: 'FormPlus' })
+  defineOptions({
+    name: 'FormPlus',
+    inheritAttrs: false
+  })
   const props = defineProps({
     disabled: {
       type: Boolean,
@@ -77,13 +81,17 @@
       type: String as () => IComponentSize,
       default: 'small'
     },
-    class: {
-      type: String,
-      default: ''
-    },
     layout: {
       type: String as () => 'grid' | 'flex' | 'block',
       default: 'block'
+    },
+    rootClass: {
+      type: String,
+      default: ''
+    },
+    rootStyle: {
+      type: String,
+      default: undefined
     }
   })
   const attrs = useAttrs()
@@ -96,10 +104,11 @@
     return classnames([
       ns.b(),
       ns.m(props.layout),
+      ns.m(props.size),
       {
         [ns.m('readonly')]: props.readOnly
       },
-      props.class
+      props.rootClass
     ])
   })
 

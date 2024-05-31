@@ -1,14 +1,18 @@
 <template>
-  <el-input
+  <el-date-picker
     v-model="model"
+    start-placeholder="开始时间"
+    end-placeholder="结束时间"
+    style="width: 240px; flex-grow: 0"
     v-bind="renderOptions"
+    type="datetimerange"
     :disabled="disabled"
-    :placeholder="placeholder"
   />
 </template>
 <script lang="ts" setup>
-  import { ElInput } from 'element-plus'
+  import { ElDatePicker } from 'element-plus'
   import { computed } from 'vue'
+  import { omit } from 'biz-gadgets'
   import { rendererProps } from '../../constants/rendererProps'
   const emits = defineEmits(['update:modelValue'])
   const props = defineProps(rendererProps)
@@ -19,7 +23,6 @@
     }
   })
   const renderOptions = computed(() => {
-    return props.field.renderOptions || {}
+    return omit(props.field.renderOptions || {})
   })
 </script>
-<style lang="scss"></style>

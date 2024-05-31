@@ -1,9 +1,12 @@
 <template>
-  <FormPlus ref="formRef" :schema="schema" :model="form" :rules="rules" label-width="70px" />
-  <el-space>
-    <el-button @click="handleReset">重置</el-button>
-    <el-button type="primary" @click="handleSubmit">提交</el-button>
-  </el-space>
+  <FormPlus ref="formRef" :schema="schema" :model="form" :rules="rules" label-width="70px" >
+    <template #append>
+      <el-space>
+        <el-button @click="handleReset">重置</el-button>
+        <el-button type="primary" @click="handleSubmit">提交</el-button>
+      </el-space>
+    </template>
+  </FormPlus>
 </template>
 <script lang="ts" setup>
   import type { FormRules } from 'element-plus'
@@ -11,6 +14,7 @@
   import { ref } from 'vue'
   import type { ISchema, IOption, IFormPlusRef } from '@bep-ui/components'
   import { states } from '@/const/select'
+  import { deepClone } from '@gadgets/clone'
 
   const rules: FormRules = {
     age: [{ min: 1, max: 100, message: 'Length should be 1 to 100', trigger: 'change' }],
@@ -128,6 +132,21 @@
             return Promise.resolve(list)
           }
         }
+      },
+      comment: {
+        title: '评分',
+        renderType: 'Rate',
+        required: true
+      },
+      date: {
+        title: '报名日期',
+        renderType: 'DateTime',
+        required: true
+      },
+      range: {
+        title: '课程时间',
+        renderType: 'DateTimeRange',
+        required: true
       }
     }
   }
@@ -137,6 +156,7 @@
     age: 10
   })
   const handleSubmit = () => {
+    console.log('deepClone====>', deepClone(schema))
     formRef.value?.validate((isValid, invalidFields) => {
       console.log('isValid====>', isValid, invalidFields)
     })

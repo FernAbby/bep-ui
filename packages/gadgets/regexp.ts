@@ -10,7 +10,7 @@ export function isChinese(value: string): boolean {
  * @description 是否由字母数字组成的字符串
  */
 export function isAlphanumeric(value: string): boolean {
-  return /^[a-z\d]+$/i.test(value)
+  return /^[a-zA-Z0-9]+$/i.test(value)
 }
 
 /**
@@ -18,4 +18,11 @@ export function isAlphanumeric(value: string): boolean {
  */
 export function isMobile(value: string): boolean {
   return /^1[3-9]\d{9}$/.test(value)
+}
+
+/**
+ * @description 是否为深度读取的属性
+ */
+export function isDeepProp(value: string): boolean {
+  return /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/.test(value)
 }

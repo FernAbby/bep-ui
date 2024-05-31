@@ -76,7 +76,7 @@ export function isArray(value: any): boolean {
 }
 
 /**
- * @description 判断数据是否为对象
+ * @description 判断数据是否为对象，包括Object、Array、Map、Set、Date、RegExp等对象
  */
 export function isObject(value: any): boolean {
   return value !== null && typeof value === 'object'
@@ -105,4 +105,12 @@ export function isEmpty(value: any): boolean {
     (isArray(value) && value.length === 0) ||
     (isObject(value) && !Object.keys(value).length)
   )
+}
+
+/**
+ * @description 判断是否可以作为object的键值，理论上null于undefined可以，但不推荐，判定为无效键值
+ */
+export function isKey(key: any): boolean {
+  const type = typeof key
+  return type === 'string' || type === 'boolean' || type === 'symbol' || type === 'number'
 }
