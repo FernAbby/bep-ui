@@ -13,10 +13,23 @@ export function isMap(value: any): boolean {
 }
 
 /**
+ * @description 判断数据是否为WeakMap类型
+ */
+export function isWeakMap(value: any): boolean {
+  return toTypeString(value) === '[object WeakMap]'
+}
+
+/**
  * @description 判断数据是否为Set类型
  */
 export function isSet(value: any): boolean {
   return toTypeString(value) === '[object Set]'
+}
+/**
+ * @description 判断数据是否为WeakSet类型
+ */
+export function isWeakSet(value: any): boolean {
+  return toTypeString(value) === '[object WeakSet]'
 }
 
 /**
@@ -113,4 +126,11 @@ export function isEmpty(value: any): boolean {
 export function isKey(key: any): boolean {
   const type = typeof key
   return type === 'string' || type === 'boolean' || type === 'symbol' || type === 'number'
+}
+
+/**
+ * @description 判断是否为ArrayBuffer类型
+ */
+export function isBuffer(value: any): boolean {
+  return toTypeString(value) === '[object ArrayBuffer]'
 }
