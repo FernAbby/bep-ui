@@ -7,8 +7,8 @@
     reserve-keyword
     clearable
     remote-show-suffix
-    v-bind="renderOptions"
     :placeholder="placeholder"
+    v-bind="renderOptions"
     :disabled="disabled"
     :remote-method="remoteMethod"
     :loading="loading"

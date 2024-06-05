@@ -1,5 +1,5 @@
 <template>
-  <el-color-picker v-model="model" show-alpha v-bind="renderOptions" :disabled="disabled" />
+  <el-color-picker show-alpha v-bind="renderOptions" v-model="model" :disabled="disabled" />
 </template>
 <script lang="ts" setup>
   import { ElColorPicker } from 'element-plus'

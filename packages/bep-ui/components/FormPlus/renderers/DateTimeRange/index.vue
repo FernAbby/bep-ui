@@ -23,6 +23,6 @@
     }
   })
   const renderOptions = computed(() => {
-    return omit(props.field.renderOptions || {})
+    return omit(props.field.renderOptions || {}, ['type'])
   })
 </script>

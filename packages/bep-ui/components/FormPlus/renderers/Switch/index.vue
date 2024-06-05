@@ -1,5 +1,5 @@
 <template>
-  <el-switch v-bind="renderOptions" :disabled="disabled" v-model="model" />
+  <el-switch v-bind="renderOptions" v-model="model" :disabled="disabled" />
 </template>
 <script lang="ts" setup>
   import { ElSwitch } from 'element-plus'

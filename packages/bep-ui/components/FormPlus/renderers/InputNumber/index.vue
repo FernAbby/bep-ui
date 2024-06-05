@@ -1,5 +1,10 @@
 <template>
-  <el-input-number v-model="model" v-bind="renderOptions" :placeholder="placeholder"  :disabled="disabled" />
+  <el-input-number
+    :placeholder="placeholder"
+    v-bind="renderOptions"
+    v-model="model"
+    :disabled="disabled"
+  />
 </template>
 <script lang="ts" setup>
   import { ElInputNumber } from 'element-plus'
@@ -17,4 +22,3 @@
     return props.field.renderOptions || {}
   })
 </script>
-<style lang="scss"></style>

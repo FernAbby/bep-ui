@@ -1,5 +1,5 @@
 <template>
-  <el-rate v-model="model" size="default" v-bind="renderOptions" :disabled="disabled" />
+  <el-rate v-bind="renderOptions" v-model="model" size="default" :disabled="disabled" />
 </template>
 <script lang="ts" setup>
   import { ElRate } from 'element-plus'

@@ -1,6 +1,8 @@
 <template>
-  <el-radio-group v-bind="renderOptions" v-model="model">
-    <el-radio v-for="item in renderOptions.options || []" :key="item.value" v-bind="item">{{item.label}}</el-radio>
+  <el-radio-group v-bind="renderOptions" v-model="model" :disabled="disabled">
+    <el-radio v-for="item in options || []" :key="item.value" v-bind="item">
+      {{ item.label }}
+    </el-radio>
   </el-radio-group>
 </template>
 <script lang="ts" setup>
@@ -16,6 +18,7 @@
       emits('update:modelValue', value)
     }
   })
+  const options = computed(() => props.field.renderOptions?.options || [])
   const renderOptions = computed(() => {
     return omit(props.field.renderOptions, ['options'])
   })

@@ -1,9 +1,9 @@
 <template>
   <el-input
     v-model="model"
+    :placeholder="placeholder"
     v-bind="renderOptions"
     :disabled="disabled"
-    :placeholder="placeholder"
   />
 </template>
 <script lang="ts" setup>
@@ -22,4 +22,4 @@
     return props.field.renderOptions || {}
   })
 </script>
-<style lang="scss"></style>
+
