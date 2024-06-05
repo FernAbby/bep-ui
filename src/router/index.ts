@@ -41,6 +41,11 @@ const router = createRouter({
           path: 'form',
           name: 'form',
           component: () => import('../views/Examples/FormPlusView.vue')
+        },
+        {
+          path: 'download',
+          name: 'download',
+          component: () => import('../views/Examples/Download.vue')
         }
       ]
     }

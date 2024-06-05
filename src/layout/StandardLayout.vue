@@ -1,8 +1,9 @@
 <template>
   <div class="standard-page-layout">
     <div class="standard-page-layout__nav">
-      <RouterLink to="/examples/guide">概览</RouterLink>
-      <RouterLink to="/examples/form">表单</RouterLink>
+      <template v-for="item in menuList" :key="item.path">
+        <RouterLink :to="item.path">{{ item.title }}</RouterLink>
+      </template>
     </div>
     <div class="standard-page-layout__content">
       <RouterView />
@@ -11,6 +12,20 @@
 </template>
 <script lang="ts" setup>
   import { RouterView } from 'vue-router'
+  const menuList = [
+    {
+      title: '概览',
+      path: '/examples/guide'
+    },
+    {
+      title: '表单',
+      path: '/examples/form'
+    },
+    {
+      title: '下载',
+      path: '/examples/download'
+    }
+  ]
 </script>
 <style lang="scss">
   .standard-page-layout {
