@@ -10,6 +10,7 @@ import {
   isWeakMap,
   isSymbol
 } from './typeof'
+import { getAllKeys } from './object'
 
 /**
  * @description 拷贝函数
@@ -52,8 +53,7 @@ function baseClone(value: any, hash = new WeakMap()): any {
 
     if (isPlainObject(value)) {
       const copyObject = {}
-      const allProps = [].concat(Object.keys(value), Object.getOwnPropertySymbols(value))
-      allProps.map((key) => {
+      getAllKeys(value).map((key) => {
         copyObject[key] = baseClone(value[key], hash)
       })
       hash.set(value as WeakKey, copyObject)

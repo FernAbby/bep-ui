@@ -1,12 +1,9 @@
 <template>
-  <el-radio-group v-bind="renderOptions" v-model="model">
-    <el-radio v-for="item in renderOptions.options || []" :key="item.value" v-bind="item">{{item.label}}</el-radio>
-  </el-radio-group>
+  <el-slider v-bind="renderOptions" :disabled="disabled" v-model="model" />
 </template>
 <script lang="ts" setup>
-  import { ElRadio, ElRadioGroup } from 'element-plus'
+  import { ElSlider } from 'element-plus'
   import { computed } from 'vue'
-  import { omit } from 'biz-gadgets'
   import { rendererProps } from '../../constants/rendererProps'
   const emits = defineEmits(['update:modelValue'])
   const props = defineProps(rendererProps)
@@ -17,6 +14,6 @@
     }
   })
   const renderOptions = computed(() => {
-    return omit(props.field.renderOptions, ['options'])
+    return props.field.renderOptions || {}
   })
 </script>

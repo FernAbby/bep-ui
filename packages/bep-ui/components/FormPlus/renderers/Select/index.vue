@@ -7,7 +7,7 @@
     :disabled="disabled"
   >
     <el-option
-      v-for="item in renderOptions.options || []"
+      v-for="item in options || []"
       :key="item.value"
       :label="item.label"
       :value="item.value"
@@ -17,7 +17,7 @@
 <script lang="ts" setup>
   import { ElSelect, ElOption } from 'element-plus'
   import { computed } from 'vue'
-  import { isEmpty } from 'biz-gadgets'
+  import { isEmpty, omit } from 'biz-gadgets'
   import { rendererProps } from '../../constants/rendererProps'
   const emits = defineEmits(['update:modelValue'])
   const props = defineProps(rendererProps)
@@ -27,7 +27,11 @@
       emits('update:modelValue', isEmpty(value) ? undefined : value)
     }
   })
+  const options = computed(() => {
+    return props.field.renderOptions?.options || []
+  })
+
   const renderOptions = computed(() => {
-    return props.field.renderOptions || {}
+    return omit(props.field.renderOptions, ['options'])
   })
 </script>

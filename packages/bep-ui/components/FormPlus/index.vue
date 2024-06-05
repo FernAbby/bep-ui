@@ -154,8 +154,9 @@
 
   // 是否为formItem
   const isFormField = (prop: string): boolean => {
-    if (isBoolean(getFormField(prop)?.isFormField) && getFormField(prop)?.isFormField) return true
-    return ['SectionTitle'].includes(getFormField(prop).renderType)
+    const formField = getFormField(prop)
+    if (isBoolean(formField?.isFormField) && formField?.isFormField) return true
+    return ['SectionTitle', 'Divider'].includes(formField.renderType)
   }
 
   // 获取渲染组件

@@ -38,6 +38,10 @@
         renderType: 'InputText',
         required: true
       },
+      address: {
+        title: '家庭地址',
+        renderType: 'Description'
+      },
       age: {
         title: '年龄',
         renderType: 'InputNumber',
@@ -91,6 +95,10 @@
             }
           ]
         }
+      },
+      divider: {
+        title: '分割线',
+        renderType: 'Divider'
       },
       course: {
         title: '课程',
@@ -147,13 +155,31 @@
         title: '课程时间',
         renderType: 'DateTimeRange',
         required: true
+      },
+      color: {
+        title: '颜色',
+        renderType: 'ColorPicker',
+        required: true
+      },
+      enable: {
+        title: '是否启用',
+        renderType: 'Switch',
+        required: true
+      },
+      percent: {
+        title: '进度',
+        renderType: 'Slider',
+        required: true
       }
     }
   }
   const formRef = ref<IFormPlusRef>()
   const form = ref({
     name: '章三',
-    age: 10
+    age: 10,
+    address: '四川省成都市高新区天府三街世豪瑞丽1栋2单元2506',
+    color: '#ffffff',
+    percent: 60
   })
   const handleSubmit = () => {
     console.log('deepClone====>', deepClone(schema))
