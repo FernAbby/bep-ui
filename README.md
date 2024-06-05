@@ -27,6 +27,12 @@ pnpm -w build-only:bep-build
 pnpm -w build-only:gadgets
 ```
 
+### Compile and Hot-Reload Docs for Development
+
+```sh
+ pnpm -w run docs:gadgets:dev
+```
+
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
