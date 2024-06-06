@@ -2,7 +2,7 @@
  * @description 提取链接中的文件名
  */
 export function extraFileName(url: string): string {
-  const match = url.match(/[^/]*$/)
+  const match = decodeURIComponent(url).match(/[^/]*$/)
   if (match) {
     return (match[0] || '').split('?')[0]
   }
@@ -74,11 +74,11 @@ export function downloadFile(fileUrl: string, fileName?: string) {
       .catch((error) => console.error('Error downloading file:', error))
   } else if (XMLHttpRequest) {
     const xhr = new XMLHttpRequest()
-    xhr.open('GET', 'https://example.com/somefile.txt', true)
+    xhr.open('GET', fileUrl, true)
     xhr.responseType = 'blob'
 
     xhr.onload = function () {
-      if (this.status == 200) {
+      if (this.status === 200) {
         baseDownload(this.response, file_name)
       } else {
         console.error('Error fetching resource')

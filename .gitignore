@@ -30,3 +30,4 @@ coverage
 
 *.tsbuildinfo
 /docs/gadgets/.vitepress/cache
+/docs/bep-ui/.vitepress/cache

@@ -22,7 +22,10 @@
     "format": "prettier --write src/",
     "docs:gadgets:dev": "vitepress dev docs/gadgets",
     "docs:gadgets:build": "vitepress build docs/gadgets",
-    "docs:gadgets:preview": "vitepress preview docs/gadgets"
+    "docs:gadgets:preview": "vitepress preview docs/gadgets",
+    "docs:bep-ui:dev": "vitepress dev docs/bep-ui",
+    "docs:bei-ui:build": "vitepress build docs/bep-ui",
+    "docs:bei-ui:preview": "vitepress preview docs/bep-ui"
   },
   "dependencies": {
     "bep-ui": "workspace:^",
