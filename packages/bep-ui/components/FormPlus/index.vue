@@ -1,19 +1,9 @@
 <template>
   <div :class="formClasses" :style="rootStyle">
-    <el-form ref="formRef" :model="formData" :size="size" v-bind="attrs">
+    <el-form ref="formRef" :model="rootData" :size="size" v-bind="attrs">
       <template v-for="prop in fieldKeys" :key="prop">
         <template v-if="getFormFieldShow(prop)">
           <template v-if="isFormField(prop)">
-            <component
-              :is="getFormFieldComponent(prop)"
-              v-model="formData[prop]"
-              :disabled="getFormFieldDisabled(prop)"
-              :field="getFormField(prop)"
-              :placeholder="getPlaceholder(prop)"
-              :custom-context="customContext[prop]"
-            />
-          </template>
-          <template v-else>
             <el-form-item
               v-bind="getFormFieldAttrs(prop)"
               :label="getFormField(prop).title"
@@ -22,7 +12,7 @@
             >
               <component
                 :is="getFormFieldComponent(prop)"
-                v-model="formData[prop]"
+                v-model="rootData[prop]"
                 :disabled="getFormFieldDisabled(prop)"
                 :field="getFormField(prop)"
                 :placeholder="getPlaceholder(prop)"
@@ -30,21 +20,33 @@
               />
             </el-form-item>
           </template>
+          <template v-else>
+            <div :class="fixedFormFieldClass">
+              <component
+                :is="getFormFieldComponent(prop)"
+                :disabled="getFormFieldDisabled(prop)"
+                :field="getFormField(prop)"
+              />
+            </div>
+          </template>
         </template>
       </template>
+      <div :class="ns.b('append')">
+        <slot name="append"></slot>
+      </div>
     </el-form>
-    <slot name="append"></slot>
   </div>
 </template>
 <script lang="ts" setup>
   import type { FormInstance } from 'element-plus'
   import { ElForm, ElFormItem } from 'element-plus'
-  import { ref, computed, watch, useAttrs } from 'vue'
+  import { ref, computed, watch, useAttrs, provide } from 'vue'
   import type { Component } from 'vue'
   import { execStatement, isEmpty, isBoolean, classnames } from 'biz-gadgets'
   import { useNamespace } from 'biz-gadgets/hooks'
   import type { IComponentSize } from '@bep-ui/constants/size'
-  import { GLOBAL_CONFIG } from '../../constants'
+  import { GLOBAL_CONFIG } from '@bep-ui/constants'
+  import { ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
   import type { IFormPlusRef, ISchema, ISchemaFormItem } from './interface'
   import type { IObjectAny } from '../../types/common'
 
@@ -98,7 +100,7 @@
   const ns = useNamespace('form-plus', GLOBAL_CONFIG.prefix)
 
   const formRef = ref<FormInstance>()
-  const formData = ref<IObjectAny>({})
+  const rootData = ref<IObjectAny>({})
   const fieldKeys = computed(() => Object.keys(props.schema.properties))
   const formClasses = computed(() => {
     return classnames([
@@ -111,19 +113,17 @@
       props.rootClass
     ])
   })
+  const fixedFormFieldClass = ns.e('fixed-item')
 
   watch(
     () => props.model,
     (value) => {
-      console.log('model====>', value)
-      formData.value = value
+      // console.log('model====>', value)
+      rootData.value = value
     },
     {
       deep: true,
       immediate: true,
-      // onTrack(e) {
-      //   console.log('onTrack e===>', e)
-      // },
       onTrigger(e) {
         console.log('onTrigger e===>', e)
       }
@@ -147,7 +147,7 @@
     // )
     return execStatement({
       statement: (getFormField(prop) as ISchemaFormItem).hidden,
-      rootData: formData.value,
+      rootData: rootData.value,
       context: props.customContext
     })
   }
@@ -156,7 +156,7 @@
   const isFormField = (prop: string): boolean => {
     const formField = getFormField(prop)
     if (isBoolean(formField?.isFormField) && formField?.isFormField) return true
-    return ['SectionTitle', 'Divider'].includes(formField.renderType)
+    return !['SectionTitle', 'Divider'].includes(formField.renderType)
   }
 
   // 获取渲染组件
@@ -178,7 +178,7 @@
     if (props.disabled) return true
     return execStatement({
       statement: (getFormField(prop) as ISchemaFormItem).disabled,
-      rootData: formData.value,
+      rootData: rootData.value,
       context: props.customContext
     })
   }
@@ -198,16 +198,35 @@
     return formField.title || ''
   }
 
+  provide(ROOT_DATA_INJECTION_KEY, rootData)
+
   defineExpose<IFormPlusRef>({
     validate: (callback) => {
       return formRef.value?.validate(callback)
     },
     reset: () => {
       formRef.value?.resetFields(fieldKeys.value)
-      return formData
+      return rootData
     },
     scrollToField: (prop: string) => {
       formRef.value?.scrollToField(prop)
     }
   })
 </script>
+<style lang="scss">
+  .bep-form-plus--grid {
+    .el-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-gap: 12px;
+    }
+
+    .el-form-item {
+      align-items: flex-start;
+    }
+
+    .bep-form-plus__fixed-item {
+      grid-column: 1/-1;
+    }
+  }
+</style>

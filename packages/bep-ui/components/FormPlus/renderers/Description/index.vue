@@ -21,6 +21,8 @@
 </script>
 <style lang="scss" scoped>
   .description-content {
+    line-height: 1.75;
+    padding-top: 4px;
     word-wrap: break-word;
     white-space: pre-wrap;
     overflow-wrap: break-word;

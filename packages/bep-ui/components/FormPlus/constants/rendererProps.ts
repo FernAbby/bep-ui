@@ -22,3 +22,15 @@ export const rendererProps = {
     default: () => ({})
   }
 }
+
+// 非form-item的渲染属性
+export const unFormFieldRendererProps = {
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  field: {
+    type: Object as () => ISchemaFormItem,
+    default: () => ({})
+  }
+}

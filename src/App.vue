@@ -49,6 +49,11 @@
       }
     }
 
+    .page-layout_content {
+      width: 100%;
+      height: calc(100vh - 46px);
+    }
+
     .nav-link {
       color: hsla(160, 100%, 37%, 1);
       transition: 0.4s;

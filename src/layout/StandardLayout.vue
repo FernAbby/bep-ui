@@ -22,13 +22,23 @@
       path: '/examples/form'
     },
     {
+      title: '表格',
+      path: '/examples/table'
+    },
+    {
       title: '下载',
       path: '/examples/download'
+    },
+    {
+      title: '调试',
+      path: '/examples/devtool'
     }
   ]
 </script>
 <style lang="scss">
   .standard-page-layout {
+    width: 100%;
+    height: 100%;
     display: flex;
     box-sizing: border-box;
 
@@ -63,6 +73,7 @@
       flex: 1;
       width: 0;
       padding: 10px;
+      overflow-y: auto;
     }
   }
 </style>

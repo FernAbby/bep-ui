@@ -1,5 +1,12 @@
 <template>
-  <FormPlus ref="formRef" :schema="schema" :model="form" :rules="rules" label-width="70px">
+  <FormPlus
+    ref="formRef"
+    :schema="schema"
+    :model="form"
+    :rules="rules"
+    layout="grid"
+    label-width="70px"
+  >
     <template #append>
       <el-space>
         <el-button @click="handleReset">重置</el-button>
@@ -13,7 +20,6 @@
   import FormPlus from '@packages/bep-ui/components/FormPlus/index.vue'
   import { ref } from 'vue'
   import type { ISchema, IOption, IFormPlusRef } from '@bep-ui/components'
-  import { deepClone } from '@gadgets/clone'
   import { states } from '@/const/select'
 
   const rules: FormRules = {
@@ -182,7 +188,6 @@
     percent: 60
   })
   const handleSubmit = () => {
-    console.log('deepClone====>', deepClone(schema))
     formRef.value?.validate((isValid, invalidFields) => {
       console.log('isValid====>', isValid, invalidFields)
     })
@@ -190,23 +195,4 @@
   const handleReset = () => {
     formRef.value?.reset()
   }
-  const obj = {
-    name: '我真的很困',
-    like: {
-      type: 'coding',
-      a: undefined,
-      b: null,
-      c: function () {
-        console.log('hello')
-      },
-      e: Symbol('hello'),
-      f: new Date(),
-      g: { 0: NaN, 1: -Infinity, 2: Infinity } // NaN, -Infinity, Infinity  都会被转化成 null
-    }
-  }
-  const cloneObj = deepClone(obj)
-  console.log('cloneObj ====>', cloneObj)
-  console.log('函数拷贝 ====>', cloneObj.like.c === obj.like.c)
-  console.log('symbol拷贝 ====>', cloneObj.like.e === obj.like.e)
-  console.log('日期拷贝 ====>', cloneObj.like.f === obj.like.f)
 </script>

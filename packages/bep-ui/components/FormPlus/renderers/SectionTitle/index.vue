@@ -6,28 +6,28 @@
 </template>
 <script lang="ts" setup>
   import { computed } from 'vue'
-  import { rendererProps } from '../../constants/rendererProps'
-  const props = defineProps(rendererProps)
+  import { unFormFieldRendererProps } from '../../constants/rendererProps'
+  const props = defineProps(unFormFieldRendererProps)
   const renderOptions = computed(() => {
     return props.field.renderOptions || {}
   })
 </script>
 <style lang="scss">
-.section-title {
-  display: flex;
-  align-items: center;
-  line-height: 1;
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 18px;
-  margin-top: 10px;
+  .section-title {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    margin-top: 10px;
 
-  .section-title__bar {
-    display: inline-block;
-    width: 4px;
-    height: 1em;
-    margin-right: 10px;
-    background-color: var(--primary-color);
+    .section-title__bar {
+      display: inline-block;
+      width: 4px;
+      height: 1em;
+      margin-right: 10px;
+      background-color: var(--primary-color);
+    }
   }
-}
 </style>

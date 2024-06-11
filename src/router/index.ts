@@ -43,9 +43,19 @@ const router = createRouter({
           component: () => import('../views/Examples/FormPlusView.vue')
         },
         {
+          path: 'table',
+          name: 'table',
+          component: () => import('../views/Examples/TablePlusView.vue')
+        },
+        {
           path: 'download',
           name: 'download',
-          component: () => import('../views/Examples/Download.vue')
+          component: () => import('../views/Examples/DownloadView.vue')
+        },
+        {
+          path: 'devtool',
+          name: 'devtool',
+          component: () => import('../views/Examples/DevToolView.vue')
         }
       ]
     }

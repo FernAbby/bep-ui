@@ -50,6 +50,8 @@
 
   // 单选框
   .el-radio.el-radio--small {
+    height: 30px;
+
     .el-radio__inner {
       height: var(--el-radio-input-height);
       width: var(--el-radio-input-width);
