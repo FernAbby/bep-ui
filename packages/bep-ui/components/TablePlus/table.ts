@@ -7,18 +7,39 @@ export const defaultColumnProps = {
   width: 'auto'
 }
 
+export const defaultPaginationProps = {
+  pageSizes: [10, 20, 30, 50, 80, 100],
+  layout: 'total, sizes, prev, pager, next, jumper',
+  small: true,
+  background: true
+}
+
 export const tableProps = {
   schema: {
     type: Object as () => ISchema,
     default: undefined
   },
+  // 查询表单属性配置
+  formProps: {
+    type: Object,
+    default: () => ({})
+  },
+  // 是否展示序号列
+  showIndex: {
+    type: Boolean,
+    default: false
+  },
   columns: {
     type: Array as () => ITableColumn[],
     default: () => []
   },
-  dataSource: {
+  request: {
+    type: Function,
+    default: undefined
+  },
+  data: {
     type: Array as () => Record<string, any>[],
-    default: () => []
+    default: undefined
   },
   setting: {
     type: Object,
@@ -30,8 +51,13 @@ export const tableProps = {
     type: Object,
     default: undefined
   },
-  showIndex: {
-    type: Boolean,
-    default: false
+  pagination: {
+    type: [Object, Boolean],
+    default: undefined
+  },
+  // 分页器属性配置
+  paginationProps: {
+    type: Object,
+    default: () => ({})
   }
 }

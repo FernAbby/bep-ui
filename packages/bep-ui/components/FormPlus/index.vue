@@ -6,7 +6,7 @@
           <template v-if="isFormField(prop)">
             <el-form-item
               v-bind="getFormFieldAttrs(prop)"
-              :label="getFormField(prop).title"
+              :label="`${getFormField(prop).title}${separator}`"
               :prop="prop"
               :required="getFormField(prop).required"
             >
@@ -40,7 +40,7 @@
 <script lang="ts" setup>
   import type { FormInstance } from 'element-plus'
   import { ElForm, ElFormItem } from 'element-plus'
-  import { ref, computed, watch, useAttrs, provide } from 'vue'
+  import { ref, computed, watch, useAttrs, provide, toRaw } from 'vue'
   import type { Component } from 'vue'
   import { execStatement, isEmpty, isBoolean, classnames } from 'biz-gadgets'
   import { useNamespace } from 'biz-gadgets/hooks'
@@ -94,6 +94,10 @@
     rootStyle: {
       type: String,
       default: undefined
+    },
+    separator: {
+      type: String,
+      default: ''
     }
   })
   const attrs = useAttrs()
@@ -201,6 +205,7 @@
   provide(ROOT_DATA_INJECTION_KEY, rootData)
 
   defineExpose<IFormPlusRef>({
+    getFormData: () => toRaw(rootData.value),
     validate: (callback) => {
       return formRef.value?.validate(callback)
     },
@@ -218,7 +223,9 @@
     .el-form {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      grid-gap: 12px;
+      grid-column-gap: 12px;
+      justify-content: space-evenly;
+      align-content: center;
     }
 
     .el-form-item {
@@ -228,5 +235,19 @@
     .bep-form-plus__fixed-item {
       grid-column: 1/-1;
     }
+
+    .bep-form-plus-append {
+      grid-column-start: -2;
+    }
   }
+  // TODO ===> 优化动画效果
+  //.list-enter-active,
+  //.list-leave-active {
+  //  transition: all 0.1s linear;
+  //}
+  //.list-enter-from,
+  //.list-leave-to {
+  //  opacity: 0;
+  //  transform: translateX(30px);
+  //}
 </style>

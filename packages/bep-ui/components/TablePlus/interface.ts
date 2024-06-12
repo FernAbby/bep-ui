@@ -1,7 +1,10 @@
 import type { Component } from 'vue'
-import { ElTableColumn } from 'element-plus/es/components/table'
+import type { TableProps, TableColumnCtx } from 'element-plus'
+import type { PaginationProps } from 'element-plus'
+import type { IFormPlusProps } from '@bep-ui/components'
 
-export type ITableColumnProps = Partial<typeof ElTableColumn>
+// export type ITableColumnProps = Partial<typeof ElTableColumn>
+export type ITableColumnProps = Partial<TableColumnCtx<Record<string, any>>>
 
 export interface ITableColumnScope {
   row: Record<string, any>
@@ -12,7 +15,7 @@ export interface ITableColumnScope {
 export interface ITableColumn {
   title: string
   dataIndex: string
-  renderType: 'text' | 'slot' | 'custom'
+  renderType?: 'text' | 'slot' | 'custom' | 'selection' | 'index' | 'expand'
   component?: Component // type = custom时设置
   componentProps?: (scope: ITableColumnScope) => Record<string, any>
   columnProps?: ITableColumnProps
@@ -21,4 +24,26 @@ export interface ITableColumn {
     fixed?: boolean // 固定元素排序位置
   }
   hidden?: boolean
+}
+
+export interface IPagination {
+  currentPage: number
+  pageSize: number
+  total: number
+}
+
+export interface ITablePlusProps extends TableProps<Record<string, any>> {
+  pagination?: Partial<IPagination>
+  paginationProps?: Partial<PaginationProps>
+  formProps?: Partial<IFormPlusProps>
+  request?: (
+    sp: Record<string, any>,
+    pp: IPagination
+  ) => Promise<{
+    data: Record<string, any>
+    total: number
+    currentPage: number
+    pageSize: number
+  }>
+  onSearch: ({ sp, pp }: { sp: Record<string, any>; pp: IPagination }) => void
 }

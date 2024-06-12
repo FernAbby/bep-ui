@@ -1,6 +1,7 @@
 import type { Component } from 'vue'
 import type { FormItemProps, FormValidateCallback, FormValidationResult } from 'element-plus'
 import type { IObjectAny } from '@bep-ui/types/common'
+import FormPlus from './index.vue'
 
 export interface IOption {
   label: string
@@ -10,6 +11,7 @@ export interface IOption {
 }
 
 export interface IFormPlusRef {
+  getFormData: () => Record<string, any>
   validate: (callback: FormValidateCallback | undefined) => FormValidationResult | undefined
   reset: () => IObjectAny
   scrollToField: (prop: string) => void
@@ -41,3 +43,6 @@ export interface ISchema {
 export interface ISchemaRenderer {
   [key: string]: Component
 }
+
+// 表单属性
+export type IFormPlusProps = InstanceType<typeof FormPlus>['$props']
