@@ -42,8 +42,8 @@ export interface ITablePlusProps extends TableProps<Record<string, any>> {
   ) => Promise<{
     data: Record<string, any>
     total: number
-    currentPage: number
-    pageSize: number
+    currentPage?: number
+    pageSize?: number
   }>
   onSearch: ({ sp, pp }: { sp: Record<string, any>; pp: IPagination }) => void
 }

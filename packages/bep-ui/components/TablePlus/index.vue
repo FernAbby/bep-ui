@@ -1,7 +1,12 @@
 <template>
   <div class="table-plus">
     <div class="table-plus__search">
-      <SearchForm v-bind="formProps" :schema="schema" @search="handleSearch" />
+      <SearchForm
+        v-bind="formProps"
+        :schema="schema"
+        @search="handleSearch"
+        @reset="handleSearch"
+      />
     </div>
     <div class="table-plus__toolbar">
       <div class="table-plus__toolbar-title">
@@ -23,9 +28,9 @@
         <el-table-column v-if="showIndex" type="index" label="序号" width="55" align="center" />
         <template v-for="column in innerColumns" :key="column.dataIndex">
           <el-table-column
+            v-bind="column.columnProps"
             :prop="column.dataIndex"
             :label="column.title"
-            v-bind="column.columnProps"
           >
             <template v-if="column.renderType === 'slot'" #header="_scope">
               <slot
@@ -61,7 +66,8 @@
       <div v-if="isShowPagination" class="table-plus__pagination">
         <el-pagination
           v-bind="innerPaginationProps"
-          v-model="pagination"
+          v-model:current-page="pagination.currentPage"
+          v-model:page-size="pagination.pageSize"
           :total="pagination.total"
           @size-change="handlePageSizeChange"
           @current-change="handleCurrentPageChange"
@@ -90,6 +96,7 @@
     pageSize: 20,
     total: 0
   })
+  let searchParams = {}
 
   // 分页配置
   watch(
@@ -112,7 +119,7 @@
     () => props.data,
     (value) => {
       if (value !== undefined) {
-        console.log('props.dataSource===>', value)
+        // console.log('props.dataSource===>', value)
         innerDataSource.value = value
       }
     },
@@ -147,27 +154,38 @@
     return scope
   }
 
-  // 分页数量
-  const handlePageSizeChange = (pageSize: number) => {
-    pagination.value.pageSize = pageSize
-  }
-  // 切换页码
-  const handleCurrentPageChange = (currentPage: number) => {
-    pagination.value.currentPage = currentPage
-  }
-
-  const handleSearch = async (sp: Record<string, any>) => {
+  // 表格查询
+  const tableSearchFn = async () => {
     const pp = {
       currentPage: pagination.value.currentPage,
       pageSize: pagination.value.pageSize
     }
     if (props.request) {
-      const res = await props.request(sp, pp)
+      const res = await props.request({ sp: searchParams, pp })
       innerDataSource.value = res.data
       mergePagination(pagination, res)
     } else {
-      emits('search', { sp, pp })
+      emits('search', { sp: searchParams, pp })
     }
+  }
+
+  // 查询
+  const handleSearch = (sp: Record<string, any>) => {
+    searchParams = sp
+    pagination.value.currentPage = 1
+    tableSearchFn()
+  }
+
+  // 分页数量
+  const handlePageSizeChange = (pageSize: number) => {
+    pagination.value.pageSize = pageSize
+    tableSearchFn()
+  }
+
+  // 切换页码
+  const handleCurrentPageChange = (currentPage: number) => {
+    pagination.value.currentPage = currentPage
+    tableSearchFn()
   }
 </script>
 <style lang="scss">
@@ -180,9 +198,17 @@
     .table-plus__table {
       flex: 1;
       height: 0;
+      display: flex;
+      flex-direction: column;
+
+      .el-table--fit {
+        flex: 1;
+        height: 0;
+      }
 
       .table-plus__pagination {
-        padding-top: 10px;
+        padding-top: 12px;
+        padding-bottom: 12px;
         width: 100%;
         display: flex;
         align-items: center;

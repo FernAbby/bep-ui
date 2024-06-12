@@ -72,7 +72,7 @@
     .standard-page-layout__content {
       flex: 1;
       width: 0;
-      padding: 10px;
+      padding: 12px;
       overflow-y: auto;
     }
   }

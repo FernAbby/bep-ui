@@ -2,6 +2,7 @@
   <TablePlus :schema="schema" :columns="columns" :data="dataSource" @search="handleSearch" />
   <TablePlus
     row-key="id"
+    show-index
     :schema="schema"
     :form-props="searchProps"
     :columns="columns"
@@ -48,6 +49,7 @@
       renderType: 'DateTime'
     }
   }
+
   const columns: ITableColumn[] = [
     {
       title: '姓名',
@@ -73,8 +75,9 @@
       dataIndex: 'address'
     }
   ]
+
   const dataSource = computed(() => {
-    return [1, 2, 3, 4, 5, 6, 7, 9, 10].map((item, index) => {
+    return new Array(50).fill(0, 0).map((item, index) => {
       return {
         id: uuidv4(),
         name: `张三 ${index + 1}`,
@@ -85,16 +88,19 @@
       }
     })
   })
+
   const handleSearch: ITablePlusProps['onSearch'] = ({ sp, pp }) => {
     console.log('handleSearch====>', sp, pp)
   }
-  const fetchTableList = async () => {
-    const res = await dataSource.value
+  const fetchTableList: ITablePlusProps['request'] = async ({ sp, pp }) => {
+    const data = dataSource.value.slice(
+      (pp.currentPage - 1) * pp.pageSize,
+      pp.currentPage * pp.pageSize
+    )
+    const res = await Promise.resolve(data)
     return {
       data: res,
-      total: res.length,
-      pageSize: 20,
-      currentPage: 1
+      total: 50
     }
   }
 </script>

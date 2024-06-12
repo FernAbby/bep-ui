@@ -70,7 +70,7 @@
   // 重置
   const handleReset = () => {
     formRef.value?.reset()
-    emits('reset')
+    emits('reset', formRef.value?.getFormData() || {})
   }
   // 重置
   const handleSearch = () => {
