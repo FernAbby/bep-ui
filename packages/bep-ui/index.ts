@@ -4,8 +4,8 @@ import { INSTALLED_KEY } from './global'
 import type { IConfigProviderContext } from './global'
 import './theme/base.scss'
 
-export * from './components/FormPlus'
-export * from './components/TablePlus'
+export * from './components/FormPlus/index'
+export * from './components/TablePlus/index'
 
 interface IApp extends App {
   [key: symbol]: boolean

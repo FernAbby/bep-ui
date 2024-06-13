@@ -32,6 +32,13 @@ export interface IPagination {
   total: number
 }
 
+export interface ITableRequestData {
+  data: Record<string, any>
+  total: number
+  currentPage?: number
+  pageSize?: number
+}
+
 export interface ITablePlusProps extends TableProps<Record<string, any>> {
   pagination?: Partial<IPagination>
   paginationProps?: Partial<PaginationProps>
@@ -39,11 +46,6 @@ export interface ITablePlusProps extends TableProps<Record<string, any>> {
   request?: (
     sp: Record<string, any>,
     pp: IPagination
-  ) => Promise<{
-    data: Record<string, any>
-    total: number
-    currentPage?: number
-    pageSize?: number
-  }>
+  ) => Promise<ITableRequestData> | ITableRequestData
   onSearch: ({ sp, pp }: { sp: Record<string, any>; pp: IPagination }) => void
 }

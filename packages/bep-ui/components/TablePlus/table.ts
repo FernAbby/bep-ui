@@ -1,4 +1,4 @@
-import type { ISchema } from '../FormPlus/interface'
+import type { ISchema } from '@bep-ui/components/FormPlus/interface'
 import type { ITableColumn } from './interface'
 
 // 列默认配置
@@ -16,7 +16,7 @@ export const defaultPaginationProps = {
 
 export const tableProps = {
   schema: {
-    type: Object as () => ISchema,
+    type: Object as () => ISchema['properties'],
     default: undefined
   },
   // 查询表单属性配置
@@ -38,7 +38,7 @@ export const tableProps = {
     default: undefined
   },
   data: {
-    type: Array as () => Record<string, any>[],
+    type: Array as () => any,
     default: undefined
   },
   setting: {

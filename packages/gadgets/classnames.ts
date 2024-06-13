@@ -22,9 +22,9 @@ function parseValue(arg: IClassName): string {
     return classnames(...(arg as IClassName[]))
   }
   if (isPlainObject(arg)) {
-    const classes = []
+    const classes: string[] = []
     Object.keys(arg).forEach((key) => {
-      if (key && arg[key]) {
+      if (key && (arg as Record<string, boolean>)[key]) {
         classes.push(key)
       }
     })

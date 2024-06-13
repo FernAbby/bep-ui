@@ -1,0 +1,9 @@
+<template>
+  <div>
+    测试组件，哈哈哈
+    <FormPlusView />
+  </div>
+</template>
+<script lang="ts" setup>
+  import FormPlusView from '@/views/Examples/FormPlusView.vue'
+</script>

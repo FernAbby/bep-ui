@@ -1,4 +1,4 @@
-import type { ISchemaFormItem } from '@bep-ui/components'
+import type { ISchemaFormItem } from '@bep-ui/components/FormPlus/interface'
 import type { IObjectAny } from '@bep-ui/types/common'
 export const rendererProps = {
   disabled: {

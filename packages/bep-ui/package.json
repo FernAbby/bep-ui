@@ -1,6 +1,6 @@
 {
   "name": "bep-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "基于element-plus二开的schema-form、schema-render",
   "files": [
     "dist"
@@ -8,20 +8,14 @@
   "main": "/dist/umd/bep-ui.cjs",
   "module": "/dist/es/index.mjs",
   "types": "/dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./libs/bep-ui/es/bep-ui/index.es.mjs",
-      "require": "./libs/bep-ui/umd/bep-ui.umd.cjs"
-    }
-  },
   "author": "wenzhen",
   "license": "MIT",
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "vue": ">=3.4.0",
     "biz-gadgets": "workspace:^"
   },
   "peerDependencies": {
-    "element-plus": ">=2.7.3",
-    "vue": ">=3.4.0"
+    "element-plus": ">=2.7.3"
   }
 }

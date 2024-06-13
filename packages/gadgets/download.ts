@@ -44,8 +44,10 @@ export function downloadImage(url: string, fileName?: string) {
     canvas.getContext('2d')?.drawImage(img, 0, 0, img.width, img.height)
     // 将canvas转blob，然后创建一个a连接自动下载图片
     canvas.toBlob((blob) => {
-      const file_name = fileName || extraFileName(url) || 'download.png'
-      baseDownload(blob, file_name)
+      if (blob) {
+        const file_name = fileName || extraFileName(url) || 'download.png'
+        baseDownload(blob, file_name)
+      }
     })
   }
 }

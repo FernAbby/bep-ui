@@ -1,14 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": [
-    "env.d.ts",
-    "src/**/*",
-    "src/**/*.vue",
-    "packages/**/*",
-    "packages/**/*.vue",
-    "docs/**/*.vue",
-    "docs/**/*.ts"
-  ],
+  "include": ["./env.d.ts", "packages/bep-ui/**/*", "packages/bep-ui/**/*.vue"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
@@ -17,10 +9,7 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@packages/*": ["./packages/*"],
-      "@bep-ui/*": ["./packages/bep-ui/*"],
-      "@gadgets/*": ["./packages/gadgets/*"]
+      "@bep-ui/*": ["./packages/bep-ui/*"]
     },
     "skipLibCheck": true,
     "module": "esnext",

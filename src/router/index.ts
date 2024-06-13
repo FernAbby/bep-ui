@@ -45,7 +45,18 @@ const router = createRouter({
         {
           path: 'table',
           name: 'table',
-          component: () => import('../views/Examples/TablePlusView.vue')
+          children: [
+            {
+              path: 'base',
+              name: 'base-table',
+              component: () => import('../views/Examples/TablePlus/Base.vue')
+            },
+            {
+              path: 'data',
+              name: 'data-table',
+              component: () => import('../views/Examples/TablePlus/DataTable.vue')
+            }
+          ]
         },
         {
           path: 'download',

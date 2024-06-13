@@ -12,14 +12,14 @@ hero:
       link: /introduction
     - theme: alt
       text: Demo演示
-      link: /examples
+      link: /components/dashboard
   image:
     src: /public/assets/logo.svg
     alt: BepUI
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 技术栈
+    details: 基于Vue3 + TypeScript + Element Plus的组件库
   - title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C

@@ -52,7 +52,7 @@ function baseClone(value: any, hash = new WeakMap()): any {
     }
 
     if (isPlainObject(value)) {
-      const copyObject = {}
+      const copyObject: Record<string | symbol, any> = {}
       getAllKeys(value).map((key) => {
         copyObject[key] = baseClone(value[key], hash)
       })

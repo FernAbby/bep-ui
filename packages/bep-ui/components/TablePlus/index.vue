@@ -1,6 +1,6 @@
 <template>
   <div class="table-plus">
-    <div class="table-plus__search">
+    <div v-if="isShowSearchForm" class="table-plus__search">
       <SearchForm
         v-bind="formProps"
         :schema="schema"
@@ -98,7 +98,9 @@
   })
   let searchParams = {}
 
-  // 分页配置
+  const isShowSearchForm = computed(() => !isEmpty(props.schema))
+
+    // 分页配置
   watch(
     () => props.pagination,
     (value) => {

@@ -5,7 +5,10 @@ import { isDeepProp } from './regexp'
  * @description 获取对象可枚举属性及symbol属性
  */
 export function getAllKeys(object: any): (string | symbol)[] {
-  return [].concat(Object.keys(object), Object.getOwnPropertySymbols(object))
+  return ([] as (string | symbol)[]).concat(
+    Object.keys(object),
+    Object.getOwnPropertySymbols(object)
+  )
 }
 
 /**
@@ -35,7 +38,7 @@ export function castPath(value: string | string[]): string[] {
  */
 // TODO ====> 完善深度匹配 如.data.list这种结构
 export function omit(object: any, paths: string[]) {
-  const result = {}
+  const result: Record<string, any> = {}
   if (!isPlainObject(object)) {
     return result
   }
@@ -54,7 +57,7 @@ export function omit(object: any, paths: string[]) {
  */
 // TODO ====> 完善深度匹配
 export function pick(object: any, paths: string[]) {
-  const result = {}
+  const result: Record<string, any> = {}
   if (!isPlainObject(object)) {
     return result
   }

@@ -7,15 +7,17 @@
     "vitest.config.*",
     "cypress.config.*",
     "nightwatch.conf.*",
-    "playwright.config.*"
+    "playwright.config.*",
+    "docs/**/.vitepress/config.ts"
   ],
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
 
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "esnext",
+    //    "moduleResolution": "Bundler",
+    "moduleResolution": "node",
     "types": ["node"]
   }
 }

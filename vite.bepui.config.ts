@@ -1,4 +1,5 @@
 import path from 'path'
+import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -16,7 +17,8 @@ export function viteBepUiConfig(): UserConfig {
     plugins: [
       vue(),
       dts({
-        outDir: resolveBuildPath(BEP_LIB_NAME, 'types')
+        outDir: resolveBuildPath(BEP_LIB_NAME, 'types'),
+        tsconfigPath: path.resolve(__dirname, './tsconfig.bepui.json')
       }),
       vueJsx()
     ],
@@ -29,28 +31,35 @@ export function viteBepUiConfig(): UserConfig {
         fileName: BEP_LIB_NAME
       },
       rollupOptions: {
-        external: ['vue', 'element-plus', 'gadgets'],
+        external: ['vue', 'element-plus', 'biz-gadgets'],
         output: [
           {
             dir: resolveBuildPath(BEP_LIB_NAME, 'es'),
-            entryFileNames: '[name].es.mjs',
+            entryFileNames: '[name].mjs',
             format: 'es',
             preserveModules: true,
             globals: {
               vue: 'Vue',
-              'element-plus': 'elementPlus'
+              'element-plus': 'elementPlus',
+              'biz-gadgets': 'bizGadgets'
             }
           },
           {
             dir: resolveBuildPath(BEP_LIB_NAME, 'umd'),
-            name: '[name].umd.cjs',
+            name: '[name].cjs',
             format: 'umd',
             globals: {
               vue: 'Vue',
-              'element-plus': 'elementPlus'
+              'element-plus': 'elementPlus',
+              'biz-gadgets': 'bizGadgets'
             }
           }
         ]
+      }
+    },
+    resolve: {
+      alias: {
+        '@bep-ui': fileURLToPath(new URL('./packages/bep-ui', import.meta.url))
       }
     }
   }

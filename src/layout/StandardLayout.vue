@@ -2,7 +2,20 @@
   <div class="standard-page-layout">
     <div class="standard-page-layout__nav">
       <template v-for="item in menuList" :key="item.path">
-        <RouterLink :to="item.path">{{ item.title }}</RouterLink>
+        <template v-if="!item.children?.length">
+          <RouterLink :to="item.path">{{ item.title }}</RouterLink>
+        </template>
+        <template v-else>
+          <a class="catalog-item">
+            <span>{{ item.title }}</span>
+            <el-icon :size="14"><ArrowDown /></el-icon>
+          </a>
+          <template v-for="subItem in item.children" :key="subItem.path">
+            <div class="sub-nav">
+              <RouterLink :to="subItem.path">{{ subItem.title }}</RouterLink>
+            </div>
+          </template>
+        </template>
       </template>
     </div>
     <div class="standard-page-layout__content">
@@ -11,6 +24,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { ArrowDown } from '@element-plus/icons-vue'
   import { RouterView } from 'vue-router'
   const menuList = [
     {
@@ -23,7 +37,17 @@
     },
     {
       title: '表格',
-      path: '/examples/table'
+      path: '/examples/table',
+      children: [
+        {
+          title: '基础表格',
+          path: '/examples/table/base'
+        },
+        {
+          title: '数据表格',
+          path: '/examples/table/data'
+        }
+      ]
     },
     {
       title: '下载',
@@ -36,6 +60,27 @@
   ]
 </script>
 <style lang="scss">
+  @mixin router-link {
+    > a {
+      display: block;
+      height: 34px;
+      line-height: 34px;
+      padding: 0 14px;
+      font-size: 13px;
+      border-radius: 4px;
+      color: hsla(210, 4%, 40%, 1);
+    }
+
+    > a.router-link-active {
+      color: hsla(160, 100%, 37%, 1);
+      background-color: hsla(160, 100%, 37%, 0.18) !important;
+    }
+
+    > a:hover {
+      color: hsla(160, 100%, 37%, 0.8);
+      background-color: transparent;
+    }
+  }
   .standard-page-layout {
     width: 100%;
     height: 100%;
@@ -48,25 +93,24 @@
       padding: 12px;
       border-right: 1px solid var(--color-border);
 
-      > a {
-        display: block;
-        height: 34px;
-        line-height: 34px;
-        padding: 0 14px;
-        font-size: 13px;
-        border-radius: 4px;
-        color: hsla(210, 4%, 40%, 1);
+      .catalog-item {
+        display: flex;
+        align-items: center;
+
+        span {
+          display: inline-block;
+          flex: 1;
+          width: 0;
+        }
       }
 
-      > a.router-link-active {
-        color: hsla(160, 100%, 37%, 1);
-        background-color: hsla(160, 100%, 37%, 0.18) !important;
+      .sub-nav {
+        margin-left: 20px;
+
+        @include router-link;
       }
 
-      > a:hover {
-        color: hsla(160, 100%, 37%, 0.8);
-        background-color: transparent;
-      }
+      @include router-link;
     }
 
     .standard-page-layout__content {

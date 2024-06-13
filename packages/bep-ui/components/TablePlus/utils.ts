@@ -1,3 +1,4 @@
+import type { Ref } from 'vue'
 import { isEmpty } from 'biz-gadgets'
 import type { IPagination } from './interface'
 

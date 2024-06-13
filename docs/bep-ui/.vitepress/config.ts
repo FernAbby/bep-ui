@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+import { fileURLToPath, URL } from 'node:url'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -14,22 +16,44 @@ export default defineConfig({
     siteTitle: 'bep-ui',
 
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '指导', link: '/' },
+      { text: '组件', link: '/components/dashboard' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '总览', link: '/components/dashboard'
+      },
+      {
+        text: '组件',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'FormPlus', link: '/components/FormPlus' },
+          { text: 'SearchForm', link: '/components/SearchForm' },
+          { text: 'TablePlus', link: '/components/TablePlus' },
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/FernAbby/bep-ui' }
     ]
+  },
+  markdown: {
+    // @vitepress-demo-preview的配置
+    config(md) {
+      // 支持区块内的方式展示 demo 和示例代码
+      md.use(containerPreview)
+      md.use(componentPreview)
+    }
+  },
+  vite: {
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('../../../src', import.meta.url)),
+        '@packages': fileURLToPath(new URL('../../../packages', import.meta.url)),
+        '@bep-ui': fileURLToPath(new URL('../../../packages/bep-ui', import.meta.url)),
+        '@gadgets': fileURLToPath(new URL('../../../packages/gadgets', import.meta.url))
+      }
+    }
   }
 })
