@@ -4,7 +4,7 @@
 <script lang="ts" setup>
   import { computed } from 'vue'
   import { classnames } from 'biz-gadgets'
-  import { GLOBAL_CONFIG } from '@bep-ui/constants'
+  import { GLOBAL_CONFIG } from '@bep-ui/global'
   import { rendererProps } from '../../constants/rendererProps'
   const props = defineProps(rendererProps)
   const model = computed(() => props.modelValue)
