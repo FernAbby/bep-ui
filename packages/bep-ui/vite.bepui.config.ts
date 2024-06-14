@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'node:url'
+import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -10,20 +10,25 @@ const BEP_LIB_NAME = 'bep-ui'
 function resolveBuildPath(lib: string, suffix?: string) {
   return `packages/${lib}/dist${suffix ? `/${suffix}` : ''}`
 }
+
+function resolve(_path) {
+  return path.resolve(__dirname, _path)
+}
+
 export default defineConfig(() => {
   return {
     root: './packages/bep-ui',
     plugins: [
       vue(),
       dts({
-        outDir: resolveBuildPath(BEP_LIB_NAME, 'types'),
-        tsconfigPath: './tsconfig.json'
+        outDir: resolve('./dist/types'),
+        tsconfigPath: resolve('./tsconfig.json')
       }),
       vueJsx()
     ],
-    // tsconfig: './packages/bep-ui/tsconfig.json',
+    tsconfig: resolve('./tsconfig.json'),
     build: {
-      outDir: resolveBuildPath(BEP_LIB_NAME),
+      outDir: resolve('./dist'),
       sourcemap: true,
       lib: {
         entry: './index.ts', // 指定组件编译入口文件
@@ -31,17 +36,24 @@ export default defineConfig(() => {
         fileName: BEP_LIB_NAME
       },
       rollupOptions: {
-        external: ['vue', 'element-plus', 'biz-gadgets'],
+        external: [
+          'vue',
+          'element-plus',
+          '@element-plus/icons-vue',
+          'biz-gadgets',
+          'biz-gadgets/hooks'
+        ],
         output: [
           {
-            dir: resolveBuildPath(BEP_LIB_NAME, 'es'),
+            dir: resolve('./dist/es'),
             entryFileNames: '[name].mjs',
             format: 'es',
             preserveModules: true,
             globals: {
               vue: 'Vue',
               'element-plus': 'elementPlus',
-              'biz-gadgets': 'bizGadgets'
+              'biz-gadgets': 'bizGadgets',
+              'biz-gadgets/hooks': 'bizGadgetsHooks'
             }
           },
           {
@@ -51,7 +63,8 @@ export default defineConfig(() => {
             globals: {
               vue: 'Vue',
               'element-plus': 'elementPlus',
-              'biz-gadgets': 'bizGadgets'
+              'biz-gadgets': 'bizGadgets',
+              'biz-gadgets/hooks': 'bizGadgetsHooks'
             }
           }
         ]
@@ -59,7 +72,7 @@ export default defineConfig(() => {
     },
     resolve: {
       alias: {
-        '@bep-ui': fileURLToPath(new URL('./packages/bep-ui', import.meta.url))
+        '@bep-ui': ''
       }
     }
   }
