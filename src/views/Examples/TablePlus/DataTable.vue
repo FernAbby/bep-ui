@@ -7,10 +7,10 @@
   import type { ITablePlusProps } from '@bep-ui/components/TablePlus/interface'
   import { schema } from './schema'
   import { columns } from './columns'
-  import { getDataSource } from './data'
+  import { generateDataSource } from './data'
 
   const dataSource = computed(() => {
-    return getDataSource()
+    return generateDataSource()
   })
 
   const handleSearch: ITablePlusProps['onSearch'] = ({ sp, pp }) => {

@@ -1,10 +1,11 @@
 import type { App } from 'vue'
-import { freezeGlobalConfig, renderResolver } from './helper'
+import { freezeGlobalConfig, renderResolver } from './utils/helper'
 import { INSTALLED_KEY } from './global'
 import type { IConfigProviderContext } from './global'
 import './theme/base.scss'
 
 export * from './components/FormPlus/index'
+export * from './components/SearchForm/index'
 export * from './components/TablePlus/index'
 
 interface IApp extends App {

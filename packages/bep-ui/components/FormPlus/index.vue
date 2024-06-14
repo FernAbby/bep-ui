@@ -135,7 +135,12 @@
   )
 
   const getFormField = (prop: string): ISchemaFormItem => {
-    return props.schema.properties[prop] || {}
+    return (
+      props.schema.properties[prop] || {
+        title: '属性值错误!',
+        renderType: 'Description'
+      }
+    )
   }
 
   // 是否显示当前项

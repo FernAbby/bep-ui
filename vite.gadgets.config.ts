@@ -13,7 +13,7 @@ export function viteGadgetsConfig(): UserConfig {
       // vue(),
       dts({
         outDir: resolveBuildPath(GADGETS_LIB_NAME, 'types'),
-        include: 'packages/gadgets',
+        // include: 'packages/gadgets',
         tsconfigPath: 'packages/gadgets/tsconfig.json'
       })
     ],

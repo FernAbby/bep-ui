@@ -28,11 +28,12 @@ pnpm -w build-only:gadgets
 ```
 
 - **bep-ui**
-  tsconfig.bepui.json 是打包bep-ui组件库的ts编译配置
+  packages/bep-ui/tsconfig.json 是打包bep-ui组件库的ts编译配置
   vite.bepui.config.json 是打包bep-ui组件库的Vite配置
 
-  - **gadgets**
-    vite.gadgets.config.json 是打包biz-gadgets工具库的Vite配置
+- **gadgets**
+  packages/gadgets/tsconfig.json 是打包bep-ui组件库的ts编译配置
+  vite.gadgets.config.json 是打包biz-gadgets工具库的Vite配置
 
 - **通用配置**
   tsconfig.json、tsconfig.app.json 是打包biz-gadgets和整个项目通用配置的ts编译配置

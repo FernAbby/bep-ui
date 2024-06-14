@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import { isEmpty } from 'biz-gadgets'
-import type { IConfigProviderContext } from './global'
-import { GLOBAL_CONFIG } from './global'
+import type { IConfigProviderContext } from '../global'
+import { GLOBAL_CONFIG } from '../global'
 
 // 冻结初始对象
 export function freezeGlobalConfig(config: Partial<IConfigProviderContext>) {
