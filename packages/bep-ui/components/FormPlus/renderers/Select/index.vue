@@ -1,9 +1,9 @@
 <template>
   <el-select
-    v-model="model"
     :placeholder="placeholder"
     clearable
     v-bind="renderOptions"
+    v-model="model"
     :disabled="disabled"
   >
     <el-option
@@ -28,10 +28,10 @@
     }
   })
   const options = computed(() => {
-    return props.field.renderOptions?.options || []
+    return props.field?.renderOptions?.options || []
   })
 
   const renderOptions = computed(() => {
-    return omit(props.field.renderOptions, ['options'])
+    return omit(props.field?.renderOptions || {}, ['options'])
   })
 </script>

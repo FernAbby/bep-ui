@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import { freezeGlobalConfig, renderResolver } from './utils/helper'
 import { INSTALLED_KEY } from './global'
 import type { IConfigProviderContext } from './global'
-import './theme/base.scss'
+import './theme/index.scss'
 
 export * from './components/FormPlus/index'
 export * from './components/SearchForm/index'

@@ -4,15 +4,11 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import { viteGadgetsConfig } from './vite.gadgets.config'
-import { viteBepUiConfig } from './vite.bepui.config'
 
 // console.log('import.meta.url=====>', import.meta.url)
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
-  if (process.env.LIB_NAME === 'bep-ui') {
-    return viteBepUiConfig()
-  }
   if (process.env.LIB_NAME === 'gadgets') {
     return viteGadgetsConfig()
   }

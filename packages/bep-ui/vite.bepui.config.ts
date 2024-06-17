@@ -21,7 +21,7 @@ export default defineConfig(() => {
     plugins: [
       vue(),
       dts({
-        outDir: resolve('./dist/types'),
+        outDir: './dist/types',
         tsconfigPath: resolve('./tsconfig.json')
       }),
       vueJsx()

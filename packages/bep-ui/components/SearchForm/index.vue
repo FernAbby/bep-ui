@@ -82,9 +82,20 @@
 </script>
 <style lang="scss">
   .search-form-plus {
-    .el-date-editor {
-      width: 100% !important;
+    .el-form-item__content > * {
+      width: 100%;
     }
+
+    .el-form-item__content {
+      .el-input-number .el-input__inner {
+        text-align: left;
+      }
+
+      .el-date-editor {
+        width: 100% !important;
+      }
+    }
+
     .search-form-plus__actions {
       display: flex;
       justify-content: flex-end;

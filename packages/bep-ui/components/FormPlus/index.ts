@@ -9,5 +9,4 @@ export const BepFormPlus = withInstall(FormPlus)
 //   app.component('BepFormPlus', FormPlus)
 //   return app
 // }
-
 export default BepFormPlus

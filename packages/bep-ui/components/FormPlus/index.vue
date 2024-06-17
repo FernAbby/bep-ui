@@ -147,7 +147,7 @@
   const getFormFieldShow = (prop: string) => {
     if (isEmpty((getFormField(prop) as ISchemaFormItem).hidden)) return true
     // console.log(
-    //   'execStatement====>',
+    //   'show execStatement====>',
     //   execStatement({
     //     statement: (getFormField(prop) as ISchemaFormItem).hidden,
     //     rootData: formData.value,
@@ -174,7 +174,12 @@
     if (formField?.renderType === 'Custom') {
       return formField.component
     }
-    return GLOBAL_CONFIG.renderers[formField.renderType]
+    if (GLOBAL_CONFIG.renderers[formField.renderType]) {
+      return GLOBAL_CONFIG.renderers[formField.renderType]
+    }
+    // throw new TypeError(`renderType ${formField.renderType}不存在`)
+    console.error(`TypeError: ${formField.title}renderType为${formField.renderType} 渲染器不存在!`)
+    return GLOBAL_CONFIG.renderers['Description']
   }
 
   // 获取属性
@@ -185,6 +190,14 @@
   // 此项是否禁用
   const getFormFieldDisabled = (prop: string): boolean => {
     if (props.disabled) return true
+    console.log(
+      'disabled execStatement====>',
+      execStatement({
+        statement: (getFormField(prop) as ISchemaFormItem).hidden,
+        rootData: rootData.value,
+        context: props.customContext
+      })
+    )
     return execStatement({
       statement: (getFormField(prop) as ISchemaFormItem).disabled,
       rootData: rootData.value,

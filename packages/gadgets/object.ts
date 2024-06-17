@@ -1,4 +1,4 @@
-import { isArray, isPlainObject, isString, isKey } from './typeof'
+import { isArray, isPlainObject, isString, isKey, isEmpty } from './typeof'
 import { isDeepProp } from './regexp'
 
 /**
@@ -39,7 +39,7 @@ export function castPath(value: string | string[]): string[] {
 // TODO ====> 完善深度匹配 如.data.list这种结构
 export function omit(object: any, paths: string[]) {
   const result: Record<string, any> = {}
-  if (!isPlainObject(object)) {
+  if (!isPlainObject(object) || isEmpty(object)) {
     return result
   }
   // const _paths = castPath(paths)

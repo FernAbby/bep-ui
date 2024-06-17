@@ -2,7 +2,7 @@
   "extends": "@tsconfig/node20/tsconfig.json",
   "include": [
     "vite.config.*",
-    "vite.bepui.config.ts",
+    "packages/bep-ui/vite.bepui.config.ts",
     "vite.gadgets.config.ts",
     "vitest.config.*",
     "cypress.config.*",
