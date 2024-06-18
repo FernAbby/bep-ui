@@ -161,11 +161,11 @@
     //   'show execStatement====>',
     //   execStatement({
     //     statement: (getFormField(prop) as ISchemaFormItem).hidden,
-    //     rootData: formData.value,
+    //     rootData: rootData.value,
     //     context: props.customContext
     //   })
     // )
-    return execStatement({
+    return !execStatement({
       statement: (getFormField(prop) as ISchemaFormItem).hidden,
       rootData: rootData.value,
       context: props.customContext

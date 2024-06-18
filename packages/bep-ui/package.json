@@ -1,6 +1,6 @@
 {
   "name": "bep-ui",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "基于element-plus二开的schema-form、schema-render",
   "files": [
     "dist"
@@ -12,12 +12,12 @@
   "license": "MIT",
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "biz-gadgets": "^1.0.4",
+    "biz-gadgets": "^1.0.5",
     "vue": ">=3.4.0"
   },
   "peerDependencies": {
+    "biz-gadgets": "^1.0.5",
     "element-plus": ">=2.7.3",
-    "vue": ">=3.4.0",
-    "biz-gadgets": "^1.0.5"
+    "vue": ">=3.4.0"
   }
 }

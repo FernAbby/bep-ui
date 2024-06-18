@@ -118,7 +118,7 @@ importers:
         specifier: ^2.3.1
         version: 2.3.1(vue@3.4.27)
       biz-gadgets:
-        specifier: workspace:^
+        specifier: ^1.0.5
         version: link:../gadgets
       element-plus:
         specifier: '>=2.7.3'
