@@ -6,6 +6,7 @@
     :rules="rules"
     layout="grid"
     label-width="70px"
+    @change="handleChange"
   >
     <template #append>
       <el-space>
@@ -194,5 +195,9 @@
   }
   const handleReset = () => {
     formRef.value?.reset()
+  }
+
+  const handleChange = (e) => {
+    console.log('e====>', e)
   }
 </script>

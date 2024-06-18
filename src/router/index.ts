@@ -64,6 +64,11 @@ const router = createRouter({
           component: () => import('../views/Examples/DownloadView.vue')
         },
         {
+          path: 'hooks',
+          name: 'hooks',
+          component: () => import('../views/Examples/HooksView.vue')
+        },
+        {
           path: 'devtool',
           name: 'devtool',
           component: () => import('../views/Examples/DevToolView.vue')

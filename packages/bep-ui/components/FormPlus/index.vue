@@ -13,10 +13,12 @@
               <component
                 :is="getFormFieldComponent(prop)"
                 v-model="rootData[prop]"
+                :prop="prop"
                 :disabled="getFormFieldDisabled(prop)"
                 :field="getFormField(prop)"
                 :placeholder="getPlaceholder(prop)"
                 :custom-context="customContext[prop]"
+                @change="(...args) => handleChange(prop, args)"
               />
             </el-form-item>
           </template>
@@ -49,6 +51,8 @@
   import { ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
   import type { IFormPlusRef, ISchema, ISchemaFormItem } from './interface'
   import type { IObjectAny } from '../../types/common'
+
+  const emits = defineEmits(['change'])
 
   defineOptions({
     name: 'FormPlus',
@@ -122,17 +126,24 @@
   watch(
     () => props.model,
     (value) => {
-      // console.log('model====>', value)
       rootData.value = value
     },
     {
       deep: true,
-      immediate: true,
-      onTrigger(e) {
-        console.log('onTrigger e===>', e)
-      }
+      immediate: true
+      // onTrigger(e) {
+      //   console.log('onTrigger e===>', e)
+      // }
     }
   )
+
+  const handleChange = (prop: string, args) => {
+    emits('change', {
+      key: prop,
+      value: toRaw(rootData.value[prop]),
+      origin: args
+    })
+  }
 
   const getFormField = (prop: string): ISchemaFormItem => {
     return (
@@ -190,14 +201,14 @@
   // 此项是否禁用
   const getFormFieldDisabled = (prop: string): boolean => {
     if (props.disabled) return true
-    console.log(
-      'disabled execStatement====>',
-      execStatement({
-        statement: (getFormField(prop) as ISchemaFormItem).hidden,
-        rootData: rootData.value,
-        context: props.customContext
-      })
-    )
+    // console.log(
+    //   'disabled execStatement====>',
+    //   execStatement({
+    //     statement: (getFormField(prop) as ISchemaFormItem).hidden,
+    //     rootData: rootData.value,
+    //     context: props.customContext
+    //   })
+    // )
     return execStatement({
       statement: (getFormField(prop) as ISchemaFormItem).disabled,
       rootData: rootData.value,

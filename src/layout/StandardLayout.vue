@@ -54,6 +54,10 @@
       path: '/examples/download'
     },
     {
+      title: '自定义钩子',
+      path: '/examples/hooks'
+    },
+    {
       title: '调试',
       path: '/examples/devtool'
     }
