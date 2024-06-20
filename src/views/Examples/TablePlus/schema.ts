@@ -1,6 +1,6 @@
-import type { ISchema } from '@bep-ui/components/FormPlus/interface'
+import type { IFormSchema } from '@bep-ui/components/FormPlus/interface'
 
-export const schema: ISchema['properties'] = {
+export const schema: IFormSchema['properties'] = {
   name: {
     title: '姓名',
     renderType: 'InputText'

@@ -7,6 +7,7 @@
 <script lang="ts" setup>
   import { classnames } from 'biz-gadgets'
   import { computed } from 'vue'
+  import { ComponentSize } from 'element-plus'
   const props = defineProps({
     rootClass: {
       type: String,
@@ -15,9 +16,17 @@
     color: {
       type: String,
       default: ''
+    },
+    size: {
+      type: String as () => ComponentSize,
+      default: ''
     }
   })
-  const rootCls = computed(() => classnames('section-title', props.rootClass))
+  const rootCls = computed(() =>
+    classnames('section-title', props.rootClass, {
+      [`section-title__${props.size}`]: Boolean(props.size)
+    })
+  )
   const styles = computed(() => {
     if (props.color) {
       return `background-color: ${props.color}`

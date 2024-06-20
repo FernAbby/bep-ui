@@ -18,9 +18,9 @@
 </template>
 <script lang="ts" setup>
   import type { FormRules } from 'element-plus'
-  import FormPlus from '@packages/bep-ui/components/FormPlus/index.vue'
+  import FormPlus from '@bep-ui/components/FormPlus/index.vue'
   import { ref } from 'vue'
-  import type { ISchema, IOption, IFormPlusRef } from '@bep-ui/components'
+  import type { IOption, IFormPlusRef } from '@bep-ui/components'
   import { states } from '@/const/select'
 
   const rules: FormRules = {
@@ -33,7 +33,7 @@
     label: item
   }))
 
-  const schema: ISchema = {
+  const schema: IFormSchema = {
     renderType: 'Object',
     properties: {
       baseInfo: {
@@ -182,7 +182,7 @@
   }
   const formRef = ref<IFormPlusRef>()
   const form = ref({
-    name: '章三',
+    name: '张三',
     age: 10,
     address: '四川省成都市高新区天府三街世豪瑞丽1栋2单元2506',
     color: '#ffffff',

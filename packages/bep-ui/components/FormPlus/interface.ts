@@ -3,6 +3,8 @@ import type { FormItemProps, FormValidateCallback, FormValidationResult } from '
 import type { IObjectAny } from '@bep-ui/types/common'
 import FormPlus from './index.vue'
 
+export type IFormLayout = 'grid' | 'flex' | 'block'
+
 export interface IOption {
   label: string
   value: string
@@ -19,7 +21,7 @@ export interface IFormPlusRef {
 
 export interface ISchemaFormItem {
   title: string
-  renderType: string | 'Object' | 'Custom'
+  renderType: string | 'Object' | 'Array' | 'Custom'
   // FormItem 内部组件渲染属性
   renderOptions?: IObjectAny
   // FormItem 渲染属性
@@ -27,21 +29,29 @@ export interface ISchemaFormItem {
   hidden?: boolean | string
   disabled?: boolean
   required?: boolean
-  isFormField?: boolean
+  isFixedItem?: boolean // 是否为表单项，如标题和分割线
   // renderType === 'Custom' 时
   component?: Component
 }
 
-export interface ISchema {
-  // TODO  ====> 支持Array
-  renderType: 'Object'
+export interface IInnerSchemaFormItem extends ISchemaFormItem {
+  _key?: string
+}
+
+export interface IFormSchema {
+  renderType: 'Object' | 'Array'
   properties: {
-    [key: string]: ISchemaFormItem
+    [key: string]: ISchemaFormItem | IFormSchema
+  }
+  renderAttrs?: {
+    layout?: IFormLayout
   }
 }
 
-export interface ISchemaRenderer {
-  [key: string]: Component
+export interface IChangeEvent {
+  key: string
+  value: Record<string, []> | Record<string, []>[]
+  origin: any
 }
 
 // 表单属性

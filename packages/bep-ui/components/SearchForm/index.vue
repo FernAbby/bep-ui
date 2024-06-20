@@ -35,7 +35,7 @@
   import { ElButton } from 'element-plus'
   import { pick } from 'biz-gadgets'
   import { ArrowDown, ArrowUp, RefreshLeft, Search } from '@element-plus/icons-vue'
-  import type { IFormPlusProps, IFormPlusRef, ISchema } from '@bep-ui/components'
+  import type { IFormPlusProps, IFormPlusRef, IFormSchema } from '@bep-ui/components'
   import FormPlus from '../FormPlus/index.vue'
 
   const emits = defineEmits(['search', 'reset'])

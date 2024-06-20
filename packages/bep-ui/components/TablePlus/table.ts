@@ -1,4 +1,3 @@
-import type { ISchema } from '@bep-ui/components/FormPlus/interface'
 import type { ITableColumn } from './interface'
 
 // 列默认配置

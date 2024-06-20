@@ -40,7 +40,18 @@ const router = createRouter({
         {
           path: 'form',
           name: 'form',
-          component: () => import('../views/Examples/FormPlusView.vue')
+          children: [
+            {
+              path: 'base',
+              name: 'base-form',
+              component: () => import('../views/Examples/form/FormPlusView.vue')
+            },
+            {
+              path: 'complex',
+              name: 'complex-form',
+              component: () => import('../views/Examples/form/ComplexForm.vue')
+            }
+          ]
         },
         {
           path: 'table',

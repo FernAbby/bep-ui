@@ -33,7 +33,17 @@
     },
     {
       title: '表单',
-      path: '/examples/form'
+      path: '/examples/form',
+      children: [
+        {
+          title: '基础单表',
+          path: '/examples/form/base'
+        },
+        {
+          title: '嵌套表单',
+          path: '/examples/form/complex'
+        }
+      ]
     },
     {
       title: '表格',
