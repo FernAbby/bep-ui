@@ -60,6 +60,16 @@
       ]
     },
     {
+      title: '地图',
+      path: '/examples/map',
+      children: [
+        {
+          title: '省市区级联数据',
+          path: '/examples/map/area-json'
+        }
+      ]
+    },
+    {
       title: '下载',
       path: '/examples/download'
     },

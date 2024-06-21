@@ -3,6 +3,7 @@ import './assets/main.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import '@amap/amap-jsapi-types'
 import 'element-plus/dist/index.css'
 import '@bep-ui/theme/index.scss'
 

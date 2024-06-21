@@ -54,6 +54,17 @@ const router = createRouter({
           ]
         },
         {
+          path: 'map',
+          name: 'form',
+          children: [
+            {
+              path: 'area-json',
+              name: 'area-json',
+              component: () => import('../views/Examples/map/DistrictSearch.vue')
+            }
+          ]
+        },
+        {
           path: 'table',
           name: 'table',
           children: [
