@@ -8,7 +8,7 @@
       :required="field.required"
     >
       <div v-if="isGroup" :class="subItemsClass">
-        <FormGroup :schema="field" :path="propPath" />
+        <FormGroup :schema="field as IFormSchema" :path="propPath" />
       </div>
       <template v-else>
         <component
@@ -32,7 +32,7 @@
 </template>
 <script lang="ts" setup>
   import { computed, inject } from 'vue'
-  import { execStatement, classnames } from 'biz-gadgets'
+  import { execStatement } from 'biz-gadgets'
   import { ElFormItem } from 'element-plus'
   import { getValue, setValue } from './utils'
   import {
@@ -42,7 +42,7 @@
     isFormField,
     ns
   } from './utils/render'
-  import type { IInnerSchemaFormItem } from './interface'
+  import type { IFormSchema, IInnerSchemaFormItem } from './interface'
   import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
   import FormGroup from './FormGroup.vue'
 

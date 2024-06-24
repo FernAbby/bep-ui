@@ -41,7 +41,7 @@
   const emits = defineEmits(['search', 'reset'])
   const props = defineProps({
     schema: {
-      type: Object as () => ISchema['properties'],
+      type: Object as () => IFormSchema['properties'],
       default: () => ({})
     },
     searchProps: {
@@ -61,7 +61,7 @@
       properties: isCollapse.value
         ? pick(props.schema, Object.keys(props.schema).slice(0, 2))
         : props.schema
-    } as ISchema
+    } as IFormSchema
   })
   const showExpandCollapse = computed(() => Object.keys(props.schema).length > 2)
   const handleToggle = () => {

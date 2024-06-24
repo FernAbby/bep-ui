@@ -5,5 +5,5 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import FormPlusView from '@/views/Examples/form/FormPlusView.vue'
+  import FormPlusView from '@/views/examples/form/FormPlusView.vue'
 </script>

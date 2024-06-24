@@ -1,4 +1,5 @@
 import type { ITableColumn } from './interface'
+import type { IFormSchema } from '../FormPlus/interface'
 
 // 列默认配置
 export const defaultColumnProps = {
@@ -15,7 +16,7 @@ export const defaultPaginationProps = {
 
 export const tableProps = {
   schema: {
-    type: Object as () => ISchema['properties'],
+    type: Object as () => IFormSchema['properties'],
     default: undefined
   },
   // 查询表单属性配置

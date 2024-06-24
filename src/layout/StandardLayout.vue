@@ -120,6 +120,7 @@
       .catalog-item {
         display: flex;
         align-items: center;
+        padding-right: 0;
 
         span {
           display: inline-block;

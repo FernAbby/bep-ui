@@ -35,67 +35,73 @@ const router = createRouter({
         {
           path: 'guide',
           name: 'guide',
-          component: () => import('../views/Examples/GuideView.vue')
+          component: () => import('@/views/examples/guide-view.vue')
         },
         {
           path: 'form',
-          name: 'form',
+          name: 'form-plus',
           children: [
             {
               path: 'base',
               name: 'base-form',
-              component: () => import('../views/Examples/form/FormPlusView.vue')
+              component: () => import('../views/examples/FormPlus/FormPlusView.vue')
             },
             {
               path: 'complex',
               name: 'complex-form',
-              component: () => import('../views/Examples/form/ComplexForm.vue')
-            }
-          ]
-        },
-        {
-          path: 'map',
-          name: 'form',
-          children: [
-            {
-              path: 'area-json',
-              name: 'area-json',
-              component: () => import('../views/Examples/map/DistrictSearch.vue')
+              component: () => import('../views/examples/FormPlus/ComplexForm.vue')
             }
           ]
         },
         {
           path: 'table',
-          name: 'table',
+          name: 'table-plus',
           children: [
             {
               path: 'base',
               name: 'base-table',
-              component: () => import('../views/Examples/TablePlus/Base.vue')
+              component: () => import('../views/examples/TablePlus/Base.vue')
             },
             {
               path: 'data',
               name: 'data-table',
-              component: () => import('../views/Examples/TablePlus/DataTable.vue')
+              component: () => import('../views/examples/TablePlus/DataTable.vue')
+            }
+          ]
+        },
+        {
+          path: 'map',
+          name: 'map',
+          children: [
+            {
+              path: 'area-json',
+              name: 'area-json',
+              component: () => import('../views/examples/Map/DistrictSearch.vue')
             }
           ]
         },
         {
           path: 'download',
           name: 'download',
-          component: () => import('../views/Examples/DownloadView.vue')
+          component: () => import('../views/examples/DownloadView.vue')
         },
         {
           path: 'hooks',
           name: 'hooks',
-          component: () => import('../views/Examples/HooksView.vue')
+          component: () => import('../views/examples/HooksView.vue')
         },
         {
           path: 'devtool',
           name: 'devtool',
-          component: () => import('../views/Examples/DevToolView.vue')
+          component: () => import('../views/examples/DevToolView.vue')
         }
       ]
+    },
+    // 404路由必须放在所有路由的最后
+    {
+      path: '/:pathMatch(.*)*',
+      name: '404',
+      component: () => import('../views/errors/404.vue')
     }
   ]
 })

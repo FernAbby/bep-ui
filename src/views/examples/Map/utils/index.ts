@@ -57,7 +57,7 @@ export function createMap() {
   map.add(polyline)
 }
 
-export type ISearchLevel = 'country' | 'province' | 'city' | 'street'
+export type ISearchLevel = 'country' | 'province' | 'city' | 'district' | 'street'
 export interface IDistrictItem {
   code: string
   name: string
@@ -74,7 +74,7 @@ export function formatDistrictData(data = []): IDistrictItem[] {
 }
 
 // 查询所有省份列表
-export function fetchProvinceList(level = 1): IDistrictItem[] {
+export function fetchProvinceList(level = 1): Promise<IDistrictItem[]> {
   return new Promise((resolve) => {
     const districtSearch = new AMap.DistrictSearch({
       level: 'country', // 关键字对应的行政区级别，country 表示国家

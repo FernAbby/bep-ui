@@ -42,7 +42,7 @@
         results.push({
           _key: prop,
           ...toRaw(props.schema.properties[prop])
-        })
+        } as IInnerSchemaFormItem)
       }
     })
     return results

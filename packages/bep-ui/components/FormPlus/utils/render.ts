@@ -1,4 +1,4 @@
-import { IInnerSchemaFormItem } from '@bep-ui/components'
+import { IInnerSchemaFormItem, ISchemaFormItem } from '@bep-ui/components'
 import type { Component } from 'vue'
 import { GLOBAL_CONFIG } from '@bep-ui/global'
 import { isBoolean } from 'biz-gadgets'
@@ -17,7 +17,7 @@ export function isFormField(field: IInnerSchemaFormItem): boolean {
 /**
  * @description 获取渲染组件
  */
-export function getFormFieldComponent(field: IInnerSchemaFormItem): Component {
+export function getFormFieldComponent(field: ISchemaFormItem): Component {
   if (field.renderType === 'Custom') {
     if (field.component) {
       console.error(`TypeError: ${field.title}component不存在!`)

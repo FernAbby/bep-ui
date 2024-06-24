@@ -20,7 +20,7 @@ export interface IFormPlusRef {
 }
 
 export interface ISchemaFormItem {
-  title: string
+  title?: string
   renderType: string | 'Object' | 'Array' | 'Custom'
   // FormItem 内部组件渲染属性
   renderOptions?: IObjectAny
@@ -34,10 +34,6 @@ export interface ISchemaFormItem {
   component?: Component
 }
 
-export interface IInnerSchemaFormItem extends ISchemaFormItem {
-  _key?: string
-}
-
 export interface IFormSchema {
   renderType: 'Object' | 'Array'
   properties: {
@@ -47,6 +43,11 @@ export interface IFormSchema {
     layout?: IFormLayout
   }
 }
+
+export type IInnerSchemaFormItem = ISchemaFormItem &
+  IFormSchema & {
+    _key?: string
+  }
 
 export interface IChangeEvent {
   key: string

@@ -14,7 +14,7 @@
   import type { ITablePlusProps } from '@bep-ui/components/TablePlus/interface'
   import { schema } from './schema'
   import { columns } from './columns'
-  import { generateDataSource } from '@/views/Examples/TablePlus/data'
+  import { generateDataSource } from '@/views/examples/TablePlus/data'
 
   const searchProps = {
     labelWidth: '70px'
