@@ -12,7 +12,7 @@
     return classnames([
       props.field.renderOptions?.class,
       'description-content',
-      `${GLOBAL_CONFIG}-description-content`
+      `${GLOBAL_CONFIG.prefix}-description-content`
     ])
   })
   const renderOptions = computed(() => {

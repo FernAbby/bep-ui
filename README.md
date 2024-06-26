@@ -1,6 +1,6 @@
 # bep-ui
 
-基于element-plus组件库，二开的schema-form，schema-table
+基于vue3 + element-plus开发的组件库，根据schema快速生成表单、表格页面
 
 ## Project Setup
 
@@ -28,14 +28,17 @@ pnpm -w build-only:gadgets
 ```
 
 - **bep-ui**
+
   packages/bep-ui/tsconfig.json 是打包bep-ui组件库的ts编译配置
   vite.bepui.config.json 是打包bep-ui组件库的Vite配置
 
 - **gadgets**
+
   packages/gadgets/tsconfig.json 是打包bep-ui组件库的ts编译配置
   vite.gadgets.config.json 是打包biz-gadgets工具库的Vite配置
 
 - **通用配置**
+
   tsconfig.json、tsconfig.app.json 是打包biz-gadgets和整个项目通用配置的ts编译配置
 
 ### Compile and Hot-Reload Docs for Development

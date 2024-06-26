@@ -65,7 +65,10 @@
   const rootAttrs = inject(ROOT_ATTRS_INJECTION_KEY)
 
   const data = computed({
-    get: () => getValue(rootData.value, props.propPath),
+    get: () => {
+      console.log('props.propPath====>', props.propPath, getValue(rootData.value, props.propPath))
+      return getValue(rootData.value, props.propPath)
+    },
     set: (value) => setValue(rootData.value, props.propPath, value)
   })
 

@@ -4,7 +4,6 @@
     :schema="schema"
     :model="form"
     :rules="rules"
-    layout="grid"
     label-width="70px"
     @change="handleChange"
   >

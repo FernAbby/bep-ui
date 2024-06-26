@@ -38,7 +38,7 @@
       baseInfo: {
         renderType: 'Object',
         properties: {
-          baseInfo: {
+          baseInfoTitle: {
             title: '基本信息',
             renderType: 'SectionTitle'
           },

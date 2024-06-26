@@ -15,9 +15,8 @@ export function getValue(data: Record<string, any> | Record<string, any>[], path
       } else {
         value[key] = isNumber(key) ? [] : {}
       }
-    } else {
-      value = value[key]
     }
+    value = value[key]
   })
   return value
 }

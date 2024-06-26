@@ -31,7 +31,9 @@
     "@amap/amap-jsapi-types": "^0.0.15",
     "@element-plus/icons-vue": "^2.3.1",
     "bep-ui": "workspace:^",
+    "biz-gadgets": "workspace:^1.0.5",
     "element-plus": "^2.7.3",
+    "jszip": "^3.10.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.27",
     "vue-router": "^4.3.0"
