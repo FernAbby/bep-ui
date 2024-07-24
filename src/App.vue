@@ -1,20 +1,24 @@
 <template>
-  <div class="page-layout">
-    <div class="page-layout_header">
-      <div class="page-layout_header__title">
-        <img class="page-layout_header__title-logo" alt="Vue logo" src="@/assets/logo.svg" />
-        <span class="page-layout_header__title-text">BepUI</span>
+  <ElConfigProvider size="small" :locale="zhCn">
+    <div class="page-layout">
+      <div class="page-layout_header">
+        <div class="page-layout_header__title">
+          <img class="page-layout_header__title-logo" alt="Vue logo" src="@/assets/logo.svg" />
+          <span class="page-layout_header__title-text">BepUI</span>
+        </div>
+        <RouterLink class="nav-link" to="/">首页</RouterLink>
+        <RouterLink class="nav-link" to="/examples">示例</RouterLink>
       </div>
-      <RouterLink class="nav-link" to="/">首页</RouterLink>
-      <RouterLink class="nav-link" to="/examples">示例</RouterLink>
+      <div class="page-layout_content">
+        <RouterView />
+      </div>
     </div>
-    <div class="page-layout_content">
-      <RouterView />
-    </div>
-  </div>
+  </ElConfigProvider>
 </template>
 <script lang="ts" setup>
   import { RouterView } from 'vue-router'
+  import { ElConfigProvider } from 'element-plus'
+  import zhCn from 'element-plus/es/locale/lang/zh-cn'
 </script>
 <style lang="scss">
   .page-layout {

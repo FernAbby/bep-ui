@@ -1,0 +1,9 @@
+@forward 'element-plus/theme-chalk/src/radio' with (
+  //$checkbox-bordered-input-height: (
+  //  'default': 13px,
+  //  'small': 13px
+  //),
+  $radio-font-size: (
+    'small': 13px
+  )
+);

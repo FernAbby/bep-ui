@@ -1,6 +1,6 @@
 import type { Component } from 'vue'
 import type { FormItemProps, FormValidateCallback, FormValidationResult } from 'element-plus'
-import type { IObjectAny } from '@bep-ui/types/common'
+import type { IObjectAny } from '../../types/common'
 import FormPlus from './index.vue'
 
 export type IFormLayout = 'grid' | 'flex' | 'block'

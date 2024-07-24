@@ -1,8 +1,8 @@
 <template>
   <el-input
-    v-model="model"
     :placeholder="placeholder"
     v-bind="renderOptions"
+    v-model="model"
     :disabled="disabled"
   />
 </template>

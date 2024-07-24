@@ -12,8 +12,8 @@ import ElementPlus from 'element-plus'
 import BepUI from 'bep-ui'
 import 'element-plus/dist/index.css';
 // import 'bep-ui/dist/es/style.css';
-import '@/assets/base.css'
-import '@/assets/main.css'
+import '@/assets/styles/base.css'
+import '@/assets/styles/main.css'
 import './style.css'
 
 export default {

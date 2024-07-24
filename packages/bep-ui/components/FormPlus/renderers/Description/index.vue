@@ -12,7 +12,7 @@
     return classnames([
       props.field.renderOptions?.class,
       'description-content',
-      `${GLOBAL_CONFIG}-description-content`
+      `${GLOBAL_CONFIG.prefix}-description-content`
     ])
   })
   const renderOptions = computed(() => {
@@ -22,7 +22,7 @@
 <style lang="scss" scoped>
   .description-content {
     line-height: 1.75;
-    padding-top: 4px;
+    // padding-top: 4px;
     word-wrap: break-word;
     white-space: pre-wrap;
     overflow-wrap: break-word;

@@ -1,0 +1,19 @@
+@forward 'element-plus/theme-chalk/src/common/var' with (
+  $colors: (
+    'primary': (
+      'base': #00BD7E,
+    ),
+  ),
+  //$font-size: (
+  //  'base': 13px
+  //),
+  $input-font-size: (
+    'small': 13px
+  ),
+  $common-component-size: (
+    'small': 30px
+  ),
+  //$checkbox: (
+  //
+  //)
+);

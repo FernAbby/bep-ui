@@ -1,0 +1,5 @@
+@forward 'element-plus/theme-chalk/src/form' with (
+  $form-item-line-height: (
+    'small': 30px
+  ),
+);

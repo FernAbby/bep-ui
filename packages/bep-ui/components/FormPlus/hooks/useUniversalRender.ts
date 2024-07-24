@@ -1,7 +1,22 @@
 import { computed } from 'vue'
 import { omit, isEmpty } from 'biz-gadgets'
+import type { ISchemaFormItem } from '../interface'
 
-export default function useUniversalRender(props, emits, omitOptions = false) {
+export interface IRendererProps {
+  readonly disabled: boolean
+  readonly field: ISchemaFormItem
+  readonly modelValue?: any
+  readonly placeholder: string
+  readonly customContext: Record<string, any>
+}
+
+export type IRendererEmits = (event: 'update:modelValue', ...args: any[]) => void
+
+export default function useUniversalRender(
+  props: IRendererProps,
+  emits: IRendererEmits,
+  omitOptions = false
+) {
   const model = computed({
     get: () => props.modelValue,
     set: (value) => {

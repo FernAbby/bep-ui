@@ -1,0 +1,9 @@
+@forward 'element-plus/theme-chalk/src/checkbox' with (
+  $checkbox-bordered-input-height: (
+    'default': 13px,
+    'small': 13px
+  ),
+  $checkbox-font-size: (
+    'small': 13px
+  )
+);

@@ -3,9 +3,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueDevTools from 'vite-plugin-vue-devtools'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import ElementPlus from 'unplugin-element-plus/vite'
 import { viteGadgetsConfig } from './vite.gadgets.config'
-
-// console.log('import.meta.url=====>', import.meta.url)
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -13,7 +15,39 @@ export default defineConfig(() => {
     return viteGadgetsConfig()
   }
   return {
-    plugins: [vue(), vueJsx(), VueDevTools()],
+    plugins: [
+      vue(),
+      vueJsx(),
+      VueDevTools(),
+      // 自动引入 ElementPlus CSS
+      ElementPlus({
+        useSource: true,
+        ignoreComponents: ['ElForm']
+      }),
+      // 自动导入组件
+      AutoImport({
+        dts: 'typings/auto-imports.d.ts',
+        // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: false
+          })
+        ]
+      }),
+      // 自动注册组件
+      Components({
+        dts: 'typings/components.d.ts',
+        resolvers: [ElementPlusResolver()]
+      })
+    ],
+    // 自定义主题样式
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/assets/styles/element-plus/var.scss" as *;`
+        }
+      }
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),

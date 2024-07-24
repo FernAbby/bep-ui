@@ -6,6 +6,13 @@ export function toTypeString(value: any): string {
 }
 
 /**
+ * @description 数据转为string类型
+ */
+export function typeOf(value: any): string {
+  return toTypeString(value).match(/\s+(\w+)/)![1]
+}
+
+/**
  * @description 判断数据是否为Map类型
  */
 export function isMap(value: any): boolean {

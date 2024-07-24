@@ -4,7 +4,7 @@
     :schema="schema"
     :model="form"
     :rules="rules"
-    label-width="70px"
+    label-width="90px"
     @change="handleChange"
   >
     <template #append>
@@ -38,7 +38,7 @@
       baseInfo: {
         renderType: 'Object',
         properties: {
-          baseInfo: {
+          baseInfoTitle: {
             title: '基本信息',
             renderType: 'SectionTitle'
           },

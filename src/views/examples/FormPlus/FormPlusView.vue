@@ -4,8 +4,7 @@
     :schema="schema"
     :model="form"
     :rules="rules"
-    layout="grid"
-    label-width="70px"
+    label-width="90px"
     @change="handleChange"
   >
     <template #append>

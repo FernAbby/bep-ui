@@ -1,5 +1,7 @@
 # BepUI
 
+基于vue3 + element-plus开发的组件库，根据schema快速生成表单、表格页面
+
 ## 安装
 
 ```shell
@@ -68,3 +70,27 @@ app.mount('#app')
 ```typescript
 import { bepFormPlus } from 'bep-ui'
 ```
+
+## 示例界面
+
+[组件在线演示](https://fernabby.github.io/vue-demo/#/examples/form/base)
+
+### 表单
+
+#### 基础表单
+
+![基础表单](https://cdn.nlark.com/yuque/0/2024/png/284550/1719284366949-f518a32e-0f2f-4665-b434-0047c196b5eb.png?x-oss-process=image%2Fformat%2Cwebp)
+
+#### 搜索表单
+
+![搜索表单](https://cdn.nlark.com/yuque/0/2024/png/284550/1719284367098-c5ef67b2-667e-4ba7-bfe4-e75b2dfb8466.png?x-oss-process=image%2Fformat%2Cwebp)
+
+### 表格
+
+#### 基础表格
+
+![基础表格](https://cdn.nlark.com/yuque/0/2024/png/284550/1719284367222-1813daad-047b-486b-ab3f-99f33dc5ab0d.png?x-oss-process=image%2Fformat%2Cwebp%2Fresize%2Cw_1205%2Climit_0)
+
+#### 数据展示表单
+
+![数据展示表格](https://cdn.nlark.com/yuque/0/2024/png/284550/1719284367216-195fb3a2-f8f5-4485-9eab-b0dd137fc3b9.png?x-oss-process=image%2Fformat%2Cwebp%2Fresize%2Cw_1208%2Climit_0)

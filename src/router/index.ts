@@ -70,17 +70,6 @@ const router = createRouter({
           ]
         },
         {
-          path: 'map',
-          name: 'map',
-          children: [
-            {
-              path: 'area-json',
-              name: 'area-json',
-              component: () => import('../views/examples/Map/DistrictSearch.vue')
-            }
-          ]
-        },
-        {
           path: 'download',
           name: 'download',
           component: () => import('../views/examples/DownloadView.vue')

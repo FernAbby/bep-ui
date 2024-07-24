@@ -15,7 +15,7 @@
   </el-select>
 </template>
 <script lang="ts" setup>
-  import { ElSelect, ElOption } from 'element-plus'
+  import { ElSelect, ElOption, ElInput } from 'element-plus'
   import { computed } from 'vue'
   import { isEmpty, omit } from 'biz-gadgets'
   import { rendererProps } from '../../constants/rendererProps'

@@ -77,7 +77,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { ElTable } from 'element-plus'
+  import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
   import { isEmpty, isPlainObject } from 'biz-gadgets'
   import { ref, computed, watch } from 'vue'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
@@ -100,7 +100,7 @@
 
   const isShowSearchForm = computed(() => !isEmpty(props.schema))
 
-    // 分页配置
+  // 分页配置
   watch(
     () => props.pagination,
     (value) => {
@@ -132,6 +132,7 @@
   )
 
   const innerColumns = computed(() => {
+    console.log('props.columns=====>', props.columns)
     return props.columns.map((item) => {
       return {
         ...item,

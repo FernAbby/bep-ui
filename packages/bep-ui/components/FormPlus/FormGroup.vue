@@ -32,8 +32,8 @@
       default: ''
     }
   })
-  const rootData = inject(ROOT_DATA_INJECTION_KEY)
-  const rootAttrs = inject(ROOT_ATTRS_INJECTION_KEY)
+  const rootData = inject(ROOT_DATA_INJECTION_KEY) || { value: {} as any }
+  const rootAttrs = inject(ROOT_ATTRS_INJECTION_KEY) || { value: {} as any }
 
   const formFields = computed(() => {
     const results: IInnerSchemaFormItem[] = []
@@ -45,6 +45,7 @@
         } as IInnerSchemaFormItem)
       }
     })
+    console.log('results===>', results)
     return results
   })
 
@@ -62,7 +63,7 @@
     return !execStatement({
       statement: field.hidden,
       rootData: rootData.value,
-      context: rootAttrs.value.customContext
+      context: rootAttrs.value?.customContext
     })
   }
 
