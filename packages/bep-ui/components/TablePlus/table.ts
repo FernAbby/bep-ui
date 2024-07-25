@@ -15,6 +15,10 @@ export const defaultPaginationProps = {
 }
 
 export const tableProps = {
+  rootClass: {
+    type: String,
+    default: ''
+  },
   schema: {
     type: Object as () => IFormSchema['properties'],
     default: undefined

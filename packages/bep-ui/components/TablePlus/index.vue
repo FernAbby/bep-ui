@@ -1,5 +1,5 @@
 <template>
-  <div class="table-plus">
+  <div :class="classnames('table-plus', rootClass)">
     <div v-if="isShowSearchForm" class="table-plus__search">
       <SearchForm
         v-bind="formProps"
@@ -80,7 +80,7 @@
 </template>
 <script lang="ts" setup>
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
-  import { isEmpty, isPlainObject } from 'biz-gadgets'
+  import { isEmpty, isPlainObject, classnames } from 'biz-gadgets'
   import { ref, computed, watch, useSlots, useAttrs } from 'vue'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
   import type { IPagination, ITableColumn, ITableColumnScope } from './interface'
