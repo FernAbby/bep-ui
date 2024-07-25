@@ -1,7 +1,7 @@
 <template>
   <div :class="rootCls">
     <span class="section-title__bar" :style="styles"></span>
-    <span><slot /></span>
+    <span class="section-title__text"><slot>标题</slot></span>
   </div>
 </template>
 <script lang="ts" setup>
@@ -19,7 +19,7 @@
     },
     size: {
       type: String as () => ComponentSize,
-      default: ''
+      default: 'small'
     }
   })
   const rootCls = computed(() =>
@@ -48,8 +48,22 @@
       display: inline-block;
       width: 4px;
       height: 1em;
+      margin-right: 8px;
+      background-color: var(--el-color-primary);
+    }
+
+    .section-title__text {
+      font-weight: 500;
+      color: var(--el-text-color-regular);
+    }
+  }
+  .section-title__large {
+    font-size: 16px;
+
+    .section-title__bar {
+      width: 5px;
+      height: 1em;
       margin-right: 10px;
-      background-color: var(--primary-color);
     }
   }
 </style>

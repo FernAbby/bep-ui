@@ -1,7 +1,7 @@
 import { withInstall } from '@bep-ui/utils/install'
-import TablePlus from './index.vue'
+import { default as BepTablePlus } from './index.vue'
 export * from './interface'
 
-export const BepTablePlus = withInstall(TablePlus)
+export const TablePlus = withInstall(BepTablePlus)
 
-export default BepTablePlus
+export default TablePlus

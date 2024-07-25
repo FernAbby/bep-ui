@@ -10,7 +10,7 @@ export const defaultColumnProps = {
 export const defaultPaginationProps = {
   pageSizes: [10, 20, 30, 50, 80, 100],
   layout: 'total, sizes, prev, pager, next, jumper',
-  small: true,
+  size: 'small',
   background: true
 }
 

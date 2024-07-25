@@ -9,11 +9,7 @@
     <template #append>
       <div class="search-form-plus__actions">
         <el-button size="default" :icon="RefreshLeft" @click="handleReset">重置</el-button>
-        <el-button
-          size="default"
-          :icon="Search"
-          type="primary"
-          @click="handleSearch">
+        <el-button size="default" :icon="Search" type="primary" @click="handleSearch">
           查询
         </el-button>
         <el-button

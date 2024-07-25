@@ -8,19 +8,22 @@
         @reset="handleSearch"
       />
     </div>
-    <div class="table-plus__toolbar">
+    <div v-if="hasToolBar" class="table-plus__toolbar">
       <div class="table-plus__toolbar-title">
         <slot name="title"></slot>
       </div>
-      <div class="table-plus__table-setting"></div>
+      <div class="table-plus__setting">
+        <slot name="setting"></slot>
+      </div>
     </div>
     <div class="table-plus__table">
-      <el-table :size="'small'" :data="innerDataSource">
+      <el-table :size="'small'" v-bind="attrs" :data="innerDataSource">
         <el-table-column
           v-if="selection"
           type="selection"
           align="center"
           width="50"
+          v-bind="selection"
           :reserve-selection="selection.reserveSelection"
           :selectable="selection.selectable"
           :fixed="selection.fixed"
@@ -42,9 +45,10 @@
               </slot>
             </template>
             <template #default="_scope">
-              <span v-if="column.renderType === 'text'">
-                {{ formatContent(_scope.row[column.dataIndex]) }}
-              </span>
+              <template v-if="column.render"> {column.render(_scope)}</template>
+              <template v-else-if="column.component">
+                <component :is="column.component" v-bind="getComponentProps(_scope)" />
+              </template>
               <slot
                 v-else-if="column.renderType === 'slot'"
                 :name="`${column.dataIndex}`"
@@ -54,11 +58,9 @@
               >
                 {{ _scope.row[column.dataIndex] || '-' }}
               </slot>
-              <component
-                :is="column.component"
-                v-else-if="column.renderType === 'custom'"
-                v-bind="getComponentProps(_scope)"
-              />
+              <span v-else>
+                {{ formatContent(_scope.row[column.dataIndex]) }}
+              </span>
             </template>
           </el-table-column>
         </template>
@@ -79,15 +81,20 @@
 <script lang="ts" setup>
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
   import { isEmpty, isPlainObject } from 'biz-gadgets'
-  import { ref, computed, watch } from 'vue'
+  import { ref, computed, watch, useSlots, useAttrs } from 'vue'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
   import type { IPagination, ITableColumn, ITableColumnScope } from './interface'
   import SearchForm from '../SearchForm/index.vue'
   import { mergePagination } from './utils'
 
+  defineOptions({
+    name: 'TablePlus',
+    inheritAttrs: false
+  })
   const emits = defineEmits(['search'])
-  // const slots = useSlots()
+  const slots = useSlots()
   const props = defineProps(tableProps)
+  const attrs = useAttrs()
 
   const innerDataSource = ref<Record<string, any>[]>([])
   const isShowPagination = ref(true)
@@ -99,6 +106,7 @@
   let searchParams = {}
 
   const isShowSearchForm = computed(() => !isEmpty(props.schema))
+  const hasToolBar = computed(() => slots['title'] || slots['setting'])
 
   // 分页配置
   watch(
@@ -132,7 +140,6 @@
   )
 
   const innerColumns = computed(() => {
-    console.log('props.columns=====>', props.columns)
     return props.columns.map((item) => {
       return {
         ...item,
@@ -197,6 +204,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    .table-plus__toolbar {
+      padding: 3px 0 5px;
+    }
 
     .table-plus__table {
       flex: 1;

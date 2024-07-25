@@ -159,7 +159,7 @@
   .bep-form-plus--grid {
     .el-form {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       grid-column-gap: 12px;
       justify-content: space-evenly;
       align-content: center;

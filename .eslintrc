@@ -34,7 +34,8 @@
     "vue/multi-word-component-names": "off", // .vue文件明明必须是多个单词命名
     "vue/script-indent": ["error", 2, {
       "baseIndent": 1
-    }] // 对script标签内的JavaScript缩进2个tab
+    }], // 对script标签内的JavaScript缩进2个tab
+    "@typescript-eslint/ban-ts-commen": "off"
   },
   "overrides":[
     {

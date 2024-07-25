@@ -86,4 +86,8 @@
     padding: 4px 12px;
     font-size: var(--bep-font-size-small);
   }
+
+  .el-textarea .el-textarea__inner {
+    min-height: 30px !important;
+  }
 }

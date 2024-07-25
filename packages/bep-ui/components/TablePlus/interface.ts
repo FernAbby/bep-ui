@@ -15,8 +15,12 @@ export interface ITableColumnScope {
 export interface ITableColumn {
   title: string
   dataIndex: string
-  renderType?: 'text' | 'slot' | 'custom' | 'selection' | 'index' | 'expand'
-  component?: Component // type = custom时设置
+  // render渲染优先级最高，当同时存在其他设置时，优先渲染render函数
+  render?: (scope: ITableColumnScope) => Component
+  // 默认text类型
+  renderType?: 'text' | 'slot' | 'selection' | 'index' | 'expand'
+  // component渲染优先级次于render
+  component?: Component
   componentProps?: (scope: ITableColumnScope) => Record<string, any>
   columnProps?: ITableColumnProps
   columnSetting?: {

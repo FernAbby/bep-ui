@@ -1,6 +1,6 @@
 import { withInstall } from '@bep-ui/utils/install'
-import SearchForm from './index.vue'
+import { default as BepSearchForm } from './index.vue'
 // export * from './interface'
 
-export const BepSearchForm = withInstall(SearchForm)
-export default BepSearchForm
+export const SearchForm = withInstall(BepSearchForm)
+export default SearchForm

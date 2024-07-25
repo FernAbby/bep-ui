@@ -20,10 +20,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/FernAbby/bep-ui.git"
-  },
-  "devDependencies": {
-    "unplugin-auto-import": "^0.18.0",
-    "unplugin-element-plus": "^0.8.0",
-    "unplugin-vue-components": "^0.27.3"
   }
 }

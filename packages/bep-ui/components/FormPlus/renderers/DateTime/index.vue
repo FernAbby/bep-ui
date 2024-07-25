@@ -4,7 +4,6 @@
     style="width: 240px"
     :placeholder="placeholder"
     v-bind="renderOptions"
-    type="date"
     :disabled="disabled"
   />
 </template>
@@ -21,6 +20,10 @@
     }
   })
   const renderOptions = computed(() => {
-    return props.field.renderOptions || {}
+    return (
+      props.field.renderOptions || {
+        type: 'datetime'
+      }
+    )
   })
 </script>

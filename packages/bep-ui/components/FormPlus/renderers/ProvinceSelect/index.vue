@@ -1,9 +1,9 @@
 <template>
   <el-select
-    :placeholder="placeholder"
     clearable
-    v-bind="renderOptions"
     v-model="model"
+    v-bind="renderOptions"
+    :placeholder="placeholder"
     :disabled="disabled"
   >
     <el-option
@@ -19,6 +19,7 @@
   import { computed } from 'vue'
   import { isEmpty, omit } from 'biz-gadgets'
   import { rendererProps } from '../../constants/rendererProps'
+  import provinces from './provinces'
   const emits = defineEmits(['update:modelValue'])
   const props = defineProps(rendererProps)
   const model = computed({
@@ -28,7 +29,7 @@
     }
   })
   const options = computed(() => {
-    return props.field?.renderOptions?.options || []
+    return props.field?.renderOptions?.options || provinces
   })
 
   const renderOptions = computed(() => {

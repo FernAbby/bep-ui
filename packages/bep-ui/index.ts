@@ -7,6 +7,7 @@ import './theme/index.scss'
 export * from './components/FormPlus/index'
 export * from './components/SearchForm/index'
 export * from './components/TablePlus/index'
+export * from './components/SectionTitle/index'
 
 interface IApp extends App {
   [key: symbol]: boolean
@@ -20,6 +21,11 @@ const BepUI = {
     freezeGlobalConfig(options)
     renderResolver(app)
   }
+}
+
+// 不注册全局组件组件，只安装FormPlus的renderer
+export function installRenderer(options: Partial<IConfigProviderContext>) {
+  freezeGlobalConfig(options)
 }
 
 export default BepUI

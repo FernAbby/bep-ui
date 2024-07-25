@@ -45,7 +45,6 @@
         } as IInnerSchemaFormItem)
       }
     })
-    console.log('results===>', results)
     return results
   })
 
