@@ -34,7 +34,7 @@
 </template>
 <script lang="ts" setup>
   import { computed, ref } from 'vue'
-  import { ElButton } from 'element-plus'
+  import { ElButton, ElIcon } from 'element-plus'
   import { pick } from 'biz-gadgets'
   import { ArrowDown, ArrowUp, RefreshLeft, Search } from '@element-plus/icons-vue'
   import type { IFormPlusProps, IFormPlusRef, IFormSchema } from '@bep-ui/components'
