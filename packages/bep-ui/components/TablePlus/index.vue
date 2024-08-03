@@ -129,7 +129,7 @@
     () => props.data,
     (value) => {
       if (value !== undefined) {
-        // console.log('props.dataSource===>', value)
+        console.log('props.dataSource===>', value)
         innerDataSource.value = value
       }
     },

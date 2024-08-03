@@ -106,6 +106,21 @@
     }
   )
 
+  // watch(
+  //   () => rootData.value,
+  //   (value) => {
+  //     console.log('rootData====>', value)
+  //   },
+  //   {
+  //     deep: true,
+  //     immediate: true,
+  //     onTrigger(e) {
+  //       console.log('onTrigger====>', e)
+  //       emits('change', e)
+  //     }
+  //   }
+  // )
+
   const handleChange = (e: IChangeEvent) => {
     emits('change', e)
   }
@@ -159,7 +174,7 @@
   .bep-form-plus--grid {
     .el-form {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       grid-column-gap: 12px;
       justify-content: space-evenly;
       align-content: center;

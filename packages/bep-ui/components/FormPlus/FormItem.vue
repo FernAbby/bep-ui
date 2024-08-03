@@ -66,7 +66,7 @@
 
   const data = computed({
     get: () => {
-      console.log('props.propPath====>', props.propPath, getValue(rootData.value, props.propPath))
+      // console.log('props.propPath====>', props.propPath, getValue(rootData.value, props.propPath))
       return getValue(rootData.value, props.propPath)
     },
     set: (value) => setValue(rootData.value, props.propPath, value)

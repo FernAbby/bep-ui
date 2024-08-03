@@ -4,6 +4,7 @@
     ref="formRef"
     root-class="search-form-plus"
     :schema="searchSchema"
+    :model="formData"
     layout="grid"
   >
     <template #append>
@@ -46,6 +47,10 @@
       type: Object as () => IFormSchema['properties'],
       default: () => ({})
     },
+    formData: {
+      type: Object as () => Record<string, any>,
+      default: () => ({})
+    },
     searchProps: {
       type: Object as () => IFormPlusProps,
       default: () => ({})
@@ -81,6 +86,10 @@
       emits('search', formData)
     }
   }
+  // 数据变化
+  // const handleChange = (e: DebuggerEvent) => {
+  //   emits('change', e)
+  // }
 </script>
 <style lang="scss">
   .search-form-plus {
