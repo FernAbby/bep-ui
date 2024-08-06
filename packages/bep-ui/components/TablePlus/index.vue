@@ -45,7 +45,9 @@
               </slot>
             </template>
             <template #default="_scope">
-              <template v-if="column.render"> {column.render(_scope)}</template>
+              <template v-if="column.render">
+                <component :is="renderCell(_scope, column.render)" />
+              </template>
               <template v-else-if="column.component">
                 <component :is="column.component" v-bind="getComponentProps(_scope)" />
               </template>
@@ -78,10 +80,10 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
+<script lang="tsx" setup>
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
-  import { isEmpty, isPlainObject, classnames } from 'biz-gadgets'
-  import { ref, computed, watch, useSlots, useAttrs } from 'vue'
+  import { isEmpty, isPlainObject, classnames, isString } from 'biz-gadgets'
+  import { ref, computed, h, watch, useSlots, useAttrs, type VNode } from 'vue'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
   import type { IPagination, ITableColumn, ITableColumnScope } from './interface'
   import SearchForm from '../SearchForm/index.vue'
@@ -129,7 +131,7 @@
     () => props.data,
     (value) => {
       if (value !== undefined) {
-        console.log('props.dataSource===>', value)
+        console.log('innerDataSource=====>', value)
         innerDataSource.value = value
       }
     },
@@ -151,6 +153,14 @@
   const innerPaginationProps = computed(() => {
     return { ...defaultPaginationProps, ...props.paginationProps }
   })
+
+  const renderCell = (scope: ITableColumnScope, renderFn: (scope: ITableColumnScope) => VNode) => {
+    const result = renderFn(scope)
+    if (isString(result)) {
+      return h('span', result)
+    }
+    return result
+  }
 
   const formatContent = (text: string) => {
     return isEmpty(text) ? '-' : text

@@ -6,6 +6,7 @@
     :schema="searchSchema"
     :model="formData"
     layout="grid"
+    @change="handleChange"
   >
     <template #append>
       <div class="search-form-plus__actions">
@@ -34,14 +35,14 @@
   </form-plus>
 </template>
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { computed, ref, type DebuggerEvent } from 'vue'
   import { ElButton, ElIcon } from 'element-plus'
   import { pick } from 'biz-gadgets'
   import { ArrowDown, ArrowUp, RefreshLeft, Search } from '@element-plus/icons-vue'
   import type { IFormPlusProps, IFormPlusRef, IFormSchema } from '@bep-ui/components'
   import FormPlus from '../FormPlus/index.vue'
 
-  const emits = defineEmits(['search', 'reset'])
+  const emits = defineEmits(['search', 'reset', 'change'])
   const props = defineProps({
     schema: {
       type: Object as () => IFormSchema['properties'],
@@ -87,9 +88,9 @@
     }
   }
   // 数据变化
-  // const handleChange = (e: DebuggerEvent) => {
-  //   emits('change', e)
-  // }
+  const handleChange = (e: DebuggerEvent) => {
+    emits('change', e)
+  }
 </script>
 <style lang="scss">
   .search-form-plus {

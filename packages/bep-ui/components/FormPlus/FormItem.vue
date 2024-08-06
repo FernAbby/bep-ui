@@ -5,7 +5,7 @@
       :label="field.title"
       :label-width="!field.title ? '0px' : undefined"
       :prop="propPath"
-      :required="field.required"
+      :required="required"
     >
       <div v-if="isGroup" :class="subItemsClass">
         <FormGroup :schema="field as IFormSchema" :path="propPath" />
@@ -93,6 +93,23 @@
 
   // 此项是否禁用
   const disabled = computed(() => {
+    // console.log(
+    //   'disabled execStatement====>',
+    //   execStatement({
+    //     statement: prop.field.hidden,
+    //     rootData: rootData.value,
+    //     context: rootAttrs.value.customContext
+    //   })
+    // )
+    return execStatement({
+      statement: props.field.required,
+      rootData: rootData.value,
+      context: rootAttrs.value.customContext
+    })
+  })
+
+  // 此项是否禁用
+  const required = computed(() => {
     if (rootAttrs.value.disabled) return true
     // console.log(
     //   'disabled execStatement====>',

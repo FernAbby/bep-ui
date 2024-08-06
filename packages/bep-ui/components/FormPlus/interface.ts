@@ -27,18 +27,20 @@ export interface ISchemaFormItem {
   // FormItem 渲染属性
   renderAttrs?: FormItemProps
   hidden?: boolean | string
-  disabled?: boolean
-  required?: boolean
+  disabled?: boolean | string
+  required?: boolean | string
   isFixedItem?: boolean // 是否为表单项，如标题和分割线
   // renderType === 'Custom' 时
   component?: Component
 }
 
+export interface IBaseSchema {
+  [key: string]: ISchemaFormItem
+}
+
 export interface IFormSchema {
   renderType: 'Object' | 'Array'
-  properties: {
-    [key: string]: ISchemaFormItem | IFormSchema
-  }
+  properties: IBaseSchema
   renderAttrs?: {
     layout?: IFormLayout
   }

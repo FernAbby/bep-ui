@@ -100,26 +100,22 @@
     {
       deep: true,
       immediate: true
-      // onTrigger(e) {
-      //   console.log('onTrigger e===>', e)
-      // }
     }
   )
 
-  // watch(
-  //   () => rootData.value,
-  //   (value) => {
-  //     console.log('rootData====>', value)
-  //   },
-  //   {
-  //     deep: true,
-  //     immediate: true,
-  //     onTrigger(e) {
-  //       console.log('onTrigger====>', e)
-  //       emits('change', e)
-  //     }
-  //   }
-  // )
+  watch(
+    () => rootData.value,
+    (value) => {
+      console.log('rootData====>', value)
+    },
+    {
+      deep: true,
+      immediate: true,
+      onTrigger(e) {
+        emits('change', e)
+      }
+    }
+  )
 
   const handleChange = (e: IChangeEvent) => {
     emits('change', e)
