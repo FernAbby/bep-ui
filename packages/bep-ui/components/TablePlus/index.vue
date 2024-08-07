@@ -80,19 +80,20 @@
     </div>
   </div>
 </template>
-<script lang="tsx" setup>
+<script lang="ts" setup>
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
   import { isEmpty, isPlainObject, classnames, isString } from 'biz-gadgets'
-  import { ref, computed, h, watch, useSlots, useAttrs, type VNode } from 'vue'
+  import { ref, computed, h, watch, useSlots, useAttrs, type Component } from 'vue'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
   import type { IPagination, ITableColumn, ITableColumnScope } from './interface'
   import SearchForm from '../SearchForm/index.vue'
-  import { mergePagination } from './utils'
+  import { isVNode, mergePagination } from './utils'
 
   defineOptions({
     name: 'TablePlus',
     inheritAttrs: false
   })
+
   const emits = defineEmits(['search'])
   const slots = useSlots()
   const props = defineProps(tableProps)
@@ -131,7 +132,6 @@
     () => props.data,
     (value) => {
       if (value !== undefined) {
-        console.log('innerDataSource=====>', value)
         innerDataSource.value = value
       }
     },
@@ -154,12 +154,18 @@
     return { ...defaultPaginationProps, ...props.paginationProps }
   })
 
-  const renderCell = (scope: ITableColumnScope, renderFn: (scope: ITableColumnScope) => VNode) => {
+  const renderCell = (
+    scope: ITableColumnScope,
+    renderFn: (scope: ITableColumnScope) => Component
+  ) => {
     const result = renderFn(scope)
-    if (isString(result)) {
+    if (isVNode(result)) {
+      return result
+    }
+    if (!isEmpty(result)) {
       return h('span', result)
     }
-    return result
+    return h('span', '-')
   }
 
   const formatContent = (text: string) => {

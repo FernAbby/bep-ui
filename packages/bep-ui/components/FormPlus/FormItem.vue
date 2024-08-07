@@ -92,15 +92,7 @@
   })
 
   // 此项是否禁用
-  const disabled = computed(() => {
-    // console.log(
-    //   'disabled execStatement====>',
-    //   execStatement({
-    //     statement: prop.field.hidden,
-    //     rootData: rootData.value,
-    //     context: rootAttrs.value.customContext
-    //   })
-    // )
+  const required = computed(() => {
     return execStatement({
       statement: props.field.required,
       rootData: rootData.value,
@@ -109,12 +101,12 @@
   })
 
   // 此项是否禁用
-  const required = computed(() => {
+  const disabled = computed(() => {
     if (rootAttrs.value.disabled) return true
     // console.log(
     //   'disabled execStatement====>',
     //   execStatement({
-    //     statement: prop.field.hidden,
+    //     statement: prop.field.disabled,
     //     rootData: rootData.value,
     //     context: rootAttrs.value.customContext
     //   })

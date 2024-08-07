@@ -105,8 +105,8 @@
 
   watch(
     () => rootData.value,
-    (value) => {
-      console.log('rootData====>', value)
+    () => {
+      // console.log('rootData====>', value)
     },
     {
       deep: true,

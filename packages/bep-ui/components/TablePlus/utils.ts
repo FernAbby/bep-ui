@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+import { h } from 'vue'
 import { isEmpty } from 'biz-gadgets'
 import type { IPagination } from './interface'
 
@@ -13,4 +14,9 @@ export function mergePagination(pagination: Ref<IPagination>, value: IPagination
   if (!isEmpty(value.total)) {
     pagination.value.total = value.total
   }
+}
+
+export function isVNode(node: any) {
+  const vNode = h.constructor
+  return node instanceof vNode
 }
