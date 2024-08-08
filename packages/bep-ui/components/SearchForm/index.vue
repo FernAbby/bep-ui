@@ -39,7 +39,7 @@
   import { ElButton, ElIcon } from 'element-plus'
   import { pick } from 'biz-gadgets'
   import { ArrowDown, ArrowUp, RefreshLeft, Search } from '@element-plus/icons-vue'
-  import type { IFormPlusProps, IFormPlusRef, IFormSchema } from '@bep-ui/components'
+  import type { IChangeEvent, IFormPlusProps, IFormPlusRef, IFormSchema } from '@bep-ui/components'
   import FormPlus from '../FormPlus/index.vue'
 
   const emits = defineEmits(['search', 'reset', 'change'])
@@ -88,7 +88,7 @@
     }
   }
   // 数据变化
-  const handleChange = (e: DebuggerEvent) => {
+  const handleChange = (e: IChangeEvent) => {
     emits('change', e)
   }
 </script>

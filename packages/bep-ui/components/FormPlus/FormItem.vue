@@ -61,15 +61,18 @@
       default: () => ({})
     }
   })
+  let oldValue: any
   const rootData = inject(ROOT_DATA_INJECTION_KEY)
   const rootAttrs = inject(ROOT_ATTRS_INJECTION_KEY)
 
   const data = computed({
     get: () => {
-      // console.log('props.propPath====>', props.propPath, getValue(rootData.value, props.propPath))
       return getValue(rootData.value, props.propPath)
     },
-    set: (value) => setValue(rootData.value, props.propPath, value)
+    set: (value) => {
+      oldValue = getValue(rootData.value, props.propPath)
+      setValue(rootData.value, props.propPath, value)
+    }
   })
 
   const fixedFormFieldClass = ns.e('fixed-item')
@@ -124,17 +127,12 @@
 
   // change 事件
   const handleChange = (...args) => {
-    // console.log('handleChange===>', data.value, {
-    //   key: props.field._key,
-    //   path: props.propPath.split('.'),
-    //   value: data.value,
-    //   origin: args
-    // })
     emits('change', {
       key: props.field._key,
       path: props.propPath.split('.'),
       value: data.value,
-      origin: args
+      oldValue: oldValue,
+      originEvent: args
     })
   }
 </script>

@@ -1,14 +1,14 @@
 <template>
   <template v-for="item in formFields" :key="item._key">
     <template v-if="isFormFieldShow(item)">
-      <FormItem :field="item" :prop-path="getPropPath(item._key)" />
+      <FormItem :field="item" :prop-path="getPropPath(item._key)" @change="handleChange" />
     </template>
   </template>
 </template>
 <script lang="ts" setup>
   import { execStatement, isEmpty } from 'biz-gadgets'
   import { computed, toRaw, inject } from 'vue'
-  import { IFormSchema, IInnerSchemaFormItem } from './interface'
+  import { IChangeEvent, IFormSchema, IInnerSchemaFormItem } from './interface'
   import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
   import FormItem from './FormItem.vue'
 
@@ -69,5 +69,9 @@
   // 获取属性值路径
   const getPropPath = (prop: string) => {
     return props.path ? `${props.path}.${prop}` : prop
+  }
+
+  const handleChange = (e: IChangeEvent) => {
+    emits('change', e)
   }
 </script>

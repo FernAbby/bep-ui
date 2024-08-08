@@ -53,7 +53,9 @@ export type IInnerSchemaFormItem = ISchemaFormItem &
 
 export interface IChangeEvent {
   key: string
-  value: Record<string, []> | Record<string, []>[]
+  path: string[]
+  value: any
+  oldValue: any
   origin: any
 }
 
