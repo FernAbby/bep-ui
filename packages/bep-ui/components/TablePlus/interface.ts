@@ -16,7 +16,7 @@ export interface ITableColumn {
   title: string
   dataIndex: string
   // render渲染优先级最高，当同时存在其他设置时，优先渲染render函数
-  render?: (scope: ITableColumnScope) => Component
+  render?: (scope: ITableColumnScope) => Component | string
   // 默认text类型
   renderType?: 'text' | 'slot' | 'selection' | 'index' | 'expand'
   // component渲染优先级次于render

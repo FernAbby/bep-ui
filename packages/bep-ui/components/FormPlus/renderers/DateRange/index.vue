@@ -3,6 +3,7 @@
     v-model="model"
     style="width: 240px"
     type="daterange"
+    unlinkPanels
     start-placeholder="开始时间"
     end-placeholder="结束时间"
     v-bind="renderOptions"

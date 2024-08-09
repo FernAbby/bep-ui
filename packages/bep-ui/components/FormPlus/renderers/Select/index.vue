@@ -2,6 +2,8 @@
   <el-select
     :placeholder="placeholder"
     clearable
+    filterable
+    placement="bottom-start"
     v-bind="renderOptions"
     v-model="model"
     :disabled="disabled"
