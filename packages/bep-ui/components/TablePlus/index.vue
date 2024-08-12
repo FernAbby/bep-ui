@@ -10,10 +10,10 @@
     </div>
     <div v-if="hasToolBar" class="table-plus__toolbar">
       <div class="table-plus__toolbar-title">
-        <slot name="title"></slot>
+        <slot name="table_title"></slot>
       </div>
       <div class="table-plus__setting">
-        <slot name="setting"></slot>
+        <slot name="table_setting"></slot>
       </div>
     </div>
     <div class="table-plus__table">
@@ -82,8 +82,8 @@
 </template>
 <script lang="ts" setup>
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
-  import { isEmpty, isPlainObject, classnames, isString } from 'biz-gadgets'
-  import { ref, computed, h, watch, useSlots, useAttrs, type Component } from 'vue'
+  import { isEmpty, isPlainObject, classnames } from 'biz-gadgets'
+  import { ref, computed, h, watch, useSlots, useAttrs, type Component, onMounted } from 'vue'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
   import type { IPagination, ITableColumn, ITableColumnScope } from './interface'
   import SearchForm from '../SearchForm/index.vue'
@@ -109,7 +109,7 @@
   let searchParams = {}
 
   const isShowSearchForm = computed(() => !isEmpty(props.schema))
-  const hasToolBar = computed(() => slots['title'] || slots['setting'])
+  const hasToolBar = computed(() => slots['table_title'] || slots['table_setting'])
 
   // 分页配置
   watch(
@@ -156,14 +156,14 @@
 
   const renderCell = (
     scope: ITableColumnScope,
-    renderFn: (scope: ITableColumnScope) => Component
+    renderFn: (scope: ITableColumnScope) => Component | string
   ) => {
     const result = renderFn(scope)
     if (isVNode(result)) {
       return result
     }
     if (!isEmpty(result)) {
-      return h('span', result)
+      return h('span', result as string)
     }
     return h('span', '-')
   }
@@ -182,21 +182,29 @@
 
   // 表格查询
   const tableSearchFn = async () => {
-    const pp = {
-      currentPage: pagination.value.currentPage,
-      pageSize: pagination.value.pageSize
-    }
     if (props.request) {
-      const res = await props.request({ sp: searchParams, pp })
+      const res = await props.request({
+        sp: searchParams,
+        pp: {
+          page: pagination.value.currentPage,
+          page_size: pagination.value.pageSize
+        }
+      })
       innerDataSource.value = res.data
       mergePagination(pagination, res)
     } else {
-      emits('search', { sp: searchParams, pp })
+      emits('search', {
+        sp: searchParams,
+        pp: {
+          page: pagination.value.currentPage,
+          page_size: pagination.value.pageSize
+        }
+      })
     }
   }
 
   // 查询
-  const handleSearch = (sp: Record<string, any>) => {
+  const handleSearch = (sp: Record<string, any> = {}) => {
     searchParams = sp
     pagination.value.currentPage = 1
     tableSearchFn()
@@ -213,6 +221,14 @@
     pagination.value.currentPage = currentPage
     tableSearchFn()
   }
+
+  onMounted(() => {
+    tableSearchFn()
+  })
+
+  defineExpose({
+    refresh: tableSearchFn
+  })
 </script>
 <style lang="scss">
   .table-plus {
@@ -238,7 +254,7 @@
 
       .table-plus__pagination {
         padding-top: 12px;
-        padding-bottom: 12px;
+        // padding-bottom: 12px;
         width: 100%;
         display: flex;
         align-items: center;

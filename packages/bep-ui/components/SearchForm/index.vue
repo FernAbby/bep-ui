@@ -35,7 +35,7 @@
   </form-plus>
 </template>
 <script lang="ts" setup>
-  import { computed, ref, type DebuggerEvent } from 'vue'
+  import { computed, ref } from 'vue'
   import { ElButton, ElIcon } from 'element-plus'
   import { pick } from 'biz-gadgets'
   import { ArrowDown, ArrowUp, RefreshLeft, Search } from '@element-plus/icons-vue'

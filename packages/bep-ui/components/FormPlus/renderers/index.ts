@@ -17,6 +17,7 @@ import Divider from './Divider/index.vue'
 import Switch from './Switch/index.vue'
 import Slider from './Slider/index.vue'
 import ProvinceSelect from './ProvinceSelect/index.vue'
+import Cascader from './Cascader/index.vue'
 // TODO ====> 时间选择器、附件上传
 
 const renderers = {
@@ -38,7 +39,8 @@ const renderers = {
   Divider,
   Switch,
   Slider,
-  ProvinceSelect
+  ProvinceSelect,
+  Cascader
 }
 
 export default renderers

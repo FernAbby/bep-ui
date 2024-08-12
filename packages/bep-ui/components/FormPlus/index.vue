@@ -11,7 +11,7 @@
 <script lang="ts" setup>
   import type { FormInstance } from 'element-plus'
   import { ElForm } from 'element-plus'
-  import { ref, computed, watch, useAttrs, provide, toRaw } from 'vue'
+  import { ref, computed, watch, useAttrs, provide, toRaw, onMounted } from 'vue'
   import { classnames } from 'biz-gadgets'
   import { useNamespace } from 'biz-gadgets/hooks'
   import type { IComponentSize } from '../../constants/size'
@@ -95,6 +95,7 @@
   watch(
     () => props.model,
     (value) => {
+      console.log('rootData====>', value)
       rootData.value = value
     },
     {
@@ -130,6 +131,10 @@
     scrollToField: (prop: string) => {
       formRef.value?.scrollToField(prop)
     }
+  })
+
+  onMounted(() => {
+    rootData.value = { ...props.defaultValue, ...rootData.value }
   })
 </script>
 <style lang="scss">

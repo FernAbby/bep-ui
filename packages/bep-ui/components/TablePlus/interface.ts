@@ -49,7 +49,14 @@ export interface ITablePlusProps extends TableProps<Record<string, any>> {
   formProps?: Partial<IFormPlusProps>
   request?: (
     sp: Record<string, any>,
-    pp: IPagination
+    pp: {
+      page?: number
+      page_size?: number
+    }
   ) => Promise<ITableRequestData> | ITableRequestData
   onSearch: ({ sp, pp }: { sp: Record<string, any>; pp: IPagination }) => void
+}
+
+export interface ITablePlusRef {
+  refresh: () => void
 }
