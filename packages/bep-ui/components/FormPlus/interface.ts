@@ -13,7 +13,8 @@ export interface IOption {
 }
 
 export interface IFormPlusRef {
-  getFormData: () => Record<string, any>
+  getFormData: () => IObjectAny
+  setFormData: (data: IObjectAny) => void
   validate: (callback: FormValidateCallback | undefined) => FormValidationResult | undefined
   reset: () => IObjectAny
   scrollToField: (prop: string) => void
@@ -25,13 +26,15 @@ export interface ISchemaFormItem {
   // FormItem 内部组件渲染属性
   renderOptions?: IObjectAny
   // FormItem 渲染属性
-  renderAttrs?: FormItemProps
+  renderAttrs?: Partial<FormItemProps>
   hidden?: boolean | string
   disabled?: boolean | string
   required?: boolean | string
   isFixedItem?: boolean // 是否为表单项，如标题和分割线
   // renderType === 'Custom' 时
   component?: Component
+  // searchForm 触发方式 选择时触发搜索
+  trigger?: 'select' | 'search'
 }
 
 export interface IBaseSchema {
@@ -55,8 +58,9 @@ export interface IChangeEvent {
   key: string
   path: string[]
   value: any
-  oldValue: any
+  preValue: any
   origin: any
+  field: ISchemaFormItem
 }
 
 // 表单属性

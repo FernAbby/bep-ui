@@ -1,5 +1,6 @@
 import type { ITableColumn } from './interface'
 import type { IFormSchema } from '../FormPlus/interface'
+import type { IObjectAny } from '../../global'
 
 // 列默认配置
 export const defaultColumnProps = {
@@ -23,10 +24,18 @@ export const tableProps = {
     type: Object as () => IFormSchema['properties'],
     default: undefined
   },
+  formData: {
+    type: Object as () => IObjectAny,
+    default: () => ({})
+  },
   // 查询表单属性配置
   formProps: {
     type: Object,
     default: () => ({})
+  },
+  defaultValue: {
+    type: Object as () => IObjectAny,
+    default: undefined
   },
   // 是否展示序号列
   showIndex: {

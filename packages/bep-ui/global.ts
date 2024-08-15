@@ -7,6 +7,10 @@ export interface ISchemaRenderer {
   [key: string]: Component
 }
 
+export interface IObjectAny {
+  [key: string | number]: any
+}
+
 export interface IConfigProviderContext {
   prefix: string
   size: string

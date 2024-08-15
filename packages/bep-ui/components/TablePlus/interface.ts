@@ -1,7 +1,8 @@
 import type { Component } from 'vue'
 import type { TableProps, TableColumnCtx } from 'element-plus'
 import type { PaginationProps } from 'element-plus'
-import type { IFormPlusProps } from '@bep-ui/components'
+import type { IFormPlusProps } from '@bep-ui/components/FormPlus/interface'
+import { IObjectAny } from '../../global'
 
 // export type ITableColumnProps = Partial<typeof ElTableColumn>
 export type ITableColumnProps = Partial<TableColumnCtx<Record<string, any>>>
@@ -58,5 +59,7 @@ export interface ITablePlusProps extends TableProps<Record<string, any>> {
 }
 
 export interface ITablePlusRef {
-  refresh: () => void
+  refresh: (data?: IObjectAny) => void
+  setLoading: (isLoading: boolean) => void
+  getFormData: () => IObjectAny
 }

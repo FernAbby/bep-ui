@@ -11,8 +11,8 @@
 <script lang="ts" setup>
   import type { FormInstance } from 'element-plus'
   import { ElForm } from 'element-plus'
-  import { ref, computed, watch, useAttrs, provide, toRaw, onMounted } from 'vue'
-  import { classnames } from 'biz-gadgets'
+  import { ref, computed, watch, useAttrs, provide, toRaw } from 'vue'
+  import { classnames, isEmpty, deepClone } from 'biz-gadgets'
   import { useNamespace } from 'biz-gadgets/hooks'
   import type { IComponentSize } from '../../constants/size'
   import { GLOBAL_CONFIG } from '../../global'
@@ -95,7 +95,7 @@
   watch(
     () => props.model,
     (value) => {
-      console.log('rootData====>', value)
+      console.log('props.model====>', props.model)
       rootData.value = value
     },
     {
@@ -120,7 +120,17 @@
   )
 
   defineExpose<IFormPlusRef>({
-    getFormData: () => toRaw(rootData.value),
+    getFormData: () => {
+      console.log('getFormData===>toRaw', JSON.stringify(rootData.value))
+      return toRaw(rootData.value)
+    },
+    setFormData: (data) => {
+      if (!isEmpty(data)) {
+        Object.keys(data).forEach((key) => {
+          rootData.value[key] = deepClone(data[key])
+        })
+      }
+    },
     validate: (callback) => {
       return formRef.value?.validate(callback)
     },
@@ -131,10 +141,6 @@
     scrollToField: (prop: string) => {
       formRef.value?.scrollToField(prop)
     }
-  })
-
-  onMounted(() => {
-    rootData.value = { ...props.defaultValue, ...rootData.value }
   })
 </script>
 <style lang="scss">
@@ -177,6 +183,7 @@
 
     .bep-form-plus-append {
       grid-column-start: -2;
+      margin-bottom: 16px;
     }
   }
 </style>

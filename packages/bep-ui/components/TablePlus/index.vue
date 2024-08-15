@@ -2,8 +2,11 @@
   <div :class="classnames('table-plus', rootClass)">
     <div v-if="isShowSearchForm" class="table-plus__search">
       <SearchForm
+        ref="searchFormRef"
         v-bind="formProps"
+        :formData="innerFormData"
         :schema="schema"
+        :loading="loading"
         @search="handleSearch"
         @reset="handleSearch"
       />
@@ -16,8 +19,13 @@
         <slot name="table_setting"></slot>
       </div>
     </div>
-    <div class="table-plus__table">
-      <el-table :size="'small'" v-bind="attrs" :data="innerDataSource">
+    <div class="table-plus__table" v-loading="loading" element-loading-text="加载中...">
+      <el-table
+        :size="'small'"
+        v-bind="attrs"
+        :data="innerDataSource"
+        @sort-change="handleSortChange"
+      >
         <el-table-column
           v-if="selection"
           type="selection"
@@ -84,10 +92,12 @@
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
   import { isEmpty, isPlainObject, classnames } from 'biz-gadgets'
   import { ref, computed, h, watch, useSlots, useAttrs, type Component, onMounted } from 'vue'
+  import type { ISearchFormRef } from '../SearchForm/interface'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
-  import type { IPagination, ITableColumn, ITableColumnScope } from './interface'
+  import type { IPagination, ITableColumn, ITableColumnScope, ITablePlusRef } from './interface'
   import SearchForm from '../SearchForm/index.vue'
   import { isVNode, mergePagination } from './utils'
+  import type { IObjectAny } from '../../global'
 
   defineOptions({
     name: 'TablePlus',
@@ -99,17 +109,24 @@
   const props = defineProps(tableProps)
   const attrs = useAttrs()
 
-  const innerDataSource = ref<Record<string, any>[]>([])
+  const loading = ref(false)
+  const innerDataSource = ref<IObjectAny[]>([])
   const isShowPagination = ref(true)
   const pagination = ref<IPagination>({
     currentPage: 1,
     pageSize: 20,
     total: 0
   })
+  const searchFormRef = ref<ISearchFormRef>()
   let searchParams = {}
-
   const isShowSearchForm = computed(() => !isEmpty(props.schema))
   const hasToolBar = computed(() => slots['table_title'] || slots['table_setting'])
+  const innerFormData = computed({
+    get: (): IObjectAny => props.formData,
+    set: (value) => {
+      console.log('innerFormData===>', value)
+    }
+  })
 
   // 分页配置
   watch(
@@ -181,10 +198,11 @@
   }
 
   // 表格查询
-  const tableSearchFn = async () => {
+  const tableSearchFn = async (_sp: IObjectAny = {}) => {
     if (props.request) {
+      loading.value = true
       const res = await props.request({
-        sp: searchParams,
+        sp: { ..._sp, ...searchParams },
         pp: {
           page: pagination.value.currentPage,
           page_size: pagination.value.pageSize
@@ -192,6 +210,7 @@
       })
       innerDataSource.value = res.data
       mergePagination(pagination, res)
+      loading.value = false
     } else {
       emits('search', {
         sp: searchParams,
@@ -204,7 +223,7 @@
   }
 
   // 查询
-  const handleSearch = (sp: Record<string, any> = {}) => {
+  const handleSearch = (sp: IObjectAny = {}) => {
     searchParams = sp
     pagination.value.currentPage = 1
     tableSearchFn()
@@ -222,12 +241,40 @@
     tableSearchFn()
   }
 
+  const handleSortChange = ({ column, prop, order }) => {
+    if (column.sortable === 'custom') {
+      pagination.value.currentPage = 1
+      if (order) {
+        innerFormData.value.order_by = `${prop}_${order === 'ascending' ? 'asc' : 'desc'}`;
+      } else {
+        innerFormData.value.order_by = ''
+      }
+      tableSearchFn()
+    }
+  }
+
   onMounted(() => {
-    tableSearchFn()
+    if (searchFormRef.value?.search) {
+      searchFormRef.value?.search(props.defaultValue)
+    } else {
+      handleSearch(props.defaultValue)
+    }
   })
 
-  defineExpose({
-    refresh: tableSearchFn
+  defineExpose<ITablePlusRef>({
+    refresh: () => {
+      if (searchFormRef.value?.search) {
+        searchFormRef.value.search()
+      } else {
+        handleSearch()
+      }
+    },
+    setLoading: (isLoading) => {
+      loading.value = isLoading
+    },
+    getFormData: () => {
+      return searchFormRef.value?.getFormData()
+    }
   })
 </script>
 <style lang="scss">
@@ -254,7 +301,6 @@
 
       .table-plus__pagination {
         padding-top: 12px;
-        // padding-bottom: 12px;
         width: 100%;
         display: flex;
         align-items: center;

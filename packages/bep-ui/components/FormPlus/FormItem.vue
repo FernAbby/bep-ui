@@ -32,7 +32,7 @@
 </template>
 <script lang="ts" setup>
   import { computed, inject } from 'vue'
-  import { execStatement } from 'biz-gadgets'
+  import { execStatement, deepClone } from 'biz-gadgets'
   import { ElFormItem } from 'element-plus'
   import { getValue, setValue } from './utils'
   import {
@@ -131,8 +131,9 @@
       key: props.field._key,
       path: props.propPath.split('.'),
       value: data.value,
-      oldValue: oldValue,
-      originEvent: args
+      preValue: oldValue,
+      originEvent: args,
+      field: deepClone(props.field)
     })
   }
 </script>

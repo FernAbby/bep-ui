@@ -10,8 +10,16 @@
   >
     <template #append>
       <div class="search-form-plus__actions">
-        <el-button size="default" :icon="RefreshLeft" @click="handleReset">重置</el-button>
-        <el-button size="default" :icon="Search" type="primary" @click="handleSearch">
+        <el-button size="default" :icon="RefreshLeft" :loading="loading" @click="handleReset">
+          重置
+        </el-button>
+        <el-button
+          size="default"
+          :icon="Search"
+          type="primary"
+          :loading="loading"
+          @click="handleSearch"
+        >
           查询
         </el-button>
         <el-button
@@ -35,11 +43,17 @@
   </form-plus>
 </template>
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import { ElButton, ElIcon } from 'element-plus'
   import { pick } from 'biz-gadgets'
   import { ArrowDown, ArrowUp, RefreshLeft, Search } from '@element-plus/icons-vue'
-  import type { IChangeEvent, IFormPlusProps, IFormPlusRef, IFormSchema } from '@bep-ui/components'
+  import type {
+    IChangeEvent,
+    IFormPlusProps,
+    IFormPlusRef,
+    IFormSchema,
+    ISearchFormRef
+  } from '@bep-ui/components'
   import FormPlus from '../FormPlus/index.vue'
 
   const emits = defineEmits(['search', 'reset', 'change'])
@@ -59,8 +73,13 @@
     beforeSearch: {
       type: Function,
       default: undefined
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   })
+
   const formRef = ref<IFormPlusRef>()
   const isCollapse = ref(false)
   const searchSchema = computed(() => {
@@ -72,6 +91,7 @@
     } as IFormSchema
   })
   const showExpandCollapse = computed(() => Object.keys(props.schema).length > 2)
+
   const handleToggle = () => {
     isCollapse.value = !isCollapse.value
   }
@@ -80,17 +100,41 @@
     formRef.value?.reset()
     emits('reset', formRef.value?.getFormData() || {})
   }
+
   // 重置
+  // TODO 防抖、节流
   const handleSearch = () => {
-    const formData = formRef.value?.getFormData() || {}
-    if (!props.beforeSearch || (props.beforeSearch && !props.beforeSearch(formData))) {
-      emits('search', formData)
+    if (formRef.value?.validate) {
+      formRef.value.validate((isValid) => {
+        if (isValid) {
+          const formData = formRef.value?.getFormData() || {}
+          if (!props.beforeSearch || (props.beforeSearch && props.beforeSearch(formData))) {
+            emits('search', formData)
+          }
+        }
+      })
     }
   }
+
   // 数据变化
   const handleChange = (e: IChangeEvent) => {
     emits('change', e)
+    if (e.field?.trigger === 'select') {
+      handleSearch()
+    }
   }
+
+  defineExpose<ISearchFormRef>({
+    search: (data) => {
+      if (data) {
+        formRef.value?.setFormData(data)
+      }
+      handleSearch()
+    },
+    getFormData: () => {
+      return formRef.value?.getFormData()
+    }
+  })
 </script>
 <style lang="scss">
   .search-form-plus {
