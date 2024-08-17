@@ -14,11 +14,11 @@
   import { ref, computed, watch, useAttrs, provide, toRaw } from 'vue'
   import { classnames, isEmpty, deepClone } from 'biz-gadgets'
   import { useNamespace } from 'biz-gadgets/hooks'
-  import type { IComponentSize } from '../../constants/size'
-  import { GLOBAL_CONFIG } from '../../global'
+  import type { IComponentSize } from '@bep-ui/constants/size'
+  import { GLOBAL_CONFIG } from '@bep-ui/global'
   import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
   import type { IFormPlusRef, IFormSchema, IChangeEvent, IFormLayout } from './interface'
-  import type { IObjectAny } from '../../types/common'
+  import type { IObjectAny } from '@bep-ui/types/common'
   import FormGroup from './FormGroup.vue'
 
   const emits = defineEmits(['change'])
@@ -95,7 +95,6 @@
   watch(
     () => props.model,
     (value) => {
-      console.log('props.model====>', props.model)
       rootData.value = value
     },
     {

@@ -31,7 +31,7 @@
   </template>
 </template>
 <script lang="ts" setup>
-  import { computed, inject } from 'vue'
+  import { computed, inject, watch } from 'vue'
   import { execStatement, deepClone } from 'biz-gadgets'
   import { ElFormItem } from 'element-plus'
   import { getValue, setValue } from './utils'
@@ -50,6 +50,7 @@
     name: 'FormItem',
     inheritAttrs: false
   })
+
   const emits = defineEmits(['change'])
   const props = defineProps({
     propPath: {
@@ -66,9 +67,7 @@
   const rootAttrs = inject(ROOT_ATTRS_INJECTION_KEY)
 
   const data = computed({
-    get: () => {
-      return getValue(rootData.value, props.propPath)
-    },
+    get: () => getValue(rootData.value, props.propPath),
     set: (value) => {
       oldValue = getValue(rootData.value, props.propPath)
       setValue(rootData.value, props.propPath, value)
@@ -106,14 +105,6 @@
   // 此项是否禁用
   const disabled = computed(() => {
     if (rootAttrs.value.disabled) return true
-    // console.log(
-    //   'disabled execStatement====>',
-    //   execStatement({
-    //     statement: prop.field.disabled,
-    //     rootData: rootData.value,
-    //     context: rootAttrs.value.customContext
-    //   })
-    // )
     return execStatement({
       statement: props.field.disabled,
       rootData: rootData.value,
@@ -136,4 +127,25 @@
       field: deepClone(props.field)
     })
   }
+
+  watch(
+    () => data.value,
+    (value) => {
+      if (oldValue !== value) {
+        console.log('diff====>', props.field._key, props.field.title, oldValue, value)
+        emits('change', {
+          key: props.field._key,
+          path: props.propPath.split('.'),
+          value: data.value,
+          preValue: oldValue,
+          originEvent: [value],
+          field: deepClone(props.field)
+        })
+      }
+    },
+    {
+      immediate: true,
+      deep: true
+    }
+  )
 </script>

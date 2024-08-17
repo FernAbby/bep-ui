@@ -1,6 +1,6 @@
+import type { IFormSchema } from '@bep-ui/components/FormPlus/interface'
+import type { IObjectAny } from '@bep-ui/global'
 import type { ITableColumn } from './interface'
-import type { IFormSchema } from '../FormPlus/interface'
-import type { IObjectAny } from '../../global'
 
 // 列默认配置
 export const defaultColumnProps = {
@@ -36,6 +36,10 @@ export const tableProps = {
   defaultValue: {
     type: Object as () => IObjectAny,
     default: undefined
+  },
+  isFirstRequest: {
+    type: Boolean,
+    default: true
   },
   // 是否展示序号列
   showIndex: {

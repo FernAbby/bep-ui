@@ -23,6 +23,7 @@
       <el-table
         :size="'small'"
         v-bind="attrs"
+        ref="tableRef"
         :data="innerDataSource"
         @sort-change="handleSortChange"
       >
@@ -92,9 +93,9 @@
   import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
   import { isEmpty, isPlainObject, classnames } from 'biz-gadgets'
   import { ref, computed, h, watch, useSlots, useAttrs, type Component, onMounted } from 'vue'
-  import type { ISearchFormRef } from '../SearchForm/interface'
+  import type { ISearchFormRef } from '@bep-ui/components/SearchForm/interface'
   import { defaultColumnProps, defaultPaginationProps, tableProps } from './table'
-  import type { IPagination, ITableColumn, ITableColumnScope, ITablePlusRef } from './interface'
+  import { IPagination, ITableColumn, ITableColumnScope, ITablePlusRef } from './interface'
   import SearchForm from '../SearchForm/index.vue'
   import { isVNode, mergePagination } from './utils'
   import type { IObjectAny } from '../../global'
@@ -109,6 +110,7 @@
   const props = defineProps(tableProps)
   const attrs = useAttrs()
 
+  const tableRef = ref<InstanceType<typeof ElTable>>()
   const loading = ref(false)
   const innerDataSource = ref<IObjectAny[]>([])
   const isShowPagination = ref(true)
@@ -208,9 +210,11 @@
           page_size: pagination.value.pageSize
         }
       })
-      innerDataSource.value = res.data
-      mergePagination(pagination, res)
-      loading.value = false
+      if (res) {
+        innerDataSource.value = res.data
+        mergePagination(pagination, res)
+        loading.value = false
+      }
     } else {
       emits('search', {
         sp: searchParams,
@@ -254,14 +258,20 @@
   }
 
   onMounted(() => {
-    if (searchFormRef.value?.search) {
-      searchFormRef.value?.search(props.defaultValue)
-    } else {
-      handleSearch(props.defaultValue)
+    // 挂载后是否加载数据
+    if (props.isFirstRequest) {
+      if (searchFormRef.value?.search) {
+        searchFormRef.value?.search(props.defaultValue)
+      } else {
+        handleSearch(props.defaultValue)
+      }
     }
   })
 
   defineExpose<ITablePlusRef>({
+    getTableRef: () => {
+      return tableRef.value
+    },
     refresh: () => {
       if (searchFormRef.value?.search) {
         searchFormRef.value.search()

@@ -6,6 +6,7 @@ import { IObjectAny } from '../../global'
 
 // export type ITableColumnProps = Partial<typeof ElTableColumn>
 export type ITableColumnProps = Partial<TableColumnCtx<Record<string, any>>>
+// export type ITableRef = InstanceType<typeof ElTable>
 
 export interface ITableColumnScope {
   row: Record<string, any>
@@ -54,11 +55,12 @@ export interface ITablePlusProps extends TableProps<Record<string, any>> {
       page?: number
       page_size?: number
     }
-  ) => Promise<ITableRequestData> | ITableRequestData
+  ) => Promise<ITableRequestData | null | undefined | false> | ITableRequestData
   onSearch: ({ sp, pp }: { sp: Record<string, any>; pp: IPagination }) => void
 }
 
 export interface ITablePlusRef {
+  getTableRef: () => any
   refresh: (data?: IObjectAny) => void
   setLoading: (isLoading: boolean) => void
   getFormData: () => IObjectAny

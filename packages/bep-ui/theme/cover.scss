@@ -5,12 +5,13 @@
     margin-bottom: 16px;
 
     .el-form-item__label {
-      height: 30px;
+      min-height: 30px;
       line-height: 30px;
     }
 
     .el-form-item__content {
       line-height: 30px;
+      min-height: 30px;
 
       .el-select__wrapper {
         line-height: 30px;

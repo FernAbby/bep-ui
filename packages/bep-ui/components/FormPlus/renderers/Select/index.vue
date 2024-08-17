@@ -1,11 +1,11 @@
 <template>
   <el-select
-    v-bind="renderOptions"
-    v-model="model"
-    :placeholder="placeholder"
     clearable
     filterable
     placement="bottom-start"
+    v-bind="renderOptions"
+    v-model="model"
+    :placeholder="placeholder"
     :disabled="disabled"
   >
     <el-option

@@ -51,14 +51,6 @@
   // 是否显示当前项
   const isFormFieldShow = (field: IInnerSchemaFormItem) => {
     if (isEmpty(field.hidden)) return true
-    // console.log(
-    //   'show execStatement====>',
-    //   execStatement({
-    //     statement: field.hidden,
-    //     rootData: rootData.value,
-    //     context: props.customContext
-    //   })
-    // )
     return !execStatement({
       statement: field.hidden,
       rootData: rootData.value,
