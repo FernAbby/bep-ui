@@ -1,4 +1,4 @@
-import Checkbox from './Checkbox/index.vue'
+import CheckboxGroup from './CheckboxGroup/index.vue'
 import Date from './Date/index.vue'
 import DateRange from './DateRange/index.vue'
 import DateTime from './DateTime/index.vue'
@@ -21,7 +21,7 @@ import Cascader from './Cascader/index.vue'
 // TODO ====> 时间选择器、附件上传
 
 const renderers = {
-  Checkbox,
+  CheckboxGroup,
   Date,
   DateRange,
   DateTime,

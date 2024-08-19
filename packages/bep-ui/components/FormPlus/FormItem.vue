@@ -132,7 +132,8 @@
     () => data.value,
     (value) => {
       if (oldValue !== value) {
-        console.log('diff====>', props.field._key, props.field.title, oldValue, value)
+        console.log('field====>', props.field._key, props.field.title)
+        console.log('diff====>', oldValue, value)
         emits('change', {
           key: props.field._key,
           path: props.propPath.split('.'),

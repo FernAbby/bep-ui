@@ -24,7 +24,9 @@ export interface ISchemaFormItem {
   title?: string
   renderType: string | 'Object' | 'Array' | 'Custom'
   // FormItem 内部组件渲染属性
-  renderOptions?: IObjectAny
+  renderOptions?: {
+    options: IOption[]
+  } & any
   // FormItem 渲染属性
   renderAttrs?: Partial<FormItemProps>
   hidden?: boolean | string

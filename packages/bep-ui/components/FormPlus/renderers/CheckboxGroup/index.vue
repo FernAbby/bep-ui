@@ -6,11 +6,11 @@
 <script lang="ts" setup>
   import { ElCheckboxGroup, ElCheckbox } from 'element-plus'
   import { computed } from 'vue'
-  import useUniversalRender from '../../hooks/useUniversalRender'
   import { rendererProps } from '../../constants/rendererProps'
+  import checkboxRender from './checkboxRender'
   const emits = defineEmits(['update:modelValue'])
   const props = defineProps(rendererProps)
   const options = computed(() => props.field.renderOptions?.options || [])
 
-  const { model, renderOptions } = useUniversalRender(props, emits, true)
+  const { model, renderOptions } = checkboxRender(props, emits, ['options', 'sameRadio'])
 </script>

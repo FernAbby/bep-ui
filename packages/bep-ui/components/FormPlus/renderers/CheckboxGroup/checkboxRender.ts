@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { omit, isEmpty } from 'biz-gadgets'
-import type { ISchemaFormItem } from '../interface'
+import type { ISchemaFormItem } from '../../interface'
 
 export interface IRendererProps {
   readonly disabled: boolean
@@ -12,7 +12,7 @@ export interface IRendererProps {
 
 export type IRendererEmits = (event: 'update:modelValue', ...args: any[]) => void
 
-export default function useUniversalRender(
+export default function checkboxRender(
   props: IRendererProps,
   emits: IRendererEmits,
   omitOptions: string[] = []
@@ -20,7 +20,11 @@ export default function useUniversalRender(
   const model = computed({
     get: () => props.modelValue,
     set: (value) => {
-      emits('update:modelValue', value)
+      if (props.field.renderOptions?.sameRadio) {
+        emits('update:modelValue', value?.length ? value.slice(-1) : value)
+      } else {
+        emits('update:modelValue', value)
+      }
     }
   })
 

@@ -249,7 +249,7 @@
     if (column.sortable === 'custom') {
       pagination.value.currentPage = 1
       if (order) {
-        innerFormData.value.order_by = `${prop}_${order === 'ascending' ? 'asc' : 'desc'}`;
+        innerFormData.value.order_by = `${prop}_${order === 'ascending' ? 'asc' : 'desc'}`
       } else {
         innerFormData.value.order_by = ''
       }
