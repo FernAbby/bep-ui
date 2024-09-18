@@ -47,8 +47,9 @@
   const imageList = computed(() => {
     const images: string[] = []
     fileList.value.forEach((item) => {
-      if ((item.response as { url: string })?.url) {
-        images.push(item.response.url)
+      const url = (item.response as { url: string })?.url
+      if (url) {
+        images.push(url)
       }
     })
     return images

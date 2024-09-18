@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 import { freezeGlobalConfig, renderResolver } from './utils/helper'
+import BepUiResolver from './utils/bep-ui-resolver'
 import { INSTALLED_KEY } from './global'
 import type { IConfigProviderContext } from './global'
 import './theme/index.scss'
@@ -8,7 +9,6 @@ export * from './components/FormPlus/index'
 export * from './components/SearchForm/index'
 export * from './components/TablePlus/index'
 export * from './components/SectionTitle/index'
-export * from './utils/bep-ui-resolver'
 
 interface IApp extends App {
   [key: symbol]: boolean
@@ -28,5 +28,8 @@ const BepUI = {
 export function installRenderer(options: Partial<IConfigProviderContext>) {
   freezeGlobalConfig(options)
 }
+
+// unplugin-vue-components 按需导入解析器
+export const BepUIResolver = BepUiResolver
 
 export default BepUI

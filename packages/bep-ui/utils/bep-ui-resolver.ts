@@ -8,7 +8,7 @@ const component_map: { [key: string]: string } = {
   SectionTitle: 'SectionTitle'
 }
 
-const path = `bep-ui/dist/es`
+const path = 'bep-ui/dist/es'
 
 // 按需导入需求 unplugin-vue-components/vite
 export default {
