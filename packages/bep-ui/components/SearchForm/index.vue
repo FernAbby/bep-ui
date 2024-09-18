@@ -24,6 +24,7 @@
         </el-button>
         <el-button
           v-if="showExpandCollapse"
+          size="default"
           link
           type="primary"
           class="search-form-plus__expand-collapse"

@@ -8,6 +8,7 @@ export * from './components/FormPlus/index'
 export * from './components/SearchForm/index'
 export * from './components/TablePlus/index'
 export * from './components/SectionTitle/index'
+export * from './utils/bep-ui-resolver'
 
 interface IApp extends App {
   [key: symbol]: boolean

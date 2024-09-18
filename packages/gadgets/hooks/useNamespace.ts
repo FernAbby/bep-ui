@@ -1,4 +1,4 @@
-import { isFunction } from '../typeof'
+import { isFunction } from '../utils/typeof'
 
 // useGetDerivedNamespace
 let defaultNamespace = ''

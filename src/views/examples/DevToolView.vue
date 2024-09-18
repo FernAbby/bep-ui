@@ -5,7 +5,7 @@
   </ul>
 </template>
 <script lang="ts" setup>
-  import { deepClone } from '@gadgets/clone'
+  import { deepClone } from '@gadgets/utils/clone'
   const obj = {
     name: '我真的很困',
     like: {

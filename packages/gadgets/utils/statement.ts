@@ -1,5 +1,5 @@
 import { isBoolean, isString } from './typeof'
-import type { IObjectAny } from './typings'
+import type { IObjectAny } from '../typings'
 
 /**
  * @description 字符串判断语句执行结果，如：hidden, disabled, required 等

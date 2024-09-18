@@ -1,6 +1,6 @@
 # BepUI
 
-基于vue3 + element-plus开发的组件库，根据schema快速生成表单、表格页面
+基于vue3 + element-plus二次开发的组件库，以schema驱动快速生成管理台表单、表格页面的UI库
 
 ## 安装
 

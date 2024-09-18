@@ -127,6 +127,7 @@
     get: (): IObjectAny => props.formData,
     set: (value) => {
       console.log('innerFormData===>', value)
+      return value
     }
   })
 
@@ -296,6 +297,12 @@
 
     .table-plus__toolbar {
       padding: 3px 0 5px;
+
+      .table-plus__toolbar-title {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
     }
 
     .table-plus__table {
