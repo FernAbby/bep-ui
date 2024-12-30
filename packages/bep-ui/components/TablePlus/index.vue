@@ -214,6 +214,7 @@
       if (res) {
         innerDataSource.value = res.data
         mergePagination(pagination, res)
+        console.log('pagination ====>', pagination)
         loading.value = false
       }
     } else {

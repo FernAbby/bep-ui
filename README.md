@@ -53,7 +53,7 @@ pnpm -w build-only:gadgets
 pnpm -w test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint with [ESLinhttps://eslint.org/)
 
 ```sh
 pnpm -w lint

@@ -32,7 +32,9 @@
     const res = await Promise.resolve(data)
     return {
       data: res,
-      total: 50
+      currentPage: 2,
+      pageSize: 100,
+      total: 150
     }
   }
 </script>

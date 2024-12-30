@@ -120,7 +120,6 @@
 
   defineExpose<IFormPlusRef>({
     getFormData: () => {
-      console.log('getFormData===>toRaw', JSON.stringify(rootData.value))
       return toRaw(rootData.value)
     },
     setFormData: (data) => {
