@@ -21,19 +21,16 @@
   }
 
   const dataSource = computed(() => {
-    return generateDataSource()
+    return generateDataSource(150)
   })
 
   const fetchTableList: ITablePlusProps['request'] = async ({ sp, pp }) => {
-    const data = dataSource.value.slice(
-      (pp.currentPage - 1) * pp.pageSize,
-      pp.currentPage * pp.pageSize
-    )
+    const page_size = 30 || pp.page_size
+    const data = dataSource.value.slice((pp.page - 1) * page_size, pp.page * page_size)
     const res = await Promise.resolve(data)
     return {
       data: res,
-      currentPage: 2,
-      pageSize: 100,
+      pageSize: page_size,
       total: 150
     }
   }

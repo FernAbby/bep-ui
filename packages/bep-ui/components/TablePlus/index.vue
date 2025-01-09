@@ -126,7 +126,7 @@
   const innerFormData = computed({
     get: (): IObjectAny => props.formData,
     set: (value) => {
-      console.log('innerFormData===>', value)
+      console.log('innerFormData===> set', value)
       return value
     }
   })
@@ -214,7 +214,6 @@
       if (res) {
         innerDataSource.value = res.data
         mergePagination(pagination, res)
-        console.log('pagination ====>', pagination)
         loading.value = false
       }
     } else {
@@ -235,16 +234,24 @@
     tableSearchFn()
   }
 
+  // 复位滚动条
+  const resetScroll = () => {
+    tableRef.value?.setScrollTop(0)
+    tableRef.value?.setScrollLeft(0)
+  }
+
   // 分页数量
   const handlePageSizeChange = (pageSize: number) => {
     pagination.value.pageSize = pageSize
     tableSearchFn()
+    resetScroll()
   }
 
   // 切换页码
   const handleCurrentPageChange = (currentPage: number) => {
     pagination.value.currentPage = currentPage
     tableSearchFn()
+    resetScroll()
   }
 
   const handleSortChange = ({ column, prop, order }) => {
@@ -281,12 +288,19 @@
         handleSearch()
       }
     },
+    clearSelection: () => {
+      tableRef.value?.clearSelection()
+    },
+    toggleAllSelection: () => {
+      tableRef.value?.toggleAllSelection()
+    },
     setLoading: (isLoading) => {
       loading.value = isLoading
     },
     getFormData: () => {
       return searchFormRef.value?.getFormData()
-    }
+    },
+    resetScroll: resetScroll
   })
 </script>
 <style lang="scss">

@@ -62,6 +62,9 @@ export interface ITablePlusProps extends TableProps<Record<string, any>> {
 export interface ITablePlusRef {
   getTableRef: () => any
   refresh: (data?: IObjectAny) => void
+  clearSelection: () => void
+  toggleAllSelection: () => void
   setLoading: (isLoading: boolean) => void
   getFormData: () => IObjectAny
+  resetScroll: () => void
 }
