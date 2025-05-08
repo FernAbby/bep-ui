@@ -2,7 +2,7 @@
   <div :class="formClasses" :style="rootStyle">
     <el-form ref="formRef" :model="rootData" :size="size" v-bind="attrs">
       <FormGroup :schema="schema" @change="handleChange" />
-      <div :class="ns.b('append')">
+      <div v-if="$slots.append" :class="ns.b('append')">
         <slot name="append"></slot>
       </div>
     </el-form>
@@ -16,9 +16,9 @@
   import { useNamespace } from 'biz-gadgets/hooks'
   import type { IComponentSize } from '@bep-ui/constants/size'
   import { GLOBAL_CONFIG } from '@bep-ui/global'
+  import type { IObjectAny } from '@bep-ui/types/common'
   import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
   import type { IFormPlusRef, IFormSchema, IChangeEvent, IFormLayout } from './interface'
-  import type { IObjectAny } from '@bep-ui/types/common'
   import FormGroup from './FormGroup.vue'
 
   const emits = defineEmits(['change'])
@@ -54,7 +54,7 @@
     },
     size: {
       type: String as () => IComponentSize,
-      default: 'small'
+      default: 'default'
     },
     layout: {
       type: String as () => IFormLayout,
@@ -104,7 +104,10 @@
   )
 
   const handleChange = (e: IChangeEvent) => {
-    emits('change', e)
+    emits('change', {
+      ...e,
+      data: toRaw(rootData.value)
+    })
   }
 
   provide(ROOT_DATA_INJECTION_KEY, rootData)

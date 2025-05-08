@@ -44,7 +44,7 @@
   </form-plus>
 </template>
 <script lang="ts" setup>
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref } from 'vue'
   import { ElButton, ElIcon } from 'element-plus'
   import { pick } from 'biz-gadgets'
   import { ArrowDown, ArrowUp, RefreshLeft, Search } from '@element-plus/icons-vue'
@@ -78,6 +78,10 @@
     loading: {
       type: Boolean,
       default: false
+    },
+    collapseCount: {
+      type: Number,
+      default: 3
     }
   })
 
@@ -87,11 +91,11 @@
     return {
       renderType: 'Object',
       properties: isCollapse.value
-        ? pick(props.schema, Object.keys(props.schema).slice(0, 2))
+        ? pick(props.schema, Object.keys(props.schema).slice(0, props.collapseCount))
         : props.schema
     } as IFormSchema
   })
-  const showExpandCollapse = computed(() => Object.keys(props.schema).length > 2)
+  const showExpandCollapse = computed(() => Object.keys(props.schema).length > props.collapseCount)
 
   const handleToggle = () => {
     isCollapse.value = !isCollapse.value

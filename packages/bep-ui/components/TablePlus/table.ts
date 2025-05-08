@@ -76,5 +76,9 @@ export const tableProps = {
   paginationProps: {
     type: Object,
     default: () => ({})
+  },
+  size: {
+    type: String as () => 'default' | 'small' | 'large',
+    default: 'default'
   }
 }

@@ -3,8 +3,8 @@
     <div v-if="isShowSearchForm" class="table-plus__search">
       <SearchForm
         ref="searchFormRef"
-        v-bind="formProps"
-        :formData="innerFormData"
+        v-bind="innerFormProps"
+        :form-data="innerFormData"
         :schema="schema"
         :loading="loading"
         @search="handleSearch"
@@ -19,11 +19,11 @@
         <slot name="table_setting"></slot>
       </div>
     </div>
-    <div class="table-plus__table" v-loading="loading" element-loading-text="加载中...">
+    <div v-loading="loading" class="table-plus__table" element-loading-text="加载中...">
       <el-table
-        :size="'small'"
         v-bind="attrs"
         ref="tableRef"
+        :size="size"
         :data="innerDataSource"
         @sort-change="handleSortChange"
       >
@@ -130,6 +130,9 @@
       return value
     }
   })
+  const innerFormProps = computed(() => {
+    return { size: props.size, ...props.formProps }
+  })
 
   // 分页配置
   watch(
@@ -171,7 +174,11 @@
   })
 
   const innerPaginationProps = computed(() => {
-    return { ...defaultPaginationProps, ...props.paginationProps }
+    return {
+      ...defaultPaginationProps,
+      size: props.size,
+      ...props.paginationProps
+    }
   })
 
   const renderCell = (
@@ -311,6 +318,7 @@
     flex-direction: column;
 
     .table-plus__toolbar {
+      display: flex;
       padding: 3px 0 5px;
 
       .table-plus__toolbar-title {
