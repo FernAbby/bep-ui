@@ -1,7 +1,12 @@
 <template>
   <template v-for="item in formFields" :key="item._key">
     <template v-if="isFormFieldShow(item)">
-      <FormItem :field="item" :prop-path="getPropPath(item._key)" @change="handleChange" />
+      <FormItem
+        :field="item"
+        :prop-path="getPropPath(item._key)"
+        @change="handleChange"
+        @enter="handleEnter"
+      />
     </template>
   </template>
 </template>
@@ -17,7 +22,7 @@
   })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const emits = defineEmits(['change'])
+  const emits = defineEmits(['change', 'enter'])
   const props = defineProps({
     schema: {
       type: Object as () => IFormSchema,
@@ -65,5 +70,9 @@
 
   const handleChange = (e: IChangeEvent) => {
     emits('change', e)
+  }
+
+  const handleEnter = (e: IChangeEvent) => {
+    emits('enter', e)
   }
 </script>

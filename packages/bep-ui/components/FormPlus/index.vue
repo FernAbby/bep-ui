@@ -1,7 +1,7 @@
 <template>
   <div :class="formClasses" :style="rootStyle">
     <el-form ref="formRef" :model="rootData" :size="size" v-bind="attrs">
-      <FormGroup :schema="schema" @change="handleChange" />
+      <FormGroup :schema="schema" @change="handleChange" @enter="handleEnter" />
       <div v-if="$slots.append" :class="ns.b('append')">
         <slot name="append"></slot>
       </div>
@@ -21,7 +21,7 @@
   import type { IFormPlusRef, IFormSchema, IChangeEvent, IFormLayout } from './interface'
   import FormGroup from './FormGroup.vue'
 
-  const emits = defineEmits(['change'])
+  const emits = defineEmits(['change', 'enter'])
 
   defineOptions({
     name: 'FormPlus',
@@ -110,6 +110,13 @@
     })
   }
 
+  const handleEnter = (e: IChangeEvent) => {
+    emits('enter', {
+      ...e,
+      data: toRaw(rootData.value)
+    })
+  }
+
   provide(ROOT_DATA_INJECTION_KEY, rootData)
   provide(
     ROOT_ATTRS_INJECTION_KEY,
@@ -185,6 +192,24 @@
     .bep-form-plus-append {
       grid-column-start: -2;
       margin-bottom: 16px;
+    }
+  }
+
+  .bep-form-plus--inline {
+    .el-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-column-gap: 12px;
+      justify-content: space-evenly;
+      align-content: center;
+    }
+
+    .el-form-item {
+      align-items: flex-start;
+    }
+
+    .bep-form-plus-append {
+      display: inline-flex;
     }
   }
 </style>

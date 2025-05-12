@@ -1,12 +1,13 @@
 <template>
   <form-plus
-    v-bind="searchProps"
     ref="formRef"
     root-class="search-form-plus"
+    layout="grid"
+    v-bind="searchProps"
     :schema="searchSchema"
     :model="formData"
-    layout="grid"
     @change="handleChange"
+    @enter="handleSearch"
   >
     <template #append>
       <div class="search-form-plus__actions">

@@ -45,7 +45,8 @@
           name: {
             title: '姓名',
             renderType: 'InputText',
-            required: true
+            required: true,
+            tooltip: 'This is a required field',
           },
           sex: {
             title: '性别',

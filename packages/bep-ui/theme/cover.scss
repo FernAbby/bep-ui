@@ -1,3 +1,15 @@
+.bep-form-plus {
+  .el-form-item__label {
+    .el-icon {
+      display: inline-block;
+
+      // vertical-align: middle;
+      margin-left: 3px;
+      line-height: 32px;
+    }
+  }
+}
+
 // 覆盖 size = small组件样式
 .bep-form-plus--small {
   // start of size = 'small'
@@ -7,6 +19,10 @@
     .el-form-item__label {
       min-height: 30px;
       line-height: 30px;
+
+      .el-icon {
+        line-height: 30px;
+      }
     }
 
     .el-form-item__content {

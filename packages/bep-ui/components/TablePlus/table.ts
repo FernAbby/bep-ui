@@ -9,7 +9,7 @@ export const defaultColumnProps = {
 }
 
 export const defaultPaginationProps = {
-  pageSizes: [10, 20, 30, 50, 80, 100],
+  pageSizes: [10, 20, 30, 50, 80, 100, 200, 500, 1000],
   layout: 'total, sizes, prev, pager, next, jumper',
   size: 'small',
   background: true
@@ -80,5 +80,9 @@ export const tableProps = {
   size: {
     type: String as () => 'default' | 'small' | 'large',
     default: 'default'
+  },
+  indexWidth: {
+    type: Number,
+    default: 55
   }
 }

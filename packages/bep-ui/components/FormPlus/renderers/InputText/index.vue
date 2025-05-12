@@ -22,4 +22,3 @@
     return props.field.renderOptions || {}
   })
 </script>
-

@@ -17,7 +17,9 @@
   import { generateDataSource } from '@/views/examples/TablePlus/data'
 
   const searchProps = {
-    labelWidth: '70px'
+    labelWidth: '70px',
+    // inline: true,
+    layout: 'inline'
   }
 
   const dataSource = computed(() => {

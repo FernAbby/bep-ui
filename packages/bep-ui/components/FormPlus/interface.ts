@@ -32,6 +32,7 @@ export interface ISchemaFormItem {
   hidden?: boolean | string
   disabled?: boolean | string
   required?: boolean | string
+  tooltip?: string
   isFixedItem?: boolean // 是否为表单项，如标题和分割线
   // renderType === 'Custom' 时
   component?: Component

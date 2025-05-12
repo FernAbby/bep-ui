@@ -7,12 +7,19 @@
       :prop="propPath"
       :required="required"
     >
+      <template v-if="field.tooltip" #label>
+        <span>{{ field.title }}</span>
+        <el-tooltip class="box-item" effect="dark" :content="field.tooltip">
+          <el-icon size="14"><QuestionFilled /></el-icon>
+        </el-tooltip>
+      </template>
       <div v-if="isGroup" :class="subItemsClass">
         <FormGroup :schema="field as IFormSchema" :path="propPath" />
       </div>
       <template v-else>
         <component
           :is="component"
+          :key="propPath"
           v-model="data"
           :prop="propPath"
           :disabled="disabled"
@@ -20,6 +27,7 @@
           :placeholder="placeholder"
           :custom-context="rootAttrs.customContext"
           @change="handleChange"
+          @keyup.enter="handleEnter"
         />
       </template>
     </el-form-item>
@@ -33,7 +41,8 @@
 <script lang="ts" setup>
   import { computed, inject, watch } from 'vue'
   import { execStatement, deepClone } from 'biz-gadgets'
-  import { ElFormItem } from 'element-plus'
+  import { ElFormItem, ElIcon, ElTooltip } from 'element-plus'
+  import { QuestionFilled } from '@element-plus/icons-vue'
   import { getValue, setValue } from './utils'
   import {
     getFormFieldComponent,
@@ -51,7 +60,7 @@
     inheritAttrs: false
   })
 
-  const emits = defineEmits(['change'])
+  const emits = defineEmits(['change', 'enter'])
   const props = defineProps({
     propPath: {
       type: String,
@@ -119,6 +128,18 @@
   // change 事件
   const handleChange = (...args) => {
     emits('change', {
+      key: props.field._key,
+      path: props.propPath.split('.'),
+      value: data.value,
+      preValue: oldValue,
+      originEvent: args,
+      field: deepClone(props.field)
+    })
+  }
+
+  const handleEnter = (...args) => {
+    console.log('args --->', args)
+    emits('enter', {
       key: props.field._key,
       path: props.propPath.split('.'),
       value: data.value,

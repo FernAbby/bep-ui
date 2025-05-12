@@ -37,7 +37,7 @@
           :selectable="selection.selectable"
           :fixed="selection.fixed"
         />
-        <el-table-column v-if="showIndex" type="index" label="序号" width="55" align="center" />
+        <el-table-column v-if="showIndex" type="index" label="序号" :width="indexWidth" align="center" />
         <template v-for="column in innerColumns" :key="column.dataIndex">
           <el-table-column
             v-bind="column.columnProps"
@@ -77,6 +77,7 @@
         </template>
       </el-table>
       <div v-if="isShowPagination" class="table-plus__pagination">
+        <slot name="pagination_left"></slot>
         <el-pagination
           v-bind="innerPaginationProps"
           v-model:current-page="pagination.currentPage"

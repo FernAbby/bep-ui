@@ -42,7 +42,8 @@
       name: {
         title: '姓名',
         renderType: 'InputText',
-        required: true
+        required: true,
+        tooltip: 'This is a required field',
       },
       address: {
         title: '家庭地址',
