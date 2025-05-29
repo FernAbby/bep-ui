@@ -6,8 +6,8 @@
           <img class="page-layout_header__title-logo" alt="Vue logo" src="@/assets/logo.svg" />
           <span class="page-layout_header__title-text">BepUI</span>
         </div>
-        <RouterLink class="nav-link" to="/">首页</RouterLink>
-        <RouterLink class="nav-link" to="/examples">示例</RouterLink>
+        <RouterLink class="nav-link" to="/dashboard/home">首页</RouterLink>
+        <RouterLink class="nav-link" to="/examples/guide">示例</RouterLink>
       </div>
       <div class="page-layout_content">
         <RouterView />

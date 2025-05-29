@@ -138,7 +138,6 @@
   }
 
   const handleEnter = (...args) => {
-    console.log('args --->', args)
     emits('enter', {
       key: props.field._key,
       path: props.propPath.split('.'),
