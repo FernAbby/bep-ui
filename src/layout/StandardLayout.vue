@@ -32,16 +32,34 @@
       path: '/examples/guide'
     },
     {
-      title: '表单',
-      path: '/examples/form',
+      title: '基础单表',
+      path: '/examples/base-form',
       children: [
         {
-          title: '基础单表',
-          path: '/examples/form/base'
+          title: 'block布局',
+          path: '/examples/base-form/block'
         },
         {
+          title: 'inline布局',
+          path: '/examples/base-form/inline'
+        },
+        {
+          title: 'grid布局',
+          path: '/examples/base-form/grid'
+        },
+        {
+          title: 'SearchFrom',
+          path: '/examples/base-form/search'
+        }
+      ]
+    },
+    {
+      title: '复杂表单',
+      path: '/examples/complex-form',
+      children: [
+        {
           title: '嵌套表单',
-          path: '/examples/form/complex'
+          path: '/examples/complex-form/nest'
         }
       ]
     },

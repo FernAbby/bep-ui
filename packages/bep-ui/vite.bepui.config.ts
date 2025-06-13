@@ -26,13 +26,13 @@ export default defineConfig({
     vueJsx()
   ],
   // 自定义主题样式
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use "@bep-ui/theme/element-plus/var.scss" as *;`
-      }
-    }
-  },
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `@use "@bep-ui/theme/element-plus/var.scss" as *;`
+  //     }
+  //   }
+  // },
   build: {
     outDir: resolve('./dist'),
     sourcemap: true,

@@ -1,6 +1,6 @@
 <template>
   <div :class="formClasses" :style="rootStyle">
-    <el-form ref="formRef" :model="rootData" :size="size" v-bind="attrs">
+    <el-form ref="formRef" :model="rootData" :size="size" v-bind="attrs" :inline="isLine">
       <FormGroup :schema="schema" @change="handleChange" @enter="handleEnter" />
       <div v-if="$slots.append" :class="ns.b('append')">
         <slot name="append"></slot>
@@ -91,6 +91,7 @@
       props.rootClass
     ])
   })
+  const isLine = computed(() => ['inline'].includes(props.layout))
 
   watch(
     () => props.model,
@@ -151,65 +152,3 @@
     }
   })
 </script>
-<style lang="scss">
-  .bep-form-plus {
-    .el-form {
-      .bep-form-plus__sub-group {
-        width: 100%;
-        flex: 1;
-        flex-wrap: wrap;
-        min-width: 0;
-
-        .el-form-item:last-child {
-          margin-bottom: 0;
-        }
-      }
-
-      .el-input-number.is-without-controls .el-input__inner {
-        text-align: left;
-      }
-    }
-  }
-
-  // 表单 栅格布局
-  .bep-form-plus--grid {
-    .el-form {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      grid-column-gap: 12px;
-      justify-content: space-evenly;
-      align-content: center;
-    }
-
-    .el-form-item {
-      align-items: flex-start;
-    }
-
-    .bep-form-plus__fixed-item {
-      grid-column: 1/-1;
-    }
-
-    .bep-form-plus-append {
-      grid-column-start: -2;
-      margin-bottom: 16px;
-    }
-  }
-
-  .bep-form-plus--inline {
-    .el-form {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      grid-column-gap: 12px;
-      justify-content: space-evenly;
-      align-content: center;
-    }
-
-    .el-form-item {
-      align-items: flex-start;
-    }
-
-    .bep-form-plus-append {
-      display: inline-flex;
-    }
-  }
-</style>

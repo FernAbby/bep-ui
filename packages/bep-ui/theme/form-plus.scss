@@ -1,0 +1,92 @@
+// 覆盖 size = small 样式
+.bep-form-plus--small {
+  // start of size = 'small'
+  .el-form-item--small {
+    margin-bottom: 16px;
+
+    .el-form-item__label {
+      min-height: 30px;
+      line-height: 30px;
+
+      .el-icon {
+        line-height: 30px;
+      }
+    }
+
+    .el-form-item__content {
+      line-height: 30px;
+      min-height: 30px;
+
+      .el-select__wrapper {
+        line-height: 30px;
+        min-height: 30px;
+      }
+    }
+  }
+
+  // end of size = 'small'
+}
+
+// 栅格布局
+.bep-form-plus--grid {
+  .el-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-column-gap: 12px;
+    place-content: center space-evenly;
+  }
+
+  .el-form-item {
+    align-items: flex-start;
+  }
+
+  .bep-form-plus__fixed-item {
+    grid-column: 1/-1;
+  }
+}
+
+// 行内样式布局
+.bep-form-plus--inline {
+  .el-form {
+    .el-form-item {
+      min-width: 300px;
+      margin-right: 16px;
+    }
+  }
+}
+
+// 表单
+.bep-form-plus {
+  .el-form {
+    .el-form-item {
+      .el-form-item__label {
+        .el-tooltip__trigger.el-icon {
+          display: inline-block;
+          margin-left: 3px;
+          line-height: 32px;
+        }
+      }
+
+      .el-form-item__content {
+        .bep-form-plus__sub-group {
+          width: 100%;
+          flex: 1;
+          flex-wrap: wrap;
+          min-width: 0;
+
+          .el-form-item:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        .el-input-number.is-without-controls .el-input__inner {
+          text-align: left;
+        }
+      }
+    }
+
+    .bep-form-plus__fixed-item {
+      width: 100%;
+    }
+  }
+}

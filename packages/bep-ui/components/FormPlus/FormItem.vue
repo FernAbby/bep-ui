@@ -9,7 +9,7 @@
     >
       <template v-if="field.tooltip" #label>
         <span>{{ field.title }}</span>
-        <el-tooltip class="box-item" effect="dark" :content="field.tooltip">
+        <el-tooltip class="tooltip-box-item" effect="dark" :content="field.tooltip">
           <el-icon size="14"><QuestionFilled /></el-icon>
         </el-tooltip>
       </template>

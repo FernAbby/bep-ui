@@ -1,5 +1,7 @@
 <template>
-  <div :class="rootClass" v-bind="renderOptions">{{ model || '-' }}</div>
+  <div :class="rootClass" v-bind="renderOptions">
+    <div class="inner-content">{{ model || '-' }}</div>
+  </div>
 </template>
 <script lang="ts" setup>
   import { computed } from 'vue'
@@ -21,10 +23,16 @@
 </script>
 <style lang="scss" scoped>
   .description-content {
+    display: flex;
+    align-items: center;
+    min-height: 30px;
     line-height: 1.75;
-    // padding-top: 4px;
     word-wrap: break-word;
     white-space: pre-wrap;
     overflow-wrap: break-word;
+
+    .inner-content {
+
+    }
   }
 </style>

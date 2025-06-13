@@ -30,14 +30,20 @@ export default defineConfig(() => {
         // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
         resolvers: [
           ElementPlusResolver({
-            importStyle: false
+            importStyle: false,
+            directives: true
           })
         ]
       }),
       // 自动注册组件
       Components({
         dts: 'typings/components.d.ts',
-        resolvers: [ElementPlusResolver()]
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: false, // 不带样式
+            directives: true
+          })
+        ]
       })
     ],
     // 自定义主题样式

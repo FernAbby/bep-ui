@@ -5,6 +5,7 @@
     :model="form"
     :rules="rules"
     label-width="90px"
+    layout="inline"
     @change="handleChange"
   >
     <template #append>
@@ -43,7 +44,7 @@
         title: '姓名',
         renderType: 'InputText',
         required: true,
-        tooltip: 'This is a required field',
+        tooltip: '姓名是必填项'
       },
       address: {
         title: '家庭地址',
@@ -109,7 +110,7 @@
       },
       course: {
         title: '课程',
-        renderType: 'Checkbox',
+        renderType: 'CheckboxGroup',
         renderOptions: {
           options: [
             {

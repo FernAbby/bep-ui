@@ -1,0 +1,87 @@
+// 复选框 组件
+@mixin checkbox($size: 14px) {
+  .el-checkbox {
+    margin-right: 16px;
+
+    &.el-checkbox--small {
+      .el-checkbox__input {
+        .el-checkbox__inner {
+          width: $size;
+          height: $size;
+
+          &::after {
+            height: 7px;
+            width: 3px;
+          }
+        }
+      }
+
+      .el-checkbox__label {
+        line-height: $size;
+        font-size: var(--el-form-label-font-size);
+      }
+    }
+  }
+}
+
+.el-checkbox-group {
+  @include checkbox(14px);
+}
+
+// 单选框 组件
+@mixin radio($size: 14px) {
+  .el-radio {
+    margin-right: 20px;
+
+    &.el-radio--small {
+      height: 30px;
+
+      .el-radio__input {
+        .el-radio__inner {
+          height: $size;
+          width: $size;
+        }
+      }
+
+      .el-radio__label {
+        font-size: var(--el-form-label-font-size);
+      }
+    }
+  }
+}
+
+.el-radio-group {
+  @include radio(14px);
+}
+
+// 颜色选择器 组件
+.el-color-picker--small {
+  height: 30px;
+
+  .el-color-picker__trigger {
+    width: 30px;
+    height: 30px;
+  }
+
+  .el-color-picker__empty {
+    display: none;
+  }
+
+  .el-color-picker__icon.is-icon-arrow-down {
+    display: none;
+  }
+}
+
+// button 组件
+.el-button__small {
+  height: var(--bep-button-height-small);
+  padding: 4px 12px;
+  font-size: var(--bep-font-size-small);
+}
+
+// input 组件
+.el-input--small {
+  .el-textarea__inner {
+    min-height: 30px !important;
+  }
+}

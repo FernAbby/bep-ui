@@ -220,7 +220,7 @@
       },
       course: {
         title: '课程',
-        renderType: 'Checkbox',
+        renderType: 'CheckboxGroup',
         renderOptions: {
           options: [
             {

@@ -3,7 +3,7 @@ import type { FormItemProps, FormValidateCallback, FormValidationResult } from '
 import type { IObjectAny } from '../../types/common'
 import FormPlus from './index.vue'
 
-export type IFormLayout = 'grid' | 'flex' | 'block'
+export type IFormLayout = 'grid' | 'inline' | 'block'
 
 export interface IOption {
   label: string

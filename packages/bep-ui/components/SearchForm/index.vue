@@ -144,19 +144,31 @@
 </script>
 <style lang="scss">
   .search-form-plus {
-    .el-form-item__content > * {
-      width: 100%;
-    }
+    .el-form {
+      .el-form-item {
+        .el-form-item__content {
+          > * {
+            width: 100%;
+          }
 
-    .el-form-item__content {
-      .el-input-number .el-input__inner {
-        text-align: left;
+          .el-input-number,
+          .el-date-editor {
+            width: 100%;
+          }
+        }
       }
 
-      .el-date-editor {
-        width: 100% !important;
+      .bep-form-plus-append {
+        grid-column-start: -2;
+        margin-bottom: 16px;
       }
     }
+
+    //.el-form-item__content {
+    //  .el-input-number .el-input__inner {
+    //    text-align: left;
+    //  }
+    //}
 
     .search-form-plus__actions {
       display: flex;

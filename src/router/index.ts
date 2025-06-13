@@ -42,18 +42,39 @@ const router = createRouter({
               component: () => import('@/views/examples/guide-view.vue')
             },
             {
-              path: 'form',
-              name: 'form-plus',
+              path: 'base-form',
+              name: 'base-form',
               children: [
                 {
-                  path: 'base',
-                  name: 'base-form',
-                  component: () => import('../views/examples/FormPlus/FormPlusView.vue')
+                  path: 'block',
+                  name: 'block-form',
+                  component: () => import('../views/examples/FormPlus/BlockForm.vue')
                 },
                 {
-                  path: 'complex',
-                  name: 'complex-form',
-                  component: () => import('../views/examples/FormPlus/ComplexForm.vue')
+                  path: 'inline',
+                  name: 'inline-form',
+                  component: () => import('../views/examples/FormPlus/InlineForm.vue')
+                },
+                {
+                  path: 'grid',
+                  name: 'grid-form',
+                  component: () => import('../views/examples/FormPlus/GridForm.vue')
+                },
+                {
+                  path: 'search',
+                  name: 'search-form',
+                  component: () => import('../views/examples/FormPlus/SearchForm.vue')
+                }
+              ]
+            },
+            {
+              path: 'complex-form',
+              name: 'complex-form',
+              children: [
+                {
+                  path: 'nest',
+                  name: 'nest-form',
+                  component: () => import('../views/examples/FormPlus/NestForm.vue')
                 }
               ]
             },

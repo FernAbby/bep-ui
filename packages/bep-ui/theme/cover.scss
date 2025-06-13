@@ -1,109 +1,13 @@
-.bep-form-plus {
-  .el-form-item__label {
-    .el-icon {
-      display: inline-block;
-
-      // vertical-align: middle;
-      margin-left: 3px;
-      line-height: 32px;
-    }
+// 单选框
+.el-radio-group {
+  .el-radio {
+    margin-right: 16px;
   }
 }
 
-// 覆盖 size = small组件样式
-.bep-form-plus--small {
-  // start of size = 'small'
-  .el-form-item--small {
-    margin-bottom: 16px;
-
-    .el-form-item__label {
-      min-height: 30px;
-      line-height: 30px;
-
-      .el-icon {
-        line-height: 30px;
-      }
-    }
-
-    .el-form-item__content {
-      line-height: 30px;
-      min-height: 30px;
-
-      .el-select__wrapper {
-        line-height: 30px;
-        min-height: 30px;
-      }
-    }
-  }
-
-  // 复选框
+// 复选框
+.el-checkbox-group {
   .el-checkbox {
     margin-right: 16px;
-
-    &.el-checkbox--small {
-      .el-checkbox__inner {
-        width: 14px;
-        height: 14px;
-
-        &::after {
-          height: 7px;
-          width: 3px;
-
-          // transform: rotate(45deg) scaleY(0);
-        }
-      }
-
-      .el-checkbox__label {
-        line-height: 14px;
-      }
-    }
   }
-
-  // 单选框 组件
-  .el-radio {
-    margin-right: 20px;
-
-    &.el-radio--small {
-      height: 30px;
-
-      .el-radio__inner {
-        height: var(--el-radio-input-height);
-        width: var(--el-radio-input-width);
-      }
-    }
-  }
-
-  // 颜色选择器 组件
-  .el-color-picker--small {
-    height: 30px;
-
-    .el-color-picker__trigger {
-      width: 30px;
-      height: 30px;
-    }
-
-    .el-color-picker__empty {
-      display: none;
-    }
-
-    .el-color-picker__icon.is-icon-arrow-down {
-      display: none;
-    }
-  }
-
-  // button 组件
-  .el-button__small {
-    height: var(--bep-button-height-small);
-    padding: 4px 12px;
-    font-size: var(--bep-font-size-small);
-  }
-
-  // input 组件
-  .el-input--small {
-    .el-textarea__inner {
-      min-height: 30px !important;
-    }
-  }
-
-  // end of size = 'small'
 }
