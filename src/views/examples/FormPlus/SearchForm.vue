@@ -1,6 +1,18 @@
 <template>
+  <div class="setting">
+    <div class="setting-item">固定标签宽度: <el-switch v-model="settings.labelWidth" /></div>
+    <div class="setting-item">
+      尺寸
+      <el-segmented
+        v-model="settings.size"
+        :options="sizeOptions"
+      />
+    </div>
+  </div>
+  <el-divider />
   <SearchForm
-    size="small"
+    :size="settings.size"
+    :label-width="settings.labelWidth ? 80 : 'auto'"
     :form-data="formData"
     :schema="schema"
     :loading="loading"
@@ -9,10 +21,16 @@
   />
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { reactive, ref } from 'vue'
   import SearchForm from '@bep-ui/components/SearchForm/index.vue'
 
+  const sizeOptions = ['large', 'default', 'small']
+
   const loading = ref(false)
+  const settings = reactive({
+    labelWidth: false,
+    size: 'small'
+  })
   const formData = ref({
     address: '地址信息'
   })
@@ -124,7 +142,15 @@
     }
   }
 
-  const handleSearch = (value: string) => {
-
-  }
+  const handleSearch = (value: string) => {}
 </script>
+<style>
+  .setting {
+    display: flex;
+    flex-wrap: wrap;
+
+    .setting-item {
+      display: inline-block;
+    }
+  }
+</style>

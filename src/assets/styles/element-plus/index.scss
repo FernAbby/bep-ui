@@ -1,3 +1,7 @@
-@use './form.scss' as *;
-@use './checkbox.scss' as *;
-@use './radio.scss' as *;
+// @use './form.scss' as *;
+// @use './checkbox.scss' as *;
+// @use './radio.scss' as *;
+@use './var.scss' as *;
+
+// 导入全部样式
+@use 'element-plus/theme-chalk/src/index.scss' as *;
