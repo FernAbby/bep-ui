@@ -8,16 +8,24 @@ export function getValue(data: Record<string, any> | Record<string, any>[], path
   if (!keys.length) return undefined
   if (keys.length === 1) return data[path]
   let value = data
-  keys.forEach((key, index) => {
-    if (!value.hasOwnProperty(key)) {
-      if (index === keys.length - 1) {
-        value[key] = undefined
-      } else {
-        value[key] = isNumber(key) ? [] : {}
-      }
+  for (let i = 0; i < keys.length; i++) {
+    if (!value?.hasOwnProperty) {
+      return undefined
+    } else {
+      value = value[keys[i]]
     }
-    value = value[key]
-  })
+  }
+  // keys.forEach((key, index) => {
+  //   console.log('value---->', key, value)
+  //   if (!value?.hasOwnProperty(key)) {
+  //     if (index === keys.length - 1) {
+  //       value[key] = undefined
+  //     } else {
+  //       value[key] = isNumber(key) ? [] : {}
+  //     }
+  //   }
+  //   value = value[key]
+  // })
   return value
 }
 

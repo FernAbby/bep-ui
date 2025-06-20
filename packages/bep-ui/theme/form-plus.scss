@@ -8,7 +8,7 @@
       min-height: 30px;
       line-height: 30px;
 
-      .el-icon {
+      .el-tooltip__trigger.el-icon {
         line-height: 30px;
       }
     }
@@ -85,8 +85,25 @@
       }
     }
 
+    .el-form-item.el-form-item--large {
+      .el-form-item__label {
+        .el-tooltip__trigger.el-icon {
+          line-height: 40px;
+        }
+      }
+    }
+
     .bep-form-plus__fixed-item {
       width: 100%;
+    }
+  }
+}
+
+// 子项
+.el-form-item {
+  .bep-form-plus__sub-group {
+    .el-form-item {
+      margin-bottom: 18px;
     }
   }
 }

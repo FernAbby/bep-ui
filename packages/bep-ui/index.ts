@@ -1,4 +1,5 @@
 import type { App } from 'vue'
+// import { vLoading } from 'element-plus'
 import { freezeGlobalConfig, renderResolver } from './utils/helper'
 import BepUiResolver from './utils/bep-ui-resolver'
 import { INSTALLED_KEY } from './global'
@@ -19,6 +20,7 @@ const BepUI = {
     if ((app as IApp)[INSTALLED_KEY]) return
     ;(app as IApp)[INSTALLED_KEY] = true
 
+    // app.directive('loading', vLoading)
     freezeGlobalConfig(options)
     renderResolver(app)
   }

@@ -19,12 +19,12 @@
         <slot name="table_setting"></slot>
       </div>
     </div>
-    <div v-loading="loading" class="table-plus__table" element-loading-text="加载中...">
+    <div class="table-plus__table" v-loading="loading" element-loading-text="加载中...">
       <el-table
-        v-bind="attrs"
         ref="tableRef"
         :size="size"
         :data="innerDataSource"
+        v-bind="attrs"
         @sort-change="handleSortChange"
       >
         <el-table-column
@@ -37,7 +37,13 @@
           :selectable="selection.selectable"
           :fixed="selection.fixed"
         />
-        <el-table-column v-if="showIndex" type="index" label="序号" :width="indexWidth" align="center" />
+        <el-table-column
+          v-if="showIndex"
+          type="index"
+          label="序号"
+          :width="indexWidth"
+          align="center"
+        />
         <template v-for="column in innerColumns" :key="column.dataIndex">
           <el-table-column
             v-bind="column.columnProps"
@@ -134,6 +140,16 @@
   const innerFormProps = computed(() => {
     return { size: props.size, ...props.formProps }
   })
+
+  watch(
+    () => loading.value,
+    (value) => {
+      console.log('value ===>', value)
+    },
+    {
+      immediate: true
+    }
+  )
 
   // 分页配置
   watch(
