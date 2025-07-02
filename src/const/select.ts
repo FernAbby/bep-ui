@@ -50,3 +50,7 @@ export const states = [
   'Wisconsin',
   'Wyoming'
 ]
+
+export const sizeOptions = ['large', 'default', 'small']
+
+export const layoutOptions = ['block', 'inline', 'grid']

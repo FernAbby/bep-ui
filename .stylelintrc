@@ -1,6 +1,7 @@
 {
   "extends": ["@lints-config/stylelint-config-scss"],
   "rules": {
-    "no-duplicate-selectors": null
+    "no-duplicate-selectors": null,
+    "no-descending-specificity": null
   }
 }

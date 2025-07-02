@@ -36,16 +36,8 @@
       path: '/examples/base-form',
       children: [
         {
-          title: 'block布局',
-          path: '/examples/base-form/block'
-        },
-        {
-          title: 'inline布局',
-          path: '/examples/base-form/inline'
-        },
-        {
-          title: 'grid布局',
-          path: '/examples/base-form/grid'
+          title: 'FormPlus',
+          path: '/examples/base-form/form-plus'
         },
         {
           title: 'SearchFrom',

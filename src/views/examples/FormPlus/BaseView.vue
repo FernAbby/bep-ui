@@ -1,11 +1,27 @@
 <template>
+  <div class="setting">
+    <div class="setting-item">
+      <div class="setting-item__label">布局:</div>
+      <el-segmented v-model="settings.layout" :options="layoutOptions" />
+    </div>
+    <div class="setting-item">
+      <div class="setting-item__label">尺寸:</div>
+      <el-segmented v-model="settings.size" :options="sizeOptions" />
+    </div>
+    <div class="setting-item">
+      <div class="setting-item__label">固定标签宽度:</div>
+      <el-switch v-model="settings.labelWidth" />
+    </div>
+  </div>
+  <el-divider />
   <FormPlus
     ref="formRef"
     :schema="schema"
     :model="form"
     :rules="rules"
-    label-width="90px"
-    layout="inline"
+    :label-width="settings.labelWidth ? 90 : 'auto'"
+    :size="settings.size"
+    :layout="settings.layout"
     @change="handleChange"
   >
     <template #append>
@@ -19,14 +35,20 @@
 <script lang="ts" setup>
   import type { FormRules } from 'element-plus'
   import FormPlus from '@bep-ui/components/FormPlus/index.vue'
-  import { ref } from 'vue'
+  import { reactive, ref } from 'vue'
   import type { IOption, IFormPlusRef, IFormSchema } from '@bep-ui/components'
-  import { states } from '@/const/select'
+  import { states, sizeOptions, layoutOptions } from '@/const/select'
 
   const rules: FormRules = {
     age: [{ min: 1, max: 100, message: 'Length should be 1 to 100', trigger: 'change' }],
     grade: [{ required: true, message: 'grade is required', trigger: 'change' }]
   }
+
+  const settings = reactive({
+    labelWidth: false,
+    size: 'default',
+    layout: 'block'
+  })
 
   const list: IOption[] = states.map((item, index) => ({
     value: `${index}`,
@@ -202,3 +224,21 @@
     console.log('e====>', e)
   }
 </script>
+<style>
+  .setting {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .setting-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+
+      .setting-item__label {
+        margin-right: 12px;
+      }
+    }
+  }
+</style>

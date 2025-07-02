@@ -46,19 +46,9 @@ const router = createRouter({
               name: 'base-form',
               children: [
                 {
-                  path: 'block',
-                  name: 'block-form',
-                  component: () => import('../views/examples/FormPlus/BlockForm.vue')
-                },
-                {
-                  path: 'inline',
-                  name: 'inline-form',
-                  component: () => import('../views/examples/FormPlus/InlineForm.vue')
-                },
-                {
-                  path: 'grid',
-                  name: 'grid-form',
-                  component: () => import('../views/examples/FormPlus/GridForm.vue')
+                  path: 'form-plus',
+                  name: 'form-plus',
+                  component: () => import('../views/examples/FormPlus/BaseView.vue')
                 },
                 {
                   path: 'search',
@@ -85,7 +75,7 @@ const router = createRouter({
                 {
                   path: 'base',
                   name: 'base-table',
-                  component: () => import('../views/examples/TablePlus/Base.vue')
+                  component: () => import('../views/examples/TablePlus/BaseTable.vue')
                 },
                 {
                   path: 'data',
