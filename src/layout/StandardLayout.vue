@@ -70,7 +70,7 @@
       ]
     },
     {
-      title: '下载',
+      title: '文件下载',
       path: '/examples/download'
     },
     {

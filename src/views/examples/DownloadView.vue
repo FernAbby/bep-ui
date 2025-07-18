@@ -1,17 +1,59 @@
 <template>
   <div class="page-container">
-    <a :download="fileName" :href="url">下载图片</a>
-    <el-button type="primary" @click="handleDownload">下载图片</el-button>
+    <div class="download-list-item" v-for="item in fileList" :key="item">
+      <div class="download-list-item__url">{{ item }}</div>
+      <div class="actions">
+        <el-button type="primary" @click="handlePreview(item)">预览</el-button>
+        <el-button type="primary" @click="handleDownload(item)">下载</el-button>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import { downloadFile, extraFileName } from '@gadgets/utils/download'
-  const url =
-    'https://test-biw-cos-cdn.hjt360.cn/2023/11/30/11/80167416568030e628a0.jpg?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDjP5ZptjKfv2xgCgz471TikY7e4PWP8eC%26q-sign-time%3D1717558119%3B1717559979%26q-key-time%3D1717558119%3B1717559979%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3Dcb83a539dfc4251b912ec3e064971c9b0adfc16c&'
-  const fileName = extraFileName(url)
-  console.log('fileName====>', fileName)
+  import { downloadByUrl } from '@gadgets/utils/download'
+  import { previewFile } from '@gadgets/utils/preview'
+  const fileList: string[] = [
+    '/src/assets/be_logo.svg',
+    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+    'http://182.44.15.166:9000/www/downloads/测试文档.docx',
+    'http://182.44.15.166:9000/www/downloads/测试excel表.xlsx',
+    'http://182.44.15.166:9000/www/downloads/测试numbers.numbers',
+    'http://182.44.15.166:9000/www/downloads/测试CSV.csv',
+    'http://182.44.15.166:9000/www/downloads/测试pdf.pdf',
+    'http://182.44.15.166:9000/www/downloads/测试rtf.rtf',
+    'http://182.44.15.166:9000/www/downloads/测试txt.txt'
+  ]
 
-  const handleDownload = () => {
-    downloadFile(url)
+  const handleDownload = (url: string) => {
+    downloadByUrl(url)
+  }
+
+  const handlePreview = (url: string) => {
+    previewFile(url)
   }
 </script>
+<style lang="scss" scoped>
+  .page-container {
+    width: 100%;
+    height: 100%;
+  }
+  .download-list-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+
+    .download-list-item__url {
+      white-space: wrap;
+      word-break: break-all;
+      flex: 1;
+      width: 0;
+    }
+
+    .actions {
+      flex-shrink: 0;
+    }
+  }
+</style>
