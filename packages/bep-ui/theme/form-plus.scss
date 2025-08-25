@@ -7,10 +7,6 @@
     .el-form-item__label {
       min-height: 30px;
       line-height: 30px;
-
-      .el-tooltip__trigger.el-icon {
-        line-height: 30px;
-      }
     }
 
     .el-form-item__content {
@@ -60,10 +56,11 @@
   .el-form {
     .el-form-item {
       .el-form-item__label {
+        align-items: center;
+
         .el-tooltip__trigger.el-icon {
           display: inline-block;
           margin-left: 3px;
-          line-height: 32px;
         }
       }
 
@@ -85,13 +82,13 @@
       }
     }
 
-    .el-form-item.el-form-item--large {
-      .el-form-item__label {
-        .el-tooltip__trigger.el-icon {
-          line-height: 40px;
-        }
-      }
-    }
+    // .el-form-item.el-form-item--large {
+    //  .el-form-item__label {
+    //    .el-tooltip__trigger.el-icon {
+    //      line-height: 40px;
+    //    }
+    //  }
+    // }
 
     .bep-form-plus__fixed-item {
       width: 100%;
