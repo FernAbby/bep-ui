@@ -13,17 +13,6 @@ export function getValue(data: Record<string, any> | Record<string, any>[], path
       value = value[keys[i]]
     }
   }
-  // keys.forEach((key, index) => {
-  //   console.log('value---->', key, value)
-  //   if (!value?.hasOwnProperty(key)) {
-  //     if (index === keys.length - 1) {
-  //       value[key] = undefined
-  //     } else {
-  //       value[key] = isNumber(key) ? [] : {}
-  //     }
-  //   }
-  //   value = value[key]
-  // })
   return value
 }
 

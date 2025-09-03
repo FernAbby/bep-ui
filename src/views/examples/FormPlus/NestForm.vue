@@ -17,7 +17,7 @@
 </template>
 <script lang="ts" setup>
   import type { FormRules } from 'element-plus'
-  import FormPlus from '@bep-ui/components/FormPlus/index.vue'
+  import FormPlus from '@bep-ui/components/FormPlus/src/index.vue'
   import { ref } from 'vue'
   import type { IOption, IFormPlusRef, IFormSchema } from '@bep-ui/components'
   import { states } from '@/const/select'

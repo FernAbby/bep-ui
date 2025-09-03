@@ -11,75 +11,32 @@
 <script lang="ts" setup>
   import type { FormInstance } from 'element-plus'
   import { ElForm } from 'element-plus'
-  import { ref, computed, watch, useAttrs, provide, toRaw } from 'vue'
+  import { ref, computed, watch, useAttrs, provide, toRaw, onMounted } from 'vue'
   import { classnames, isEmpty, deepClone } from 'biz-gadgets'
   import { useNamespace } from 'biz-gadgets/hooks'
-  import type { IComponentSize } from '@bep-ui/constants/size'
   import { GLOBAL_CONFIG } from '@bep-ui/global'
-  import type { IObjectAny } from '@bep-ui/types/common'
+  import type { Recordable } from '@bep-ui/types/common'
   import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
-  import type { IFormPlusRef, IFormSchema, IChangeEvent, IFormLayout } from './interface'
-  import FormGroup from './FormGroup.vue'
+  import type { IFormPlusRef, IChangeEvent } from './types'
+  import FormGroup from './components/FormGroup.vue'
+  import formPlusProps from './props'
 
-  const emits = defineEmits(['change', 'enter'])
+  const emits = defineEmits(['register', 'change', 'enter'])
 
   defineOptions({
     name: 'FormPlus',
     inheritAttrs: false
   })
-  const props = defineProps({
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    model: {
-      type: Object as () => IObjectAny,
-      default: () => ({})
-    },
-    readOnly: {
-      type: Boolean,
-      default: false
-    },
-    schema: {
-      type: Object as () => IFormSchema,
-      default: () => ({
-        renderType: 'Object',
-        properties: {}
-      }),
-      required: true
-    },
-    customContext: {
-      type: Object as () => IObjectAny,
-      default: () => ({})
-    },
-    size: {
-      type: String as () => IComponentSize,
-      default: 'default'
-    },
-    layout: {
-      type: String as () => IFormLayout,
-      default: 'block'
-    },
-    rootClass: {
-      type: String,
-      default: ''
-    },
-    rootStyle: {
-      type: String,
-      default: undefined
-    },
-    separator: {
-      type: String,
-      default: ''
-    }
-  })
+
+  const props = defineProps(formPlusProps)
   const attrs = useAttrs()
   const ns = useNamespace('form-plus', GLOBAL_CONFIG.prefix)
 
   const formRef = ref<FormInstance>()
-  const rootData = ref<IObjectAny>({})
+  const rootData = ref<Recordable>({})
 
-  const fieldKeys = computed(() => Object.keys(props.schema.properties))
+  const fieldKeys = computed(() => Object.keys(props.schema))
+
   const formClasses = computed(() => {
     return classnames([
       ns.b(),
@@ -91,6 +48,7 @@
       props.rootClass
     ])
   })
+
   const isLine = computed(() => ['inline'].includes(props.layout))
 
   watch(
@@ -129,7 +87,7 @@
     }))
   )
 
-  defineExpose<IFormPlusRef>({
+  const formPlusRef: IFormPlusRef = {
     getFormData: () => {
       return toRaw(rootData.value)
     },
@@ -145,10 +103,16 @@
     },
     reset: () => {
       formRef.value?.resetFields(fieldKeys.value)
-      return rootData
+      return rootData.value
     },
     scrollToField: (prop: string) => {
       formRef.value?.scrollToField(prop)
     }
+  }
+
+  defineExpose<IFormPlusRef>(formPlusRef)
+
+  onMounted(() => {
+    emits('register', formPlusRef)
   })
 </script>

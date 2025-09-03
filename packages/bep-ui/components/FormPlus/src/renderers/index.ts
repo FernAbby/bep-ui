@@ -6,6 +6,7 @@ import DateTimeRange from './DateTimeRange/index.vue'
 import InputText from './InputText/index.vue'
 import TextArea from './TextArea/index.vue'
 import InputNumber from './InputNumber/index.vue'
+import InputNumberRange from './InputNumberRange/index.vue'
 import Select from './Select/index.vue'
 import RadioGroup from './RadioGroup/index.vue'
 import SectionTitle from './SectionTitle/index.vue'
@@ -30,6 +31,7 @@ const renderers = {
   InputText,
   TextArea,
   InputNumber,
+  InputNumberRange,
   Select,
   RadioGroup,
   Rate,

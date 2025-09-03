@@ -56,7 +56,7 @@
     IFormSchema,
     ISearchFormRef
   } from '@bep-ui/components'
-  import FormPlus from '../FormPlus/index.vue'
+  import FormPlus from '../FormPlus/src/index.vue'
 
   const emits = defineEmits(['search', 'reset', 'change'])
   const props = defineProps({

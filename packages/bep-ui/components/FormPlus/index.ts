@@ -1,8 +1,8 @@
 import { withInstall } from '@bep-ui/utils/install'
-import { default as BepFormPlus } from './index.vue'
-export * from './interface'
-import { rendererProps, unFormFieldRendererProps } from './constants/rendererProps'
-import * as injectKeys from './constants/injectKeys'
+import { default as BepFormPlus } from './src/index.vue'
+export * from './src/types'
+import { rendererProps, unFormFieldRendererProps } from './src/constants/rendererProps'
+import * as injectKeys from './src/constants/injectKeys'
 
 export const FormContext = {
   rendererProps,

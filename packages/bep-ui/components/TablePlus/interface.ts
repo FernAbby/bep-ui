@@ -1,7 +1,7 @@
 import type { Component } from 'vue'
 import type { TableProps, TableColumnCtx } from 'element-plus'
 import type { PaginationProps } from 'element-plus'
-import type { IFormPlusProps } from '@bep-ui/components/FormPlus/interface'
+import type { IFormPlusProps } from '@bep-ui/components/FormPlus/src/interface'
 import { IObjectAny } from '../../global'
 
 // export type ITableColumnProps = Partial<typeof ElTableColumn>

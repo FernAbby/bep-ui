@@ -1,15 +1,15 @@
-import { IInnerSchemaFormItem, ISchemaFormItem } from '@bep-ui/components'
 import type { Component } from 'vue'
 import { GLOBAL_CONFIG } from '@bep-ui/global'
 import { isBoolean } from 'biz-gadgets'
 import { useNamespace } from 'biz-gadgets/hooks'
+import type { ISchemaFormItem } from '../types'
 
 export const ns = useNamespace('form-plus', GLOBAL_CONFIG.prefix)
 
 /**
  * @description 是否是表单项
  */
-export function isFormField(field: IInnerSchemaFormItem): boolean {
+export function isFormField(field: ISchemaFormItem): boolean {
   if (isBoolean(field.isFixedItem) && field.isFixedItem) return true
   return !['SectionTitle', 'Divider'].includes(field.renderType)
 }
@@ -20,7 +20,7 @@ export function isFormField(field: IInnerSchemaFormItem): boolean {
 export function getFormFieldComponent(field: ISchemaFormItem): Component {
   if (field.renderType === 'Custom') {
     if (field.component) {
-      console.error(`TypeError: ${field.title}component不存在!`)
+      console.error(`TypeError: ${field.title}component 不存在!`)
       return GLOBAL_CONFIG.renderers['Description']
     }
     return field.component
@@ -29,25 +29,25 @@ export function getFormFieldComponent(field: ISchemaFormItem): Component {
     return GLOBAL_CONFIG.renderers[field.renderType]
   }
   // throw new TypeError(`renderType ${formField.renderType}不存在`)
-  console.error(`TypeError: ${field.title}renderType为${field.renderType} 渲染器不存在!`)
+  console.error(`TypeError: ${field.title} renderType 为 ${field.renderType} 渲染器不存在!`)
   return GLOBAL_CONFIG.renderers['Description']
 }
 
 /**
  * @description 判断当前项是否为表单组
  */
-export function isFormItemGroup(field: IInnerSchemaFormItem): boolean {
+export function isFormItemGroup(field: ISchemaFormItem): boolean {
   return ['Object', 'Array'].includes(field.renderType)
 }
 
 /**
  * @description 设置placeholder
  */
-export function getPlaceholder(field: IInnerSchemaFormItem) {
+export function getPlaceholder(field: ISchemaFormItem) {
   if (field.renderOptions?.placeholder) {
     return field.renderOptions.placeholder
   }
-  if (['InputText', 'InputNumber'].includes(field.renderType)) {
+  if (['InputText', 'InputNumber', 'InputNumberRange'].includes(field.renderType)) {
     return `请输入${field.title}`
   }
   if (/select|cascader|date/.test(field.renderType.toLowerCase())) {
@@ -59,6 +59,6 @@ export function getPlaceholder(field: IInnerSchemaFormItem) {
 /**
  * @description 获取formItem展示标题
  */
-export function getFormLabel(field: IInnerSchemaFormItem, separator: string) {
+export function getFormLabel(field: ISchemaFormItem, separator: string) {
   return `${field.title || ''}${separator || ''}`
 }

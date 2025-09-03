@@ -43,16 +43,16 @@
   import { execStatement, deepClone } from 'biz-gadgets'
   import { ElFormItem, ElIcon, ElTooltip } from 'element-plus'
   import { QuestionFilled } from '@element-plus/icons-vue'
-  import { getValue, setValue } from './utils'
+  import { getValue, setValue } from '../utils'
   import {
     getFormFieldComponent,
     getPlaceholder,
     isFormItemGroup,
     isFormField,
     ns
-  } from './utils/render'
-  import type { IFormSchema, IInnerSchemaFormItem } from './interface'
-  import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from './constants/injectKeys'
+  } from '../utils/render'
+  import type { IFormSchema, IInnerSchemaFormItem } from '../interface'
+  import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from '../constants/injectKeys'
   import FormGroup from './FormGroup.vue'
 
   defineOptions({

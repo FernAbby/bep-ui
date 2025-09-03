@@ -1,4 +1,4 @@
-import type { IFormSchema } from '@bep-ui/components/FormPlus/interface'
+import type { IFormSchema } from '@bep-ui/components/FormPlus/src/interface'
 
 export const schema: IFormSchema['properties'] = {
   name: {

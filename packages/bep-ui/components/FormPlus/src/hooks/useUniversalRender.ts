@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { omit, isEmpty } from 'biz-gadgets'
-import type { ISchemaFormItem } from '../interface'
+import type { ISchemaFormItem } from '../types'
 
 export interface IRendererProps {
   readonly disabled: boolean

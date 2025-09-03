@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import '@amap/amap-jsapi-types'
-// import 'element-plus/dist/index.css'
 import '@bep-ui/theme/index.scss'
 import './assets/styles/main.css'
 

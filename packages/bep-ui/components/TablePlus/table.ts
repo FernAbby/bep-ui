@@ -1,4 +1,4 @@
-import type { IFormSchema } from '@bep-ui/components/FormPlus/interface'
+import type { IFormSchema } from '@bep-ui/components/FormPlus/src/interface'
 import type { IObjectAny } from '@bep-ui/global'
 import type { ITableColumn } from './interface'
 

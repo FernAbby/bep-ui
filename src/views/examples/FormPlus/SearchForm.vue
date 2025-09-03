@@ -10,7 +10,6 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import SearchForm from '@bep-ui/components/SearchForm/index.vue'
-  import type { IOption } from '@bep-ui/components'
 
   const loading = ref(false)
   const formData = ref({

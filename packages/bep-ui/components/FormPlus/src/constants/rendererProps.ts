@@ -1,13 +1,16 @@
-import type { IObjectAny } from '@bep-ui/types/common'
-import type { ISchemaFormItem } from '../interface'
+import type { Recordable } from '@bep-ui/types/common'
+import { PropType } from 'vue'
+import { ISchemaFormItem } from '../types'
+
 export const rendererProps = {
+  field: {
+    type: Object as PropType<ISchemaFormItem>,
+    default: () => ({}),
+    required: true
+  },
   disabled: {
     type: Boolean,
     default: false
-  },
-  field: {
-    type: Object as () => ISchemaFormItem,
-    default: () => ({})
   },
   modelValue: {
     type: null,
@@ -18,12 +21,12 @@ export const rendererProps = {
     default: ''
   },
   customContext: {
-    type: Object as () => IObjectAny,
+    type: Object as PropType<Recordable>,
     default: () => ({})
   }
 }
 
-// 非form-item的渲染属性
+// 非 form-item 的渲染属性
 export const unFormFieldRendererProps = {
   disabled: {
     type: Boolean,

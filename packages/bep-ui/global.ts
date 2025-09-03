@@ -1,5 +1,5 @@
 import type { Component } from 'vue'
-import renderers from './components/FormPlus/renderers'
+import renderers from './components/FormPlus/src/renderers'
 
 export const INSTALLED_KEY = Symbol('BEP_INSTALLED_KEY')
 
