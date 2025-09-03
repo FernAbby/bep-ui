@@ -9,6 +9,5 @@ export const ROOT_ATTRS_INJECTION_KEY: InjectionKey<
     customContext: Record<string, any>
     disabled: boolean
     size: IComponentSize
-    separator: string
   }>
 > = Symbol('rootAttrsInjection')

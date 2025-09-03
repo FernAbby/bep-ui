@@ -83,7 +83,6 @@
       customContext: props.customContext,
       disabled: props.disabled,
       size: props.size,
-      separator: props.separator
     }))
   )
 

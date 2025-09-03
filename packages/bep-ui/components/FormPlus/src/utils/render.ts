@@ -47,18 +47,11 @@ export function getPlaceholder(field: ISchemaFormItem) {
   if (field.renderOptions?.placeholder) {
     return field.renderOptions.placeholder
   }
-  if (['InputText', 'InputNumber', 'InputNumberRange'].includes(field.renderType)) {
+  if (['InputText', 'InputNumber'].includes(field.renderType)) {
     return `请输入${field.title}`
   }
   if (/select|cascader|date/.test(field.renderType.toLowerCase())) {
     return `请选择${field.title}`
   }
   return field.title || ''
-}
-
-/**
- * @description 获取formItem展示标题
- */
-export function getFormLabel(field: ISchemaFormItem, separator: string) {
-  return `${field.title || ''}${separator || ''}`
 }

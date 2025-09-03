@@ -8,10 +8,6 @@ const formPlusProps = {
     type: String as () => IComponentSize,
     default: 'default'
   },
-  labelWidth: {
-    type: [String, Number],
-    default: undefined
-  },
   layout: {
     type: String as () => IFormLayout,
     default: 'block'
@@ -47,10 +43,6 @@ const formPlusProps = {
   rootStyle: {
     type: String,
     default: undefined
-  },
-  separator: {
-    type: String,
-    default: ''
   }
 }
 

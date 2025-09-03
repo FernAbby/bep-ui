@@ -14,7 +14,7 @@
         </el-tooltip>
       </template>
       <div v-if="isGroup" :class="subItemsClass">
-        <FormGroup :schema="field as IFormSchema" :path="propPath" />
+        <FormGroup :schema="field as unknown as IObjectSchema" :path="propPath" />
       </div>
       <template v-else>
         <component
@@ -39,7 +39,7 @@
   </template>
 </template>
 <script lang="ts" setup>
-  import { computed, inject, watch } from 'vue'
+  import { computed, inject } from 'vue'
   import { execStatement, deepClone } from 'biz-gadgets'
   import { ElFormItem, ElIcon, ElTooltip } from 'element-plus'
   import { QuestionFilled } from '@element-plus/icons-vue'
@@ -51,7 +51,7 @@
     isFormField,
     ns
   } from '../utils/render'
-  import type { IFormSchema, IInnerSchemaFormItem } from '../interface'
+  import type { IObjectSchema, ISchemaFormItem } from '../types'
   import { ROOT_ATTRS_INJECTION_KEY, ROOT_DATA_INJECTION_KEY } from '../constants/injectKeys'
   import FormGroup from './FormGroup.vue'
 
@@ -67,7 +67,7 @@
       default: ''
     },
     field: {
-      type: Object as () => IInnerSchemaFormItem,
+      type: Object as () => ISchemaFormItem,
       default: () => ({})
     }
   })
@@ -127,8 +127,10 @@
 
   // change 事件
   const handleChange = (...args) => {
+    // TODO 删除调试代码
+    console.log('change ====>000', args)
     emits('change', {
-      key: props.field._key,
+      key: props.field.prop,
       path: props.propPath.split('.'),
       value: data.value,
       preValue: oldValue,
@@ -139,7 +141,7 @@
 
   const handleEnter = (...args) => {
     emits('enter', {
-      key: props.field._key,
+      key: props.field.prop,
       path: props.propPath.split('.'),
       value: data.value,
       preValue: oldValue,
@@ -148,32 +150,32 @@
     })
   }
 
-  watch(
-    () => data.value,
-    (value) => {
-      if (oldValue !== value) {
-        // TODO 删除调试代码
-        // console.log(
-        //   'field ====>',
-        //   props.field._key,
-        //   props.field.title,
-        //   'diff ====>',
-        //   oldValue,
-        //   value
-        // )
-        emits('change', {
-          key: props.field._key,
-          path: props.propPath.split('.'),
-          value: data.value,
-          preValue: oldValue,
-          originEvent: [value],
-          field: deepClone(props.field)
-        })
-      }
-    },
-    {
-      immediate: true,
-      deep: true
-    }
-  )
+  // watch(
+  //   () => data.value,
+  //   (value) => {
+  //     if (oldValue !== value) {
+  //       // TODO 删除调试代码
+  //       console.log(
+  //         'field ====>',
+  //         props.field.prop,
+  //         props.field.title,
+  //         'diff ====>',
+  //         oldValue,
+  //         value
+  //       )
+  // emits('change', {
+  //   key: props.field.prop,
+  //   path: props.propPath.split('.'),
+  //   value: data.value,
+  //   preValue: oldValue,
+  //   originEvent: [value],
+  //   field: deepClone(props.field)
+  // })
+  //     }
+  //   },
+  //   {
+  //     immediate: true,
+  //     deep: true
+  //   }
+  // )
 </script>

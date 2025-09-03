@@ -28,13 +28,18 @@ export function setValue(
   if (!keys.length) return
   if (keys.length === 1) {
     data[path] = val
+    return
   }
   let pData = data
   for (let i = 0; i < keys.length - 1; i++) {
     const key = keys[i]
     if (pData.hasOwnProperty(key)) {
       pData = pData[key] // 继续查找下一级属性
+    } else if (i < keys.length - 1) {
+      pData[key] = {}
+      pData = pData[key]
     }
   }
-  pData[keys[keys.length - 1]] = val
+  pData[keys?.at(-1)] = val
+  console.log('data ====>', JSON.stringify(data))
 }

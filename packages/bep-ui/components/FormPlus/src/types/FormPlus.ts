@@ -37,7 +37,6 @@ export type IFormPlusSchema = IBaseSchema | IArraySchema | IObjectSchema
 // 表单属性
 export interface IFormPlusProps {
   schema: IFormPlusSchema
-  labelWidth?: string | number
   model?: Recordable
   size?: IComponentSize
   layout?: IFormLayout
@@ -46,5 +45,4 @@ export interface IFormPlusProps {
   customContext?: Recordable
   rootClass?: string
   rootStyle?: string
-  separator?: string
 }
